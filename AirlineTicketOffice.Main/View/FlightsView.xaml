@@ -1,0 +1,137 @@
+﻿<UserControl x:Class="AirlineTicketOffice.Main.View.FlightsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AirlineTicketOffice.Main.View"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:mvvm="http://www.galasoft.ch/mvvmlight"
+             xmlns:lib="clr-namespace:PlaceInFlightChart;assembly=PlaceInFlightChart"
+             mc:Ignorable="d" 
+             d:DesignHeight="800" d:DesignWidth="1280"
+             DataContext="{Binding FlightsVM, Source={StaticResource Locator}}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="0.1*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <!-- View all flights. -->
+        <ScrollViewer Grid.Row="0">
+            <DataGrid   Name="dgFlights"     
+                        SelectionMode="Single"
+                        VerticalGridLinesBrush="Transparent"
+                        HorizontalGridLinesBrush="Transparent"
+                        RowBackground="Lavender" 
+                        AlternatingRowBackground="White"
+                        ItemsSource="{Binding Flights}"
+                        AutoGenerateColumns="False"
+                        Margin="0,5,0,5"
+                        ColumnWidth="*"
+                        RenderTransformOrigin="0.5,0.5" 
+                        IsReadOnly="True">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <mvvm:EventToCommand 
+                    Command="{Binding  SendFlightCommand, Mode=OneWay}"
+                    CommandParameter="{Binding ElementName=dgFlights, Path=SelectedItem}"   
+                     />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <DataGrid.Columns>
+                    <DataGridTextColumn  x:Name="FlightNumber" Binding="{Binding FlightNumber}" 
+                                        Header="Flight Number"/>
+                    <DataGridTextColumn  x:Name="DateOfDeparture" Binding="{Binding DateOfDeparture, StringFormat={}{0:dd.MM.yyyy}}" 
+                                        Header="Date Of Departure"/>
+                    <DataGridTextColumn  x:Name="DepartureTime" Binding="{Binding DepartureTime}" 
+                                        Header="Departure Time"/>
+                    <DataGridTextColumn  x:Name="TimeOfArrival" Binding="{Binding TimeOfArrival}" 
+                                        Header="Time Of Arrival"/>
+                    <DataGridTextColumn  x:Name="TypeOfAircraft" Binding="{Binding Aircraft.TypeOfAircraft}" 
+                                        Header="Type Of Aircraft"/>
+                    <DataGridTextColumn  x:Name="TailNumber" Binding="{Binding Aircraft.TailNumber}" 
+                                        Header="Tail Number"/>
+                    <DataGridTextColumn  x:Name="NameRoute" Binding="{Binding Route.NameRoute}" 
+                                        Header="Name Route"/>
+                    <DataGridTextColumn  x:Name="AirportOfDeparture" Binding="{Binding Route.AirportOfDeparture}" 
+                                        Header="Airport Of Departure"/>
+                    <DataGridTextColumn  x:Name="AirportOfArrival" Binding="{Binding Route.AirportOfArrival}" 
+                                        Header="Airport Of Arrival"/>
+                    <DataGridTextColumn  x:Name="TravelTime" Binding="{Binding Route.TravelTime}" 
+                                        Header="Travel Time"/>
+                    <DataGridTextColumn  x:Name="Distance" Binding="{Binding Route.Distance}" 
+                                        Header="Distance"/>
+                    <DataGridTextColumn  x:Name="Cost" Binding="{Binding Route.Cost}" 
+                                        Header="Cost"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </ScrollViewer>
+        <!-- Toolbar for flights. -->
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Background="#3a3938">
+            <DockPanel Margin="5">           
+            <!-- Search route name. -->
+                <TextBlock HorizontalAlignment="Left" Margin="10 0 5 0"
+                           Foreground="LightBlue"
+                           TextWrapping="Wrap" Text="Enter Name Of Route:"/>
+                <TextBox HorizontalAlignment="Left" Margin="5 0 10 0"
+                 TextWrapping="Wrap"  Text="{Binding NameRoute, UpdateSourceTrigger=PropertyChanged}"
+                 MinWidth="200">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="TextChanged">
+                            <mvvm:EventToCommand 
+                        Command="{Binding SearchRouteCommand, Mode=OneWay}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBox>
+                <!-- Search flight number. -->
+                <TextBlock HorizontalAlignment="Left" Margin="10 0 5 0"
+                           Foreground="LightBlue"
+                           TextWrapping="Wrap" Text="Enter Number Of Flight:"/>
+                <TextBox HorizontalAlignment="Left" Margin="5 0 10 0"
+                 TextWrapping="Wrap"  Text="{Binding FlightNumber, UpdateSourceTrigger=PropertyChanged}"
+                 MinWidth="200">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="TextChanged">
+                            <mvvm:EventToCommand 
+                        Command="{Binding SearchFlightCommand, Mode=OneWay}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBox>
+                <!-- Buttons flights. -->
+                <Button MinWidth="80" Background="#171717" Foreground="White" 
+                        Content="Refrash Data" Command="{Binding GetAllFlightCommand}"
+                        Margin="5 0 10 0"></Button>
+            </DockPanel>
+        </StackPanel>
+        <!-- Additional Data start. -->
+        <Grid Grid.Row="2" Background="#3a3938" Margin="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.2*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBlock Text="{Binding MessageForUser}"
+                       Grid.Row="0"
+                       TextWrapping="Wrap"
+                       Foreground="{Binding ForegroundForUser}"
+                       FontSize="24"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"></TextBlock>
+            <!-- My user control - 'PlaceChartControl'. -->
+            <Grid Grid.Row="1">
+                <lib:PlaceChartControl BusinessFreeRect="{Binding BusinessFreeRect}" BusinessBusyRect="{Binding BusinessBusyRect}"
+                                       BusinessPlaceFree="{Binding BusinessPlaceFree}" BusinessPlaceBusy="{Binding BusinessPlaceBusy}"  
+                                       EconomFreeRect="{Binding EconomFreeRect}" EconomBusyRect="{Binding EconomBusyRect}"
+                                       EconomyPlaceFree="{Binding EconomyPlaceFree}" EconomyPlaceBusy="{Binding EconomyPlaceBusy}">
+                </lib:PlaceChartControl>
+            </Grid>
+        </Grid>
+        <!-- Edditional Data End. -->
+        <!-- Dummy-panel for loading. -->
+        <DockPanel Background="#abbfd4"
+                   Visibility="{Binding DataGridVisibility}"
+                   Grid.Row="0">
+            <TextBlock Style="{StaticResource LoadingStyleTB}"></TextBlock>
+        </DockPanel>
+        <!-- End dummy-panel. -->
+    </Grid>
+</UserControl>

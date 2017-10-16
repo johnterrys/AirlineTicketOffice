@@ -1,0 +1,95 @@
+﻿<UserControl x:Class="AirlineTicketOffice.Main.View.TariffsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AirlineTicketOffice.Main.View"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:mvvm="http://www.galasoft.ch/mvvmlight"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300"
+             DataContext="{Binding TariffsVM, Source={StaticResource Locator}}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.5*"></RowDefinition>
+            <RowDefinition Height="0.1*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <!-- DataGrid tarifs. -->
+        <ScrollViewer>
+            <DataGrid Name="dgTicket" Grid.Row="0" 
+                          SelectionMode="Single"
+                          VerticalGridLinesBrush="Transparent"
+                          HorizontalGridLinesBrush="Transparent"
+                          RowBackground="Lavender" 
+                          AlternatingRowBackground="White"
+                          ItemsSource="{Binding Tariffs}"
+                          AutoGenerateColumns="False"
+                          Margin="0,5,0,5"
+                          ColumnWidth="*"
+                          RenderTransformOrigin="0.5,0.5" 
+                          IsReadOnly="True">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <mvvm:EventToCommand 
+                        Command="{Binding  SendTicketCommand, Mode=OneWay}"
+                        CommandParameter="{Binding ElementName=dgTicket, Path=SelectedItem}"    
+                         />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <DataGrid.Columns>
+                    <DataGridTextColumn  x:Name="RateName" Binding="{Binding RateName}" 
+                                        Header="RateName"/>
+                    <DataGridTextColumn  x:Name="TicketRefund" Binding="{Binding TicketRefund}" 
+                                        Header="TicketRefund"/>
+                    <DataGridTextColumn x:Name="BookingChanges" Binding="{Binding BookingChanges}" 
+                                        Header="BookingChanges"/>
+                    <DataGridTextColumn  x:Name="BaggageAllowance" Binding="{Binding BaggageAllowance}" 
+                                        Header="BaggageAllowance"/>
+                    <DataGridTextColumn  x:Name="FreeFood" Binding="{Binding FreeFood}" 
+                                        Header="FreeFood"/>
+                    <DataGridTextColumn  x:Name="TypeOfPlace" Binding="{Binding TypeOfPlace}" 
+                                        Header="TypeOfPlace"/>
+
+                </DataGrid.Columns>
+            </DataGrid>
+        </ScrollViewer>
+        <!-- Buttons tariffs. -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Background="#3a3938">
+            <!-- open file. -->
+            <Button Content="Open Pdf Document" Margin="5" Foreground="White" Background="#171717"
+                    Visibility="{Binding ButtonPdfFileVisible}"
+                 Command="{Binding OpenFilePdfCommand}">              
+                </Button>
+            <!-- open file. -->
+            <Button Content="Open Word Document" Margin="5" Foreground="White" Background="#171717"
+                    Visibility="{Binding ButtonWordFileVisible}"
+                 Command="{Binding OpenFileWordCommand}">
+            </Button>
+            <!-- load rates from db. -->
+            <Button Content="Refrash Tariffs Data" Margin="5" Foreground="White" Background="#171717"
+                    Visibility="{Binding ButtonLoadVisible}"
+                 Command="{Binding GetAllTariffsCommand}">
+            </Button>
+        </StackPanel>
+        <!-- View files(pdf, word, etc). -->
+        <Grid x:Name="GridForWebBrowser" Grid.Row="2">
+            <Grid.Background>
+                <LinearGradientBrush>
+                    <GradientStop Color="#abbfd4" Offset="0.5"></GradientStop>
+                    <GradientStop Color="Pink"></GradientStop>
+                </LinearGradientBrush>
+            </Grid.Background>
+            <TextBlock Margin="5" Text="Load File Please..."></TextBlock>
+            <!--<WebBrowser Grid.Row="0" x:Name="WebBrowser"></WebBrowser>  move to trash?-->
+            <!--<DocumentViewer Name="documentViewer" VerticalAlignment="Top"/>-->
+        </Grid>
+        <!-- Dummy-panel for loading. -->
+        <DockPanel Background="#abbfd4"
+                   Visibility="{Binding DataGridVisibility}"
+                   Grid.Row="0">
+            <TextBlock Style="{StaticResource LoadingStyleTB}"></TextBlock>
+        </DockPanel>
+        <!-- End dummy-panel. -->
+    </Grid>
+</UserControl>

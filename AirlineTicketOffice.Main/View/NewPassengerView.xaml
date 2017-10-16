@@ -1,0 +1,107 @@
+﻿<UserControl x:Class="AirlineTicketOffice.Main.View.NewPassengerView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AirlineTicketOffice.Main.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="800" d:DesignWidth="1200"
+             DataContext="{Binding NewPassengerVM, Source={StaticResource Locator}}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="0.1*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <StackPanel Margin="20" Grid.Row="0" Grid.Column="0">
+            <Label MinWidth="1000" Background="Silver" FontSize="12" BorderBrush="Black" BorderThickness="0 1 0 1" 
+                   HorizontalAlignment="Left">Add New Passenger:</Label>
+            <StackPanel Margin="1">
+                <StackPanel Orientation="Horizontal">
+                    <Label Background="Silver" Width="130">Citizenship:</Label>
+                    <TextBox x:Name="CitizenshipTextBox" MinWidth="750" Text="{Binding Path=Passenger.Citizenship,
+                                 UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Height="25">
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Background="Silver" Width="130">Passport Number:</Label>
+                    <TextBox x:Name="PassportNumberTextBox"  MinWidth="750" Text="{Binding Path=Passenger.PassportNumber,
+                                 UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Height="25">
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Background="Silver" Width="130">Sex:</Label>
+                    <TextBox x:Name="SexTextBox" MinWidth="750" Text="{Binding Path=Passenger.Sex,
+                                 UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Height="25">
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Background="Silver" Width="130">Full Name:</Label>
+                    <TextBox x:Name="FullNameTextBox" MinWidth="750" Text="{Binding Path=Passenger.FullName,
+                                 UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Height="25">
+                    </TextBox>
+                </StackPanel>
+                <StackPanel>
+                    <DockPanel>
+                        <Label Background="Silver" Width="130">Date Of Birth:</Label>
+                        <DatePicker Name="dpDateOfBirth" 
+                                        Text="{Binding Path=Passenger.DateOfBirth, StringFormat={}{0:yyyy.MM.dd},
+                                 UpdateSourceTrigger=LostFocus, Mode=TwoWay}"
+                                        FirstDayOfWeek="Monday"
+                                        Language="be-BY"                                       
+                                        Height="25"/>
+                    </DockPanel>
+                </StackPanel>
+                <StackPanel>
+                    <DockPanel>
+                        <Label Background="Silver" Width="130">Term Of PassportDate:</Label>
+                        <DatePicker Name="dpTermOfPassportDate" 
+                                        Text="{Binding Path=Passenger.TermOfPassportDate, StringFormat={}{0:yyyy.MM.dd},
+                                        UpdateSourceTrigger=LostFocus, Mode=TwoWay}"
+                                        FirstDayOfWeek="Monday"
+                                        Language="be-BY"
+                                        Height="25"/>
+                    </DockPanel>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Background="Silver" Width="130">Country Of Residence:</Label>
+                    <TextBox x:Name="CountryOfResidenceTextBox" MinWidth="750" Text="{Binding Path=Passenger.CountryOfResidence,
+                                 UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Height="25">
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Background="Silver" Width="130">Phone Mobile:</Label>
+                    <TextBox x:Name="PhoneMobileTextBox" MinWidth="750" Text="{Binding Path=Passenger.PhoneMobile,
+                                 UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Height="25">
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Background="Silver" Width="130">Email:</Label>
+                    <TextBox x:Name="EmailTextBox" MinWidth="750" Text="{Binding Path=Passenger.Email,
+                                 UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Height="25">
+                    </TextBox>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+        <!-- Button for change passwenger.. -->
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Background="#3a3938">
+            <Button Content="Save Data" Margin="5" MinWidth="100" HorizontalAlignment="Center" Foreground="White" 
+                    Background="#171717"
+                 Command="{Binding SaveNewPassengerCommand}" CommandParameter="{Binding Passenger}">
+            </Button>
+        </StackPanel>
+        <!-- Just field. -->
+        <Grid Grid.Row="2" Grid.ColumnSpan="2" Background="#3a3938" Margin="5">
+            <TextBlock Text="{Binding MessageForUser}"
+                       TextWrapping="Wrap"
+                       Foreground="{Binding ForegroundForUser}"
+                       FontSize="24"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"></TextBlock>
+        </Grid>
+    </Grid>
+</UserControl>

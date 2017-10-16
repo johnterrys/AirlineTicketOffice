@@ -1,0 +1,110 @@
+﻿<Window x:Class="AirlineTicketOffice.Main.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:mvvm="http://www.galasoft.ch/mvvmlight"
+        xmlns:local="clr-namespace:AirlineTicketOffice.Main"
+        mc:Ignorable="d"
+        Title="Airline Ticket Office" MinHeight="800" MinWidth="1280"
+        DataContext="{Binding Source={StaticResource Locator}, Path=Main}">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Grid Background="#3a3938">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.05*"></RowDefinition>
+            <RowDefinition Height="0.05*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="0.05*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0" Background="#3a3938"></Menu>
+        <!-- Tickets. -->
+        <ToolBar Grid.Row="1" Background="#3a3938">
+            <!-- Tickets atart. -->
+            <ComboBox x:Name="CBox" MinWidth="100" HorizontalAlignment="Left">
+                <!-- Bought Tickets. -->
+                <ComboBoxItem x:Name="cbAllTickets" Content="Purchased Tickets" Background="White">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Selected">
+                            <mvvm:EventToCommand Command="{Binding GetBoughtTicketCommand}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </ComboBoxItem>
+                <!-- All Tickets. -->
+                <ComboBoxItem x:Name="cbAllTicket" Content="All Tickets" Background="White">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Selected">
+                            <mvvm:EventToCommand Command="{Binding GetAllTicketCommand}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </ComboBoxItem>
+                <!-- New Tickets. -->
+                <ComboBoxItem x:Name="cbNewTicket" Content="New Ticket" Background="White">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Selected">
+                            <mvvm:EventToCommand Command="{Binding GetNewTicketCommand}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </ComboBoxItem>
+            </ComboBox>
+            <!-- Tickets end. -->
+                <!-- New ticket too. -->
+                <Button x:Name="lbTickets" Content="&#xf2c3; New Tickets" HorizontalAlignment="Left"
+                    FontFamily="{StaticResource FA}" Foreground="LightBlue" Style="{StaticResource ResourceKey=MenuStyle}"
+                    Command="{Binding GetNewTicketCommand}"></Button>
+            <Separator />
+            <!-- Flights. -->
+            <Button  Foreground="White" FontFamily="{StaticResource FA}"
+                     Style="{StaticResource ResourceKey=MenuStyle}"
+                     Command="{Binding GetFlightsCommand}">&#xf0fb; Flights</Button>
+            <Separator />
+            <!-- Passenger atart. -->
+            <ComboBox Margin="10 0 0 0" x:Name="CBoxPassenger" MinWidth="100" HorizontalAlignment="Left">
+                <!-- All Tickets. -->
+                <ComboBoxItem x:Name="cbAllPassenger" Content="All Passenger" Background="White">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Selected">
+                            <mvvm:EventToCommand Command="{Binding GetAllPassengerCommand}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </ComboBoxItem>
+                <!-- New Tickets. -->
+                <ComboBoxItem x:Name="cbNewPassenger" Content="New Passenger" Background="White">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Selected">
+                            <mvvm:EventToCommand Command="{Binding GetNewPassengerCommand}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </ComboBoxItem>
+            </ComboBox>
+            <!-- New passenger button. -->
+            <Button  Foreground="White" FontFamily="{StaticResource FA}"
+                     Style="{StaticResource ResourceKey=MenuStyle}"
+                     Command="{Binding GetNewPassengerCommand}">&#xf007; New Passenger</Button>
+            <!-- Passenger end. -->
+            <Separator/>
+            <!-- Rates. -->
+            <Button  Foreground="White" FontFamily="{StaticResource FA}"
+                     Style="{StaticResource ResourceKey=MenuStyle}"
+                     Command="{Binding GetTariffsCommand}">&#xf291; Tariff</Button>
+            <Separator />
+        </ToolBar>
+        <!-- Main frame. -->
+        <Frame Grid.Row="2" x:Name="MainFrame" NavigationUIVisibility="Hidden" 
+               JournalOwnership="UsesParentJournal" Background="#abbfd4">
+        </Frame>
+        <!-- Status bar. -->
+        <StatusBar Grid.Row="3" Background="#3a3938">
+            <StatusBarItem>
+                <TextBlock MinWidth="100" Foreground="White" Text="{Binding StatusWindow}"></TextBlock>
+            </StatusBarItem>
+            <StatusBarItem HorizontalAlignment="Right">
+                <ResizeGrip />
+            </StatusBarItem>
+        </StatusBar>
+    </Grid>
+</Window>
