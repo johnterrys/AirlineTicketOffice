@@ -26,7 +26,7 @@ namespace AirlineTicketOffice.Repository.Repositories
                 return new PlaceInAircraftModel
                 {
                     TypePlace = p.TypePlace,
-                    FlightID = p.AircraftID,
+                    AircraftID = p.AircraftID,
                     Amount = p.Amount
                 };
             });
@@ -39,7 +39,7 @@ namespace AirlineTicketOffice.Repository.Repositories
                 return new PlaceInAircraftModel
                 {
                     TypePlace = p.TypePlace,
-                    FlightID = p.AircraftID,
+                    AircraftID = p.AircraftID,
                     Amount = p.Amount
                 };
             });

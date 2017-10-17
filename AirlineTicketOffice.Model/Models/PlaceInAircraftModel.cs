@@ -16,12 +16,12 @@ namespace AirlineTicketOffice.Model.Models
             set { Set(() => TypePlace, ref typePlace, value); }
         }
 
-        private int flightID;
+        private int aircraftID;
 
-        public int FlightID
+        public int AircraftID
         {
-            get { return flightID; }
-            set { Set(() => FlightID, ref flightID, value); }
+            get { return aircraftID; }
+            set { Set(() => AircraftID, ref aircraftID, value); }
         }
 
         private int amount;
