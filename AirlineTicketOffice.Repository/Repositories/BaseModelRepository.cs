@@ -15,13 +15,13 @@ namespace AirlineTicketOffice.Repository.Repositories
         protected readonly AirlineTicketOfficeEntities _context;
 
 
-        public BaseModelRepository()
+        protected BaseModelRepository()
         {
             this._context = new AirlineTicketOfficeEntities();
 
-        }   
+        }
 
-        public int Save()
+        protected int Save()
         {
             return _context.SaveChanges();
         }
