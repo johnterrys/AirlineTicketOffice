@@ -234,8 +234,8 @@ namespace AirlineTicketOffice.Main.ViewModel.Flights
                     _getAllFlightCommand = new RelayCommand(() =>
                     {
                         try
-                        {                          
-                            this.Flights?.Clear();
+                        {
+                            if (this.Flights != null) this.Flights.Clear();
 
                             Task.Factory.StartNew(() =>
                             {
@@ -272,7 +272,7 @@ namespace AirlineTicketOffice.Main.ViewModel.Flights
                     {
                         try
                         {
-                            this.Flights?.Clear();
+                            if (this.Flights != null) this.Flights.Clear();
 
                             if (this.FlightNumber == String.Empty)
                             {
@@ -316,7 +316,7 @@ namespace AirlineTicketOffice.Main.ViewModel.Flights
                     {
                         try
                         {
-                            this.Flights?.Clear();
+                            if (this.Flights != null) this.Flights.Clear();
 
                             if (this.NameRoute == String.Empty)
                             {
