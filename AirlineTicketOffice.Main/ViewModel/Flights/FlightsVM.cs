@@ -355,7 +355,7 @@ namespace AirlineTicketOffice.Main.ViewModel.Flights
 
         /// <summary>
         /// Send flight data from UI to this.Flfght.
-        /// Compute UI Charts.(Need replace to AirlineTicketOffice.Model or repo?)           !!!NOTICE
+        /// Compute UI Charts.(May be send to AirlineTicketOffice.Model?)           !!!NOTICE
         /// </summary>
         public ICommand SendFlightCommand
         {
@@ -373,7 +373,7 @@ namespace AirlineTicketOffice.Main.ViewModel.Flights
                             });
 
                             /// <summary>
-                            /// Compute UI Charts.(Need replace to AirlineTicketOffice.Model?)   !!!NOTICE
+                            /// Compute UI Charts.(May be send to AirlineTicketOffice.Model?)   !!!NOTICE
                             /// </summary>
                             GetChartPlaces();
                            
@@ -412,7 +412,7 @@ namespace AirlineTicketOffice.Main.ViewModel.Flights
         }
 
         /// <summary>
-        /// Compute UI Charts.(Need replace to AirlineTicketOffice.Model?)           !!!NOTICE
+        /// Compute UI Charts.(May be send to AirlineTicketOffice.Model?)           !!!NOTICE
         /// </summary>
         private void GetChartPlaces()
         {
@@ -425,6 +425,7 @@ namespace AirlineTicketOffice.Main.ViewModel.Flights
             PlaceInAircraftModel businessAllPlace = null;
             // PlaceInAircraftModel for 'econom rate'
             PlaceInAircraftModel economAllPlace = null;
+
 
             try
             {
@@ -442,22 +443,44 @@ namespace AirlineTicketOffice.Main.ViewModel.Flights
                     economFreeRectModel = this.PlaceInFlight.Where(p => p.TypePlace == "B").SingleOrDefault();
 
                     businessAllPlace = this.PlaceInAircraft.Where(p => p.TypePlace == "A").SingleOrDefault();
-                    economAllPlace = this.PlaceInAircraft.Where(p => p.TypePlace == "B").SingleOrDefault();                  
+                    economAllPlace = this.PlaceInAircraft.Where(p => p.TypePlace == "B").SingleOrDefault();
 
-                    /* !!! Means 1 place == 20px. !!! */
+                    ////////////////////////////////////////  Economy rate chart /////////////////////////////////////
+
+                                                       /* !!! Means 1 place == 5px. !!! */
+
+                    // get 'Economy rate' free Rect 
+                    this.EconomFreeRect = "0,40 " + (CheckResult(economAllPlace.Amount * 5)).ToString() + ",40";
+
+                    // get 'Economy rate' Busy Rect
+                    this.EconomBusyRect = "0,40 " + (CheckResult((economAllPlace.Amount - economFreeRectModel.Amount)
+                              * 5)).ToString() + ",40";
+
+                    // Show Busy econom place in Flight:
+                    this.EconomyPlaceBusy = (CheckResult(economAllPlace.Amount - economFreeRectModel.Amount)).ToString();
+
+                    // Show Free econom place in Flight:
+                    this.EconomyPlaceFree = economFreeRectModel.Amount.ToString();
+
+                    /////////////////////////////////////////////////////////////////////////////////////////////////             
+
+                    ////////////////////////////////////////  Business rate chart ///////////////////////////////////
 
                     // get 'Business rate' free Rect 
-                    this.BusinessFreeRect = "0,40 " + (CheckResult(businessAllPlace.Amount * 20)).ToString() + ",40";
+                    this.BusinessFreeRect = "0,120 " + (CheckResult(businessAllPlace.Amount * 5)).ToString() + ",40";
 
                     // get 'Business rate' Busy Rect
-                    this.BusinessBusyRect = "0,40 " + (CheckResult((businessAllPlace.Amount - businessFreeRectModel.Amount) 
-                              * 20)).ToString() + ",40";
+                    this.BusinessBusyRect = "0,120 " + (CheckResult((businessAllPlace.Amount - businessFreeRectModel.Amount)
+                              * 5)).ToString() + ",40";
 
                     // Show Busy business place in Flight:
                     this.BusinessPlaceBusy = (CheckResult(businessAllPlace.Amount - businessFreeRectModel.Amount)).ToString();
 
                     // Show Free business place in Flight:
                     this.BusinessPlaceFree = businessFreeRectModel.Amount.ToString();
+                    /////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 
                     // Message in TextBlock:
                     this.ForegroundForUser = "#68a225";
@@ -471,6 +494,12 @@ namespace AirlineTicketOffice.Main.ViewModel.Flights
                     this.MessageForUser = "Error occured... Try again, please...";
                     this.ForegroundForUser = "#ff420e";
                 }
+            }
+            catch (ArithmeticException ex)
+            {
+                this.MessageForUser = "Error occured... Try again, please...";
+                this.ForegroundForUser = "#ff420e";
+                Debug.WriteLine("'_sendFlightCommand' method fail..." + ex.Message);
             }
             catch (Exception ex)
             {

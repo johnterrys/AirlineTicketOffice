@@ -118,10 +118,10 @@
                        VerticalAlignment="Center"></TextBlock>
             <!-- My user control - 'PlaceChartControl'. -->
             <Grid Grid.Row="1">
-                <lib:PlaceChartControl BusinessFreeRect="{Binding BusinessFreeRect}" BusinessBusyRect="{Binding BusinessBusyRect}"
-                                       BusinessPlaceFree="{Binding BusinessPlaceFree}" BusinessPlaceBusy="{Binding BusinessPlaceBusy}"  
-                                       EconomFreeRect="{Binding EconomFreeRect}" EconomBusyRect="{Binding EconomBusyRect}"
-                                       EconomyPlaceFree="{Binding EconomyPlaceFree}" EconomyPlaceBusy="{Binding EconomyPlaceBusy}">
+                <lib:PlaceChartControl EconomFreeRect="{Binding EconomFreeRect}" EconomBusyRect="{Binding EconomBusyRect}"
+                                       EconomyPlaceFree="{Binding EconomyPlaceFree}" EconomyPlaceBusy="{Binding EconomyPlaceBusy}"
+                                       BusinessFreeRect="{Binding BusinessFreeRect}" BusinessBusyRect="{Binding BusinessBusyRect}"
+                                       BusinessPlaceFree="{Binding BusinessPlaceFree}" BusinessPlaceBusy="{Binding BusinessPlaceBusy}">
                 </lib:PlaceChartControl>
             </Grid>
         </Grid>
