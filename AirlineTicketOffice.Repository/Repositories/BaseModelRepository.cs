@@ -40,7 +40,11 @@ namespace AirlineTicketOffice.Repository.Repositories
                 Debug.WriteLine("'RefreshAll()' method fail..." + ex.Message);
             }
         }
-    
-      
+
+        protected void Close()
+        {
+            _context.Dispose();
+        }
+
     }
 }
