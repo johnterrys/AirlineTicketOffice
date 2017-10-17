@@ -93,9 +93,9 @@ namespace AirlineTicketOffice.Repository.Repositories
                 }
                 return false;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                Debug.WriteLine("'Add(Passenger)' method fail...");
+                Debug.WriteLine("'Add(Passenger)' method fail..." + ex.Message);
                 return false;
             }
         }
@@ -134,7 +134,7 @@ namespace AirlineTicketOffice.Repository.Repositories
                 }
                 catch (Exception ex)
                 {
-                    Debug.WriteLine(ex.Message);
+                    Debug.WriteLine("'Update(PassengerModel p)' method fail..." + ex.Message);
                     return false;
                 }
 

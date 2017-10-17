@@ -40,7 +40,7 @@
                 <Label MinWidth="500" Background="Silver" FontSize="12" BorderBrush="Black" BorderThickness="0 1 0 1" HorizontalAlignment="Left">Edit Selected Passenger</Label>
                 <StackPanel Margin="1">
                     <StackPanel Orientation="Horizontal">
-                            <Label Background="Silver" Width="130">№:</Label>
+                            <Label Background="Silver" Width="130">PassengerID:</Label>
                         <TextBox x:Name="IDTextBox" IsReadOnly="True" MinWidth="350" Text="{Binding Path=Passenger.PassengerID,
                                  UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
                         </TextBox>
