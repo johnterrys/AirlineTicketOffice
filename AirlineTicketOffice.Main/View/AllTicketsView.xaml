@@ -53,19 +53,6 @@
                                     Header="CashierFullName"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Canvas Grid.Row="1">
-            <Path Stroke="Black" StrokeThickness="1">
-                <Path.Data>
-                    <PathGeometry>
-                        <PathFigure>
-                            <LineSegment Point="100,100"/>
-                            <LineSegment Point="150,120"/>
-                            <PolyBezierSegment Points="170,120 190,100 200,160 220,140"/>
-                        </PathFigure>
-                    </PathGeometry>
-                </Path.Data>
-            </Path>
-        </Canvas>
         <Button  Grid.Row="2" Content="Load Data on DB"
                  Command="{Binding GetAllTicketCommand}">
         </Button>
