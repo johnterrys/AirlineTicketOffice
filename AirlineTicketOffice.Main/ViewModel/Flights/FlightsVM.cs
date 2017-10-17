@@ -355,7 +355,7 @@ namespace AirlineTicketOffice.Main.ViewModel.Flights
 
         /// <summary>
         /// Send flight data from UI to this.Flfght.
-        /// Compute UI Charts.(May be send to AirlineTicketOffice.Model?)           !!!NOTICE
+        /// Compute UI Charts.(May be send realisation to PlaceInFlightChart?)           !!!NOTICE
         /// </summary>
         public ICommand SendFlightCommand
         {
@@ -373,7 +373,7 @@ namespace AirlineTicketOffice.Main.ViewModel.Flights
                             });
 
                             /// <summary>
-                            /// Compute UI Charts.(May be send to AirlineTicketOffice.Model?)   !!!NOTICE
+                            /// Compute UI Charts.(May be send realisation to PlaceInFlightChart?)   !!!NOTICE
                             /// </summary>
                             GetChartPlaces();
                            
@@ -391,7 +391,9 @@ namespace AirlineTicketOffice.Main.ViewModel.Flights
 
 
         #region methods
-
+        /// <summary>
+        /// Get flights from bd.
+        /// </summary>
         private void GetAllFlightLock()
         {
             lock (locker)
@@ -401,6 +403,9 @@ namespace AirlineTicketOffice.Main.ViewModel.Flights
             
         }
 
+        /// <summary>
+        /// Receive this.Flight from SendFlightCommand
+        /// </summary>
         private void ReceiveFlight()
         {
             if (this.Flight != null)
@@ -412,7 +417,7 @@ namespace AirlineTicketOffice.Main.ViewModel.Flights
         }
 
         /// <summary>
-        /// Compute UI Charts.(May be send to AirlineTicketOffice.Model?)           !!!NOTICE
+        /// Compute UI Charts.(May be send realisation to PlaceInFlightChart?)           !!!NOTICE
         /// </summary>
         private void GetChartPlaces()
         {
