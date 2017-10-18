@@ -52,6 +52,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BaseModelRepository.cs" />
     <Compile Include="Repositories\BoughtTicketRepository.cs" />
+    <Compile Include="Repositories\CashierRepository.cs" />
     <Compile Include="Repositories\FlightModelRepository.cs" />
     <Compile Include="Repositories\PassengerModelRepository.cs" />
     <Compile Include="Repositories\PlaceInAircraftRepository.cs" />

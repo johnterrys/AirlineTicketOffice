@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="IRepository\IBaseRepository.cs" />
     <Compile Include="IRepository\IBoughtTicketRepository.cs" />
+    <Compile Include="IRepository\ICashierRepository.cs" />
     <Compile Include="IRepository\IFlightRepository.cs" />
     <Compile Include="IRepository\IMainRepository.cs" />
     <Compile Include="IRepository\IPassengerRepository.cs" />

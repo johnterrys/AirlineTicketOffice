@@ -10,7 +10,7 @@ using AirlineTicketOffice.Data;
 
 namespace AirlineTicketOffice.Repository.Repositories
 {
-    public sealed class AllTicketsModelRepository : BaseModelRepository<AllTicketsModel>, ITicketRepository
+    public sealed class AllTicketsModelRepository : BaseModelRepository<Ticket>, ITicketRepository
     {
 
         public AllTicketsModelRepository()

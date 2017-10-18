@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace AirlineTicketOffice.Repository.Repositories
 {
-    public sealed class FlightModelRepository : BaseModelRepository<FlightModel>, IFlightRepository
+    public sealed class FlightModelRepository : BaseModelRepository<Flight>, IFlightRepository
     {
 
 

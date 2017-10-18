@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace AirlineTicketOffice.Repository.Repositories
 {
-    public sealed class CashierRepository : BaseModelRepository<CashierModel>, ICashierRepository
+    public sealed class CashierRepository : BaseModelRepository<Cashier>, ICashierRepository
     {
         public IEnumerable<CashierModel> GetAll()
         {
