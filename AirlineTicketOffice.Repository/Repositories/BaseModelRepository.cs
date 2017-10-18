@@ -14,7 +14,6 @@ namespace AirlineTicketOffice.Repository.Repositories
 
         protected readonly AirlineTicketOfficeEntities _context;
 
-
         protected BaseModelRepository()
         {
             this._context = new AirlineTicketOfficeEntities();
