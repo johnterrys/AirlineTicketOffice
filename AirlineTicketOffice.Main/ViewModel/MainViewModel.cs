@@ -133,7 +133,7 @@ namespace AirlineTicketOffice.Main.ViewModel
                 {
                     _getAllTicketCommand = new RelayCommand(() =>
                     {
-                        _navigationService.NavigateTo(Resources.TicketViewKey);
+                        _navigationService.NavigateTo("TicketViewKey");
                         this.StatusWindow = "All Tickets Window";
                     });
                 }
@@ -149,7 +149,7 @@ namespace AirlineTicketOffice.Main.ViewModel
                 {
                     _getFlightsCommand = new RelayCommand(() =>
                     {
-                        _navigationService.NavigateTo(Resources.FlightsViewKey);
+                        _navigationService.NavigateTo("FlightsViewKey");
                         this.StatusWindow = "Flights Window";
                     });
                 }

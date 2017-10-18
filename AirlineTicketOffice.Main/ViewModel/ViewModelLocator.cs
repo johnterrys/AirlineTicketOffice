@@ -46,8 +46,8 @@ namespace AirlineTicketOffice.Main.ViewModel
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
             var navigationService = new FrameNavigationService();
-            navigationService.Configure(Resources.TicketViewKey, new Uri("../View/AllTicketsView.xaml", UriKind.RelativeOrAbsolute));
-            navigationService.Configure(Resources.FlightsViewKey, new Uri("../View/FlightsView.xaml", UriKind.RelativeOrAbsolute));
+            navigationService.Configure("TicketViewKey", new Uri("../View/AllTicketsView.xaml", UriKind.RelativeOrAbsolute));
+            navigationService.Configure("FlightsViewKey", new Uri("../View/FlightsView.xaml", UriKind.RelativeOrAbsolute));
             navigationService.Configure("TariffsViewKey", new Uri("../View/TariffsView.xaml", UriKind.RelativeOrAbsolute));
             navigationService.Configure("BoughtTicketViewKey", new Uri("../View/BoughtTicketView.xaml", UriKind.RelativeOrAbsolute));
             navigationService.Configure("AllPassengerViewKey", new Uri("../View/AllPassengerView.xaml", UriKind.RelativeOrAbsolute));
