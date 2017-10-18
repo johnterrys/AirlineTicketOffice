@@ -8,7 +8,7 @@ using System.Text;
 
 namespace AirlineTicketOffice.Repository.Repositories
 {
-    public sealed class TariffsRepository : BaseModelRepository<TariffModel>, ITariffsRepository
+    public sealed class TariffsRepository : BaseModelRepository<GetTariffs_ATO>, ITariffsRepository
     {
         public IEnumerable<TariffModel> GetAll()
         {
