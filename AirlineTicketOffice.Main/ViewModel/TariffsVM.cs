@@ -36,8 +36,11 @@ namespace AirlineTicketOffice.Main.ViewModel
 
             Task.Factory.StartNew(() =>
             {
-                this.Tariffs = new ObservableCollection<TariffModel>(_tariffsRepository.GetAll());
-
+                lock(locker)
+                {
+                    this.Tariffs = new ObservableCollection<TariffModel>(_tariffsRepository.GetAll());
+                }
+                
                 Application.Current.Dispatcher.Invoke(
                       new Action(() =>
                       {
@@ -55,6 +58,8 @@ namespace AirlineTicketOffice.Main.ViewModel
         #endregion
 
         #region fields
+
+        object locker = new object();
 
         private readonly ITariffsRepository _tariffsRepository;
 

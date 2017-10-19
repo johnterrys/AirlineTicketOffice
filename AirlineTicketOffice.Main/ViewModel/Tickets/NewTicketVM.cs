@@ -37,14 +37,16 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
 
             Task.Factory.StartNew(() =>
             {
-                this.AllPassenger = new ObservableCollection<PassengerModel>(_passengerRepository.GetAll());
+                lock (locker)
+                {
+                    this.AllPassenger = new ObservableCollection<PassengerModel>(_passengerRepository.GetAll());
 
-                this.AllFlight = new ObservableCollection<FlightModel>(_flightRepository.GetAll());
+                    this.AllFlight = new ObservableCollection<FlightModel>(_flightRepository.GetAll());
 
-                this.AllCashier = new ObservableCollection<CashierModel>(_cashierRepository.GetAll());
+                    this.AllCashier = new ObservableCollection<CashierModel>(_cashierRepository.GetAll());
 
-                this._AllTariff = new ObservableCollection<TariffModel>(_tariffRepository.GetAll());
-
+                    this._AllTariff = new ObservableCollection<TariffModel>(_tariffRepository.GetAll());
+                }
 
                 Application.Current.Dispatcher.Invoke(
                       new Action(() =>
@@ -62,6 +64,8 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
         #endregion
 
         #region fields
+
+        object locker = new object();
 
         private readonly ITicketRepository _ticketRepository;
 

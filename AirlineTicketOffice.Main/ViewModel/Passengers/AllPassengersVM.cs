@@ -31,7 +31,10 @@ namespace AirlineTicketOffice.Main.ViewModel.Passengers
 
             Task.Factory.StartNew(() =>
             {
-                this.Passengers = new ObservableCollection<PassengerModel>(_repository.GetAll());
+                lock(locker)
+                {
+                    this.Passengers = new ObservableCollection<PassengerModel>(_repository.GetAll());
+                } 
 
                 Application.Current.Dispatcher.Invoke(
                       new Action(() =>
@@ -64,6 +67,7 @@ namespace AirlineTicketOffice.Main.ViewModel.Passengers
 
         private string _MessageForUser;
 
+        object locker = new object();
 
         #endregion
 

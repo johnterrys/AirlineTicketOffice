@@ -29,8 +29,11 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
 
             Task.Factory.StartNew(() =>
             {
-                this.Tickets = new ObservableCollection<BoughtTicketModel>(_repository.GetAll());
-
+                lock(locker)
+                {
+                    this.Tickets = new ObservableCollection<BoughtTicketModel>(_repository.GetAll());
+                }
+                
                 Application.Current.Dispatcher.Invoke(
                       new Action(() =>
                       {
@@ -54,6 +57,8 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
         private string _dataGridVisibility;
 
         private string _ButtonLoadVisible;
+
+        object locker = new object(); 
 
         #endregion
 
