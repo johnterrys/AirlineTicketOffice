@@ -13,9 +13,9 @@
     <UserControl.Resources>
         <DataTemplate x:Key="lbFlightTemplate">
             <StackPanel Margin="3" Orientation="Horizontal">
-                <TextBlock FontSize="14" Text="{Binding Path=FlightNumber}" Foreground="#ef7476"  Background="#3a3938"/>
+                <TextBlock FontSize="16" Text="{Binding Path=FlightNumber}"/>
                 <TextBlock Text=" "/>
-                <TextBlock FontSize="14" Text="{Binding Path=Route.NameRoute}" Foreground="White" Background="#3a3938"/>
+                <TextBlock FontSize="16" Text="{Binding Path=Route.NameRoute}"/>
             </StackPanel>
         </DataTemplate>
     </UserControl.Resources>
@@ -25,23 +25,40 @@
             <RowDefinition Height="0.1*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <!--<i:Interaction.Triggers>
-            <i:EventTrigger EventName="SelectionChanged">
-                <mvvm:EventToCommand 
-                    Command="{Binding  SendTicketCommand, Mode=OneWay}"
-                    CommandParameter="{Binding ElementName=dgTicket, Path=SelectedItem}"    
-                     />
-            </i:EventTrigger>
-        </i:Interaction.Triggers>-->
-        <!-- Entry New Ticket. -->
+        <!-- Start New Ticket Field. -->
         <Grid Grid.Row="0">
-            <StackPanel Width="300">
-                <TextBlock Text="Select Flight" HorizontalAlignment="Center" Foreground="White"></TextBlock>
-                <ComboBox ItemsSource="{Binding AllFlight, UpdateSourceTrigger=PropertyChanged}"
-                          ItemTemplate="{StaticResource ResourceKey=lbFlightTemplate}"
-                          ScrollViewer.CanContentScroll="True" Background="#3a3938">
-                </ComboBox>
-            </StackPanel>
+            <Grid Margin="5" Background="#3a3938">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <!-- Flight field. -->
+                <Border Margin="5" Grid.Column="0" BorderBrush="White" BorderThickness="0.5">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.2*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" Margin="5" Background="White">
+                    <TextBlock FontSize="26" Text="{Binding Flight.FlightID}" HorizontalAlignment="Center"></TextBlock>
+                </StackPanel>
+                <ScrollViewer Margin="5" Grid.Row="1">
+                    <ListBox  x:Name="lbFlight" ItemsSource="{Binding AllFlight, UpdateSourceTrigger=PropertyChanged}"
+                                         ItemTemplate="{StaticResource ResourceKey=lbFlightTemplate}" VerticalContentAlignment="Stretch">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="SelectionChanged">
+                                <mvvm:EventToCommand 
+                                          Command="{Binding  SendFlightCommand, Mode=OneWay}"
+                                          CommandParameter="{Binding ElementName=lbFlight, Path=SelectedItem}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </ListBox>
+                </ScrollViewer>
+                </Grid>
+                </Border>
+            </Grid>
 
             <!--<DataGridTextColumn  x:Name="TicketID" Binding="{Binding TicketID}" 
                                     Header="TicketID"/>
@@ -60,6 +77,7 @@
                     <DataGridTextColumn  x:Name="CashierFullName" Binding="{Binding Cashier.FullName}" 
                                     Header="CashierFullName"/>-->
         </Grid>
+        <!-- End New Ticket Field. -->
         <!-- Button for save new ticket. -->
         <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Background="#3a3938">
             <Button Content="Save Data" Margin="5" MinWidth="100" HorizontalAlignment="Center" Foreground="GreenYellow" 
@@ -81,7 +99,7 @@
         <!-- Dummy-panel for loading. -->
         <DockPanel Background="#abbfd4"
                    Visibility="{Binding DataGridVisibility}"
-                   Grid.Row="2" Grid.Column="1">
+                   Grid.Row="1">
             <TextBlock Style="{StaticResource LoadingStyleTB}"></TextBlock>
         </DockPanel>
         <!-- End dummy-panel. -->

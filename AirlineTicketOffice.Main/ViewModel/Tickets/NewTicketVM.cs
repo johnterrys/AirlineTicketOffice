@@ -35,6 +35,8 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
 
             this.NewTicket = new AllTicketsModel();
 
+            this.Flight = new FlightModel(); 
+
             Task.Factory.StartNew(() =>
             {
                 lock (locker)
@@ -59,7 +61,10 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
 
                       }));
             });
-            
+
+            ReceiveFlight();
+
+
         }
         #endregion
 
@@ -95,9 +100,17 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
 
         private string _ButtonLoadVisible;
 
+        private FlightModel _flight;
+
         #endregion
 
         #region properties
+
+        public FlightModel Flight
+        {
+            get { return _flight; }
+            set { Set(() => Flight, ref _flight, value); }
+        }
 
         public string DataGridVisibility
         {
@@ -201,11 +214,53 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
             set { _saveNewTicketCommand = value; }
         }
 
+        /// <summary>
+        /// The method to send the selected Flight from the listbox on UI
+        /// to the View Model
+        /// </summary>
+        /// <param name="p"></param>
+        private ICommand _sendFlightCommand;
+
+        public ICommand SendFlightCommand
+        {
+            get
+            {
+                if (_sendFlightCommand == null)
+                {
+                    _sendFlightCommand = new RelayCommand<FlightModel>((f) =>
+                    {
+                        if (f != null)
+                        {
+                            Messenger.Default.Send<MessageCommunicator>(new MessageCommunicator()
+                            {
+                                SendFlight = f
+                            });
+                        }
+                    });
+                }
+                return _sendFlightCommand;
+            }
+            set { _sendFlightCommand = value; }
+        }
+
         #endregion
 
         #region methods
 
-       
+        /// <summary>
+        /// The Method used to Receive the send Flight from the listbox UI
+        /// and assigning it the the passenger Notifiable property so that
+        /// it will be displayed on the other view.
+        /// </summary>
+        void ReceiveFlight()
+        {
+            if (this.Flight != null)
+            {
+                Messenger.Default.Register<MessageCommunicator>(this, (f) => {
+                    this.Flight = f.SendFlight;
+                });
+            }
+        }
 
         #endregion
     }
