@@ -74,6 +74,26 @@ namespace AirlineTicketOffice.Main.ViewModel
 
         private ICommand _getNewPassengerCommand;
 
+        private ICommand _getNewTicketCommand;
+
+        public ICommand GetNewTicketCommand
+        {
+            get
+            {
+                if (_getNewTicketCommand == null)
+                {
+                    _getNewTicketCommand = new RelayCommand(() =>
+                    {
+                        _navigationService.NavigateTo("NewTicketViewKey");
+                        this.StatusWindow = "New Ticket Window";
+                    });
+                }
+                return _getNewTicketCommand;
+            }
+            
+        }
+
+
         public ICommand GetAllPassengerCommand
         {
             get

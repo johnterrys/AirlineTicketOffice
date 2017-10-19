@@ -54,10 +54,10 @@
                 </ComboBoxItem>
             </ComboBox>
             <!-- Tickets end. -->
-                <!-- New ticket too. -->
-                <Button x:Name="lbTickets" Content="&#xf2c3; New Tickets" HorizontalAlignment="Left"
-                    FontFamily="{StaticResource FA}" Foreground="LightBlue" Style="{StaticResource ResourceKey=MenuStyle}"
-                    Command="{Binding GetNewTicketCommand}"></Button>
+            <!-- New ticket double. -->
+            <Button x:Name="lbTickets" Content="&#xf2c3; New Tickets" HorizontalAlignment="Left"
+                FontFamily="{StaticResource FA}" Foreground="LightBlue" Style="{StaticResource ResourceKey=MenuStyle}"
+                Command="{Binding GetNewTicketCommand}"></Button>
             <Separator />
             <!-- Flights. -->
             <Button  Foreground="White" FontFamily="{StaticResource FA}"
