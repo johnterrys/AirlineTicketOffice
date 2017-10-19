@@ -8,6 +8,7 @@ using System.Linq.Expressions;
 using System.Data.Entity;
 using AirlineTicketOffice.Data;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace AirlineTicketOffice.Repository.Repositories
 {
@@ -22,38 +23,57 @@ namespace AirlineTicketOffice.Repository.Repositories
 
         public IEnumerable<FlightModel> GetAll()
         {
-            _context.Database.Log = (s => Console.WriteLine(s));
-
-            return _context.Flights.Include(a => a.Aircraft).Include(r => r.Route).ToList().Select((Flight f) =>
+            try
             {
-                return new FlightModel
+                _context.Database.Log = (s => Console.WriteLine(s));
+
+                return _context.Flights.Include(a => a.Aircraft).Include(r => r.Route).ToList().Select((Flight f) =>
                 {
-                    FlightID = f.FlightID,
-                    FlightNumber = f.FlightNumber,
-                    RouteID = f.RouteID,
-                    DateOfDeparture = f.DateOfDeparture,
-                    DepartureTime = f.DepartureTime,
-                    TimeOfArrival = f.TimeOfArrival,
-                    AircraftID = f.AircraftID,
-                    Aircraft = new AircraftModel
+                    return new FlightModel
                     {
-                        AircraftID = f.Aircraft.AircraftID,
-                        TailNumber = f.Aircraft.TailNumber,
-                        DateOfIssue = f.Aircraft.DateOfIssue,
-                        TypeOfAircraft = f.Aircraft.TypeOfAircraft
-                    },
-                    Route = new RouteModel
-                    {
-                        RouteID = f.Route.RouteID,
-                        NameRoute = f.Route.NameRoute,
-                        AirportOfDeparture = f.Route.AirportOfDeparture,
-                        AirportOfArrival = f.Route.AirportOfArrival,
-                        TravelTime = f.Route.TravelTime,
-                        Distance = f.Route.Distance,
-                        Cost = f.Route.Cost
-                    }
-                };
-            });
+                        FlightID = f.FlightID,
+                        FlightNumber = f.FlightNumber,
+                        RouteID = f.RouteID,
+                        DateOfDeparture = f.DateOfDeparture,
+                        DepartureTime = f.DepartureTime,
+                        TimeOfArrival = f.TimeOfArrival,
+                        AircraftID = f.AircraftID,
+                        Aircraft = new AircraftModel
+                        {
+                            AircraftID = f.Aircraft.AircraftID,
+                            TailNumber = f.Aircraft.TailNumber,
+                            DateOfIssue = f.Aircraft.DateOfIssue,
+                            TypeOfAircraft = f.Aircraft.TypeOfAircraft
+                        },
+                        Route = new RouteModel
+                        {
+                            RouteID = f.Route.RouteID,
+                            NameRoute = f.Route.NameRoute,
+                            AirportOfDeparture = f.Route.AirportOfDeparture,
+                            AirportOfArrival = f.Route.AirportOfArrival,
+                            TravelTime = f.Route.TravelTime,
+                            Distance = f.Route.Distance,
+                            Cost = f.Route.Cost
+                        }
+                    };
+                });
+            }
+            catch (NullReferenceException ex)
+            {
+                Debug.WriteLine("IEnumerable<FlightModel> GetAll fail..." + ex.Message);
+                return null;
+            }
+            catch (ArgumentException ex)
+            {
+                Debug.WriteLine("IEnumerable<FlightModel> GetAll fail..." + ex.Message);
+                return null;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("IEnumerable<FlightModel> GetAll fail..." + ex.Message);
+                return null;
+            }
+          
         }
 
 

@@ -449,7 +449,26 @@ namespace AirlineTicketOffice.Main.ViewModel.Flights
         {
             lock (locker)
             {
-                this.Flights = new ObservableCollection<FlightModel>(_flightRepository.GetAll());
+                try
+                {
+                    this.Flights = new ObservableCollection<FlightModel>(_flightRepository.GetAll());
+                    this.ForegroundForUser = "#68a225";
+                    this.MessageForUser = "Data Load Success.";
+                }
+                catch (ArgumentNullException ex)
+                {
+                    Debug.WriteLine("GetAllFlightLock() fail..." + ex.Message);
+
+                    Application.Current.Dispatcher.Invoke(
+                     new Action(() =>
+                     {
+                         this.DataGridVisibility = "Collapsed";
+                         this.ForegroundForUser = "#ff420e";
+                         this.MessageForUser = "Data Not Load. Click'Refrash Data' to Load Data again.";
+                        
+                     }));
+                }
+               
             }
             
         }
