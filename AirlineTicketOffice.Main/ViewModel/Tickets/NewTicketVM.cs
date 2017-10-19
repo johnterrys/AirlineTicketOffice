@@ -21,17 +21,43 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
     public sealed class NewTicketVM:ViewModelBase
     {
         #region constructor
-        public NewTicketVM(ITicketRepository repository)
+        public NewTicketVM(ITicketRepository ticketRepository,
+                           IFlightRepository flightRepository,
+                           IPassengerRepository passengerRepository,
+                           ICashierRepository cashierRepository,
+                           ITariffsRepository tariffRepository)
         {
-            _ticketRepository = repository;
+            _ticketRepository = ticketRepository;
+            _flightRepository = flightRepository;
+            _passengerRepository = passengerRepository;
+            _cashierRepository = cashierRepository;
+            _tariffRepository = tariffRepository;
 
             this.NewTicket = new AllTicketsModel();
 
+            Task.Factory.StartNew(() =>
+            {
+                this.AllPassenger = new ObservableCollection<PassengerModel>(_passengerRepository.GetAll());
 
-            this.ForegroundForUser = "#f2f2f2";
-            this.MessageForUser = "Please, Enter A Data...";
+                this.AllFlight = new ObservableCollection<FlightModel>(_flightRepository.GetAll());
+
+                this.AllCashier = new ObservableCollection<CashierModel>(_cashierRepository.GetAll());
+
+                this._AllTariff = new ObservableCollection<TariffModel>(_tariffRepository.GetAll());
 
 
+                Application.Current.Dispatcher.Invoke(
+                      new Action(() =>
+                      {
+                          
+                          this.DataGridVisibility = "Collapsed";
+                          this.ButtonLoadVisible = "Visible";
+                          this.ForegroundForUser = "#f2f2f2";
+                          this.MessageForUser = "Please, Enter A Data...";
+
+                      }));
+            });
+            
         }
         #endregion
 
@@ -39,22 +65,76 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
 
         private readonly ITicketRepository _ticketRepository;
 
+        private readonly IFlightRepository _flightRepository;
+
+        private readonly IPassengerRepository _passengerRepository;
+
+        private readonly ICashierRepository _cashierRepository;
+
+        private readonly ITariffsRepository _tariffRepository;
+
         private AllTicketsModel _newTicket;
 
         private string _ForegroundForUser;
 
         private string _MessageForUser;
 
+        private ObservableCollection<FlightModel> _AllFlight;
+
+        private ObservableCollection<PassengerModel> _AllPassenger;
+
+        private ObservableCollection<CashierModel> _AllCashier;
+
+        private ObservableCollection<TariffModel> _AllTariff;
+
+        private string _dataGridVisibility;
+
+        private string _ButtonLoadVisible;
 
         #endregion
 
         #region properties
 
+        public string DataGridVisibility
+        {
+            get { return _dataGridVisibility; }
+            set { Set(() => DataGridVisibility, ref _dataGridVisibility, value); }
+        }
+
+        public string ButtonLoadVisible
+        {
+            get { return _ButtonLoadVisible; }
+            set { Set(() => ButtonLoadVisible, ref _ButtonLoadVisible, value); }
+        }
+
+        public ObservableCollection<FlightModel> AllFlight
+        { 
+            get { return _AllFlight; }
+            set { Set(() => AllFlight, ref _AllFlight, value); }
+        }
+
+        public ObservableCollection<PassengerModel> AllPassenger
+        {
+            get { return _AllPassenger; }
+            set { Set(() => AllPassenger, ref _AllPassenger, value); }
+        }
+
+        public ObservableCollection<CashierModel> AllCashier
+        {
+            get { return _AllCashier; }
+            set { Set(() => AllCashier, ref _AllCashier, value); }
+        }
+
+        public ObservableCollection<TariffModel> AllTariff
+        {
+            get { return _AllTariff; }
+            set { Set(() => AllTariff, ref _AllTariff, value); }
+        }
+
         public AllTicketsModel NewTicket
         {
             get { return _newTicket; }
             set { Set(() => NewTicket, ref _newTicket, value); }
-
         }
 
         public string ForegroundForUser

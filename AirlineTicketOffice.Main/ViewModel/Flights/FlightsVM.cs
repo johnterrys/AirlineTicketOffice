@@ -39,6 +39,8 @@ namespace AirlineTicketOffice.Main.ViewModel.Flights
 
             this.Flight = new FlightModel();
 
+            this.DateSearch = DateTime.Now;
+
             Task.Factory.StartNew(() =>
             {
                 GetAllFlightLock();
@@ -109,9 +111,17 @@ namespace AirlineTicketOffice.Main.ViewModel.Flights
 
         private string _EconomyPlaceBusy;
 
+        private DateTime _dateSearch;
+
         #endregion
 
         #region properties
+
+        public DateTime DateSearch
+        {
+            get { return _dateSearch; }
+            set { Set(() => DateSearch, ref _dateSearch, value); }
+        }
 
         public string BusinessPlaceFree
         {
@@ -254,7 +264,48 @@ namespace AirlineTicketOffice.Main.ViewModel.Flights
             }
             set { _getAllFlightCommand = value; }
         }
-     
+
+        private ICommand _searchDateCommand;
+
+        public ICommand SearchDateCommand
+        {
+            get
+            {
+                if (_searchDateCommand == null)
+                {
+                    _searchDateCommand = new RelayCommand(() =>
+                    {
+                        try
+                        {
+                            if (this.Flights != null) this.Flights.Clear();
+
+                            if (this.FlightNumber == String.Empty)
+                            {
+                                this.MessageForUser = "Need enter Flight Number:)";
+                                return;
+                            }
+
+                            this.MessageForUser = this.DateSearch.Date.ToString();
+
+                            var res = from e in _flightRepository.GetAll()
+                                      where (e.DateOfDeparture.Date == DateSearch.Date)
+                                      select e;
+
+                            foreach (var item in res)
+                            {
+                                this.Flights.Add(item);
+                            }
+                        }
+                        catch (Exception e)
+                        {
+                            this.MessageForUser = e.Message;
+                        }
+                    });
+                }
+                return _searchDateCommand;
+            }
+            set { _searchDateCommand = value; }
+        }
 
         private ICommand _searchFlightCommand;
 

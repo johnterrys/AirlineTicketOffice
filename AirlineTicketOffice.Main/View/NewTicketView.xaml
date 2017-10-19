@@ -4,22 +4,67 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:AirlineTicketOffice.Main.View"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:mvvm="http://www.galasoft.ch/mvvmlight"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="800"
              DataContext="{Binding NewTicketVM, Source={StaticResource Locator}}">
+    <!-- Data template textblock => Flight. -->
+    <UserControl.Resources>
+        <DataTemplate x:Key="lbFlightTemplate">
+            <StackPanel Margin="3" Orientation="Horizontal">
+                <TextBlock FontSize="14" Text="{Binding Path=FlightNumber}" Foreground="#ef7476"  Background="#3a3938"/>
+                <TextBlock Text=" "/>
+                <TextBlock FontSize="14" Text="{Binding Path=Route.NameRoute}" Foreground="White" Background="#3a3938"/>
+            </StackPanel>
+        </DataTemplate>
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="0.1*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
+        <!--<i:Interaction.Triggers>
+            <i:EventTrigger EventName="SelectionChanged">
+                <mvvm:EventToCommand 
+                    Command="{Binding  SendTicketCommand, Mode=OneWay}"
+                    CommandParameter="{Binding ElementName=dgTicket, Path=SelectedItem}"    
+                     />
+            </i:EventTrigger>
+        </i:Interaction.Triggers>-->
+        <!-- Entry New Ticket. -->
         <Grid Grid.Row="0">
-            
+            <StackPanel Width="300">
+                <TextBlock Text="Select Flight" HorizontalAlignment="Center" Foreground="White"></TextBlock>
+                <ComboBox ItemsSource="{Binding AllFlight, UpdateSourceTrigger=PropertyChanged}"
+                          ItemTemplate="{StaticResource ResourceKey=lbFlightTemplate}"
+                          ScrollViewer.CanContentScroll="True" Background="#3a3938">
+                </ComboBox>
+            </StackPanel>
+
+            <!--<DataGridTextColumn  x:Name="TicketID" Binding="{Binding TicketID}" 
+                                    Header="TicketID"/>
+                    <DataGridTextColumn  x:Name="FlightID" Binding="{Binding FlightID}" 
+                                    Header="FlightID"/>
+                    <DataGridTextColumn x:Name="PassengerID" Binding="{Binding PassengerID}" 
+                                    Header="PassengerID"/>
+                    <DataGridTextColumn  x:Name="CashierID" Binding="{Binding CashierID}" 
+                                    Header="CashierID"/>
+                    <DataGridTextColumn  x:Name="RateID" Binding="{Binding RateID}" 
+                                    Header="RateID"/>
+                    <DataGridTextColumn  x:Name="SaleDate" Binding="{Binding SaleDate, StringFormat={}{0:dd.MM.yyyy}}" 
+                                    Header="SaleDate"/>
+                    <DataGridTextColumn  x:Name="TotalCost" Binding="{Binding TotalCost}" 
+                                    Header="TotalCost"/>
+                    <DataGridTextColumn  x:Name="CashierFullName" Binding="{Binding Cashier.FullName}" 
+                                    Header="CashierFullName"/>-->
         </Grid>
-        <!-- Button for change passwenger.. -->
+        <!-- Button for save new ticket. -->
         <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Background="#3a3938">
-            <Button Content="Save Data" Margin="5" MinWidth="100" HorizontalAlignment="Center" Foreground="White" 
+            <Button Content="Save Data" Margin="5" MinWidth="100" HorizontalAlignment="Center" Foreground="GreenYellow" 
                     Background="#171717"
+                    Visibility="{Binding ButtonLoadVisible}"
                  Command="{Binding SaveNewTicketCommand}" CommandParameter="{Binding NewTicket}">
             </Button>
         </StackPanel>
@@ -32,5 +77,13 @@
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"></TextBlock>
         </Grid>
+
+        <!-- Dummy-panel for loading. -->
+        <DockPanel Background="#abbfd4"
+                   Visibility="{Binding DataGridVisibility}"
+                   Grid.Row="2" Grid.Column="1">
+            <TextBlock Style="{StaticResource LoadingStyleTB}"></TextBlock>
+        </DockPanel>
+        <!-- End dummy-panel. -->
     </Grid>
 </UserControl>

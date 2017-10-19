@@ -97,6 +97,24 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </TextBox>
+                <!-- Search date name. -->
+                <TextBlock HorizontalAlignment="Left" Margin="10 0 5 0"
+                           Foreground="LightBlue"
+                           TextWrapping="Wrap" Text="Enter Date of Departure:"/>
+                <DatePicker Name="dpTermOfPassportDate" 
+                            Margin="10 0 20 0"
+                            Text="{Binding Path=DateSearch,
+                            UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                            FirstDayOfWeek="Monday"
+                            Language="ru-Ru"
+                            Height="25" >
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="SelectedDateChanged">
+                            <mvvm:EventToCommand 
+                            Command="{Binding  SearchDateCommand, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </DatePicker>
                 <!-- Buttons flights. -->
                 <Button MinWidth="80" Background="#171717" Foreground="White" 
                         Content="Refrash Data" Command="{Binding GetAllFlightCommand}"

@@ -58,6 +58,7 @@ namespace AirlineTicketOffice.Main.ViewModel
             SimpleIoc.Default.Register<IMainNavigationService>(() => navigationService);
 
             SimpleIoc.Default.Register<ITicketRepository, AllTicketsModelRepository>();
+            SimpleIoc.Default.Register<ICashierRepository, CashierRepository>();
             SimpleIoc.Default.Register<IPassengerRepository, PassengerModelRepository>();
             SimpleIoc.Default.Register<IBoughtTicketRepository, BoughtTicketRepository>();
             SimpleIoc.Default.Register<IFlightRepository, FlightModelRepository>();
