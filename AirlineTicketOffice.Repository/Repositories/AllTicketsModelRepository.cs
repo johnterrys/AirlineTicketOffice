@@ -20,7 +20,7 @@ namespace AirlineTicketOffice.Repository.Repositories
 
         public bool Add(AllTicketsModel entity)
         {
-            throw new NotImplementedException();
+            return false;
         }
 
         public IEnumerable<AllTicketsModel> Find(Expression<Func<AllTicketsModel, bool>> predicate)

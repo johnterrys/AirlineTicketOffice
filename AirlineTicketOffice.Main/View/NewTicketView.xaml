@@ -5,9 +5,32 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:AirlineTicketOffice.Main.View"
              mc:Ignorable="d" 
-             d:DesignHeight="600" d:DesignWidth="1024"
+             d:DesignHeight="600" d:DesignWidth="800"
              DataContext="{Binding NewTicketVM, Source={StaticResource Locator}}">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="0.1*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            
+        </Grid>
+        <!-- Button for change passwenger.. -->
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Background="#3a3938">
+            <Button Content="Save Data" Margin="5" MinWidth="100" HorizontalAlignment="Center" Foreground="White" 
+                    Background="#171717"
+                 Command="{Binding SaveNewTicketCommand}" CommandParameter="{Binding NewTicket}">
+            </Button>
+        </StackPanel>
+        <!-- Just field. -->
+        <Grid Grid.Row="2" Grid.ColumnSpan="2" Background="#3a3938" Margin="5">
+            <TextBlock Text="{Binding MessageForUser}"
+                       TextWrapping="Wrap"
+                       Foreground="{Binding ForegroundForUser}"
+                       FontSize="24"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"></TextBlock>
+        </Grid>
     </Grid>
 </UserControl>
