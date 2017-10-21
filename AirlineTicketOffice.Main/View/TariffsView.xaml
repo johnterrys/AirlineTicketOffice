@@ -18,17 +18,18 @@
         <!-- DataGrid tarifs. -->
         <ScrollViewer>
             <DataGrid Name="dgTicket" Grid.Row="0" 
-                          SelectionMode="Single"
-                          VerticalGridLinesBrush="Transparent"
-                          HorizontalGridLinesBrush="Transparent"
-                          RowBackground="Lavender" 
-                          AlternatingRowBackground="White"
-                          ItemsSource="{Binding Tariffs}"
-                          AutoGenerateColumns="False"
-                          Margin="0,5,0,5"
-                          ColumnWidth="*"
-                          RenderTransformOrigin="0.5,0.5" 
-                          IsReadOnly="True">
+                      SelectionMode="Single"
+                      VerticalGridLinesBrush="Transparent"
+                      HorizontalGridLinesBrush="Transparent"
+                      RowBackground="Lavender" 
+                      AlternatingRowBackground="White"
+                      ItemsSource="{Binding Tariffs}"
+                      AutoGenerateColumns="False"
+                      Margin="0,5,0,5"
+                      ColumnWidth="*"
+                      Background="White"
+                      RenderTransformOrigin="0.5,0.5" 
+                      IsReadOnly="True">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="SelectionChanged">
                         <mvvm:EventToCommand 

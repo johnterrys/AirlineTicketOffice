@@ -23,17 +23,18 @@
         <!-- Data View bought tickets. -->
         <ScrollViewer Grid.Row="1">
             <DataGrid Name="dgTicket"  
-                          SelectionMode="Single"
-                          VerticalGridLinesBrush="Transparent"
-                          HorizontalGridLinesBrush="Transparent"
-                          RowBackground="Lavender" 
-                          AlternatingRowBackground="White"
-                          ItemsSource="{Binding Tickets}"
-                          AutoGenerateColumns="False"
-                          Margin="0,5,0,5"
-                          ColumnWidth="*"
-                          RenderTransformOrigin="0.5,0.5" 
-                          IsReadOnly="True">
+                      Background="White"
+                      SelectionMode="Single"
+                      VerticalGridLinesBrush="Transparent"
+                      HorizontalGridLinesBrush="Transparent"
+                      RowBackground="Lavender" 
+                      AlternatingRowBackground="White"
+                      ItemsSource="{Binding Tickets}"
+                      AutoGenerateColumns="False"
+                      Margin="0,5,0,5"
+                      ColumnWidth="*"
+                      RenderTransformOrigin="0.5,0.5" 
+                      IsReadOnly="True">
                 <DataGrid.Columns>
                     <DataGridTextColumn  x:Name="FullName" Binding="{Binding FullName}" 
                                         Header="Full Name"/>

@@ -126,7 +126,7 @@
         </Border>
         <!-- Change data passengers end. -->
         <!-- Data View bought tickets. -->
-        <ScrollViewer Grid.Row="1" Grid.Column="1">
+        <ScrollViewer Grid.Row="1" Grid.Column="1" Background="White">
             <DataGrid Name="dgPassengers"  
                       SelectionMode="Single"
                       VerticalGridLinesBrush="Transparent"
@@ -137,6 +137,7 @@
                       AutoGenerateColumns="False"
                       Margin="0,5,0,5"
                       ColumnWidth="*"
+                      Background="White"
                       RenderTransformOrigin="0.5,0.5" 
                       IsReadOnly="True">
                 <i:Interaction.Triggers>

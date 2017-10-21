@@ -17,8 +17,9 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <!-- View all flights. -->
-        <ScrollViewer Grid.Row="0">
-            <DataGrid   Name="dgFlights"     
+        <ScrollViewer Grid.Row="0" Background="White">
+            <DataGrid   Name="dgFlights" 
+                        Background="White"
                         SelectionMode="Single"
                         VerticalGridLinesBrush="Transparent"
                         HorizontalGridLinesBrush="Transparent"
