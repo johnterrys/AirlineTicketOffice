@@ -36,79 +36,75 @@
                 <RowDefinition Height="0.1*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
-            <StackPanel Grid.Row="0">
-                <Label MinWidth="500" Background="Silver" FontSize="12" BorderBrush="Black" BorderThickness="0 1 0 1" HorizontalAlignment="Left">Edit Selected Passenger</Label>
+                <StackPanel Grid.Row="0" Orientation="Vertical" Margin="5" Background="#3a3938">
+                <Label Foreground="White" FontSize="14" HorizontalAlignment="Center">Edit Selected Passenger</Label>
                 <StackPanel Margin="1">
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal" Visibility="Hidden">
                             <Label Background="Silver" Width="130">PassengerID:</Label>
-                        <TextBox x:Name="IDTextBox" IsReadOnly="True" MinWidth="350" Text="{Binding Path=Passenger.PassengerID,
+                        <TextBox x:Name="IDTextBox" IsReadOnly="True" Text="{Binding Path=Passenger.PassengerID,
                                  UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
                         </TextBox>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal">
+                    <DockPanel>
                         <Label Background="Silver" Width="130">Citizenship:</Label>
-                        <TextBox x:Name="CitizenshipTextBox" MinWidth="350" Text="{Binding Path=Passenger.Citizenship,
+                        <TextBox x:Name="CitizenshipTextBox" Text="{Binding Path=Passenger.Citizenship,
                                  UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Height="25">
                         </TextBox>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
+                    </DockPanel>
+                    <DockPanel>
                         <Label Background="Silver" Width="130">Passport Number:</Label>
                         <TextBox x:Name="PassportNumberTextBox"  MinWidth="350" Text="{Binding Path=Passenger.PassportNumber,
                                  UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Height="25">
                         </TextBox>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
+                    </DockPanel>
+                    <DockPanel>
                         <Label Background="Silver" Width="130">Sex:</Label>
                         <TextBox x:Name="SexTextBox" MinWidth="350" Text="{Binding Path=Passenger.Sex,
                                  UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Height="25">
                         </TextBox>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
+                    </DockPanel>
+                    <DockPanel>
                         <Label Background="Silver" Width="130">Full Name:</Label>
                         <TextBox x:Name="FullNameTextBox" MinWidth="350" Text="{Binding Path=Passenger.FullName,
-                                 UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Height="25">
+                            UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Height="25">
                         </TextBox>
-                    </StackPanel>
-                    <StackPanel>
-                        <DockPanel>
-                            <Label Background="Silver" Width="130">Date Of Birth:</Label>
-                            <DatePicker Name="dpDateOfBirth" 
-                                        Text="{Binding Path=Passenger.DateOfBirth, StringFormat={}{0:yyyy.MM.dd},
-                                 UpdateSourceTrigger=LostFocus, Mode=TwoWay}"
-                                        FirstDayOfWeek="Monday"
-                                        Language="be-BY"
-                                        Height="25"/>
-                        </DockPanel>
-                    </StackPanel>
-                    <StackPanel>
-                        <DockPanel>
-                            <Label Background="Silver" Width="130">Term Of PassportDate:</Label>
-                            <DatePicker Name="dpTermOfPassportDate" 
-                                        Text="{Binding Path=Passenger.TermOfPassportDate, StringFormat={}{0:yyyy.MM.dd},
-                                        UpdateSourceTrigger=LostFocus, Mode=TwoWay}"
-                                        FirstDayOfWeek="Monday"
-                                        Language="be-BY"
-                                        Height="25"/>
-                        </DockPanel>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <Label Background="Silver" Width="130">Country Of Residence:</Label>
-                        <TextBox x:Name="CountryOfResidenceTextBox" MinWidth="350" Text="{Binding Path=Passenger.CountryOfResidence,
-                                 UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Height="25">
-                        </TextBox>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
+                    </DockPanel>
+                    <DockPanel>
+                        <Label Background="Silver" Width="130">Date Of Birth:</Label>
+                        <DatePicker Name="dpDateOfBirth" 
+                                Text="{Binding Path=Passenger.DateOfBirth, StringFormat={}{0:yyyy.MM.dd},
+                            UpdateSourceTrigger=LostFocus, Mode=TwoWay}"
+                                FirstDayOfWeek="Monday"
+                                Language="be-BY"
+                                Height="25"/>
+                    </DockPanel>
+                    <DockPanel>
+                        <Label Background="Silver" Width="130">Term Of PassportDate:</Label>
+                        <DatePicker Name="dpTermOfPassportDate" 
+                            Text="{Binding Path=Passenger.TermOfPassportDate, StringFormat={}{0:yyyy.MM.dd},
+                            UpdateSourceTrigger=LostFocus, Mode=TwoWay}"
+                            FirstDayOfWeek="Monday"
+                            Language="be-BY"
+                            Height="25"/>
+                    </DockPanel>
+                    <DockPanel>
+                    <Label Background="Silver" Width="130">Country Of Residence:</Label>
+                    <TextBox x:Name="CountryOfResidenceTextBox" MinWidth="350" Text="{Binding Path=Passenger.CountryOfResidence,
+                                UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Height="25">
+                    </TextBox>
+                    </DockPanel>
+                    <DockPanel>
                         <Label Background="Silver" Width="130">Phone Mobile:</Label>
                         <TextBox x:Name="PhoneMobileTextBox" MinWidth="350" Text="{Binding Path=Passenger.PhoneMobile,
                                  UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Height="25">
                         </TextBox>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
+                    </DockPanel>
+                    <DockPanel>
                         <Label Background="Silver" Width="130">Email:</Label>
                         <TextBox x:Name="EmailTextBox" MinWidth="350" Text="{Binding Path=Passenger.Email,
                                  UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Height="25">
                         </TextBox>
-                    </StackPanel>
+                    </DockPanel>
                 </StackPanel>
             </StackPanel>
             <!-- Button for change passwenger.. -->
@@ -132,17 +128,17 @@
         <!-- Data View bought tickets. -->
         <ScrollViewer Grid.Row="1" Grid.Column="1">
             <DataGrid Name="dgPassengers"  
-                          SelectionMode="Single"
-                          VerticalGridLinesBrush="Transparent"
-                          HorizontalGridLinesBrush="Transparent"
-                          RowBackground="Lavender" 
-                          AlternatingRowBackground="White"
-                          ItemsSource="{Binding Passengers}"
-                          AutoGenerateColumns="False"
-                          Margin="0,5,0,5"
-                          ColumnWidth="*"
-                          RenderTransformOrigin="0.5,0.5" 
-                          IsReadOnly="True">
+                      SelectionMode="Single"
+                      VerticalGridLinesBrush="Transparent"
+                      HorizontalGridLinesBrush="Transparent"
+                      RowBackground="Lavender" 
+                      AlternatingRowBackground="White"
+                      ItemsSource="{Binding Passengers}"
+                      AutoGenerateColumns="False"
+                      Margin="0,5,0,5"
+                      ColumnWidth="*"
+                      RenderTransformOrigin="0.5,0.5" 
+                      IsReadOnly="True">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="SelectionChanged">
                         <mvvm:EventToCommand 
