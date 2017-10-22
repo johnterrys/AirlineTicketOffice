@@ -47,7 +47,6 @@ namespace AirlineTicketOffice.Main.ViewModel
 
             var navigationService = new FrameNavigationService();
             navigationService.Configure("NewTicketViewKey", new Uri("../View/NewTicketView.xaml", UriKind.RelativeOrAbsolute));
-            navigationService.Configure("TicketViewKey", new Uri("../View/AllTicketsView.xaml", UriKind.RelativeOrAbsolute));
             navigationService.Configure("FlightsViewKey", new Uri("../View/FlightsView.xaml", UriKind.RelativeOrAbsolute));
             navigationService.Configure("TariffsViewKey", new Uri("../View/TariffsView.xaml", UriKind.RelativeOrAbsolute));
             navigationService.Configure("BoughtTicketViewKey", new Uri("../View/BoughtTicketView.xaml", UriKind.RelativeOrAbsolute));
@@ -69,7 +68,6 @@ namespace AirlineTicketOffice.Main.ViewModel
             SimpleIoc.Default.Register<IWordFileDialogService, WordFileDialogService>();
 
             SimpleIoc.Default.Register<MainViewModel>();
-            SimpleIoc.Default.Register<AllTicketsVM>();
             SimpleIoc.Default.Register<NewTicketVM>();
             SimpleIoc.Default.Register<FlightsVM>();
             SimpleIoc.Default.Register<TariffsVM>();
@@ -87,14 +85,7 @@ namespace AirlineTicketOffice.Main.ViewModel
                 return ServiceLocator.Current.GetInstance<MainViewModel>();
             }
         }
-
-        public AllTicketsVM TicketVM
-        {
-            get
-            {
-                return ServiceLocator.Current.GetInstance<AllTicketsVM>();
-            }
-        }
+      
 
         public  NewTicketVM NewTicketVM
         {

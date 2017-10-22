@@ -62,8 +62,6 @@ namespace AirlineTicketOffice.Main.ViewModel
 
         private ICommand _getBoughtTicketCommand;
 
-        private ICommand _getAllTicketCommand;
-
         private ICommand _getAllPassengerCommand;
 
         private ICommand _getFlightsCommand;
@@ -143,23 +141,7 @@ namespace AirlineTicketOffice.Main.ViewModel
                 return _getBoughtTicketCommand;
             }
 
-        }
-
-        public ICommand GetAllTicketCommand
-        {
-            get
-            {
-                if (_getAllTicketCommand == null)
-                {
-                    _getAllTicketCommand = new RelayCommand(() =>
-                    {
-                        _navigationService.NavigateTo("TicketViewKey");
-                        this.StatusWindow = "All Tickets Window";
-                    });
-                }
-                return _getAllTicketCommand;
-            }
-        }
+        }      
 
         public ICommand GetFlightsCommand
         {

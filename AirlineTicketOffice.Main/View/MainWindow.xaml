@@ -36,14 +36,6 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </ComboBoxItem>
-                <!-- All Tickets. -->
-                <ComboBoxItem x:Name="cbAllTicket" Content="All Tickets" Background="White">
-                    <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="Selected">
-                            <mvvm:EventToCommand Command="{Binding GetAllTicketCommand}"/>
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers>
-                </ComboBoxItem>
                 <!-- New Tickets. -->
                 <ComboBoxItem x:Name="cbNewTicket" Content="New Ticket" Background="White">
                     <i:Interaction.Triggers>
