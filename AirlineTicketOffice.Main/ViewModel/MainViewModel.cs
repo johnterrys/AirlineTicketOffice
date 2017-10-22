@@ -218,7 +218,7 @@ namespace AirlineTicketOffice.Main.ViewModel
         }
 
         /// <summary>
-        /// Receive Status from SendFlightCommand
+        /// Receive Status from SendNewTicketCommand(flight view model)
         /// </summary>
         private void ReceiveStatusFromFlightVM()
         {                      
