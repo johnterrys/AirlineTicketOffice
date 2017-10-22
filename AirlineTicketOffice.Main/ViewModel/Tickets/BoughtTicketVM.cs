@@ -125,7 +125,7 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
                     {
                         if (t != null)
                         {
-                            Messenger.Default.Send<MessageCommunicator>(new MessageCommunicator()
+                            Messenger.Default.Send<MessageAllTicket>(new MessageAllTicket()
                             {
                                 AllTicketMessage = t
                             });

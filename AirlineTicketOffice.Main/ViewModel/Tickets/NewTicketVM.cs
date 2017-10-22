@@ -57,13 +57,14 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
                           this.DataGridVisibility = "Collapsed";
                           this.ButtonLoadVisible = "Visible";
                           this.ForegroundForUser = "#f2f2f2";
-                          this.MessageForUser = "Please, Enter A Data...";
+                          this.MessageForUser = "At First You Need Select The Flight.";
 
                       }));
             });
 
-            ReceiveFlight();
+            //ReceiveFlight();
 
+            ReceiveFlightFromFlightVM();
 
         }
         #endregion
@@ -214,34 +215,34 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
             set { _saveNewTicketCommand = value; }
         }
 
-        /// <summary>
-        /// The method to send the selected Flight from the listbox on UI
-        /// to the View Model
-        /// </summary>
-        /// <param name="p"></param>
-        private ICommand _sendFlightCommand;
+        ///// <summary>
+        ///// The method to send the selected Flight from the listbox on UI
+        ///// to the View Model
+        ///// </summary>
+        ///// <param name="p"></param>
+        //private ICommand _sendFlightCommand;
 
-        public ICommand SendFlightCommand
-        {
-            get
-            {
-                if (_sendFlightCommand == null)
-                {
-                    _sendFlightCommand = new RelayCommand<FlightModel>((f) =>
-                    {
-                        if (f != null)
-                        {
-                            Messenger.Default.Send<MessageCommunicator>(new MessageCommunicator()
-                            {
-                                SendFlight = f
-                            });
-                        }
-                    });
-                }
-                return _sendFlightCommand;
-            }
-            set { _sendFlightCommand = value; }
-        }
+        //public ICommand SendFlightCommand
+        //{
+        //    get
+        //    {
+        //        if (_sendFlightCommand == null)
+        //        {
+        //            _sendFlightCommand = new RelayCommand<FlightModel>((f) =>
+        //            {
+        //                if (f != null)
+        //                {
+        //                    Messenger.Default.Send<MessageCommunicator>(new MessageCommunicator()
+        //                    {
+        //                        SendFlight = f
+        //                    });
+        //                }
+        //            });
+        //        }
+        //        return _sendFlightCommand;
+        //    }
+        //    set { _sendFlightCommand = value; }
+        //}
 
         #endregion
 
@@ -252,14 +253,32 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
         /// and assigning it the the passenger Notifiable property so that
         /// it will be displayed on the other view.
         /// </summary>
-        void ReceiveFlight()
+        //void ReceiveFlight()
+        //{
+        //    if (this.Flight != null)
+        //    {
+        //        Messenger.Default.Register<MessageCommunicator>(this, (f) => {
+        //            this.Flight = f.SendFlight;
+        //        });
+        //    }
+        //}
+
+        /// <summary>
+        /// Receive 'FlightModel' from SendNewTicketCommand(flight view model)
+        /// </summary>
+        private void ReceiveFlightFromFlightVM()
         {
-            if (this.Flight != null)
-            {
-                Messenger.Default.Register<MessageCommunicator>(this, (f) => {
-                    this.Flight = f.SendFlight;
-                });
-            }
+            Messenger.Default.Register<MessageToNewTicket>(this, (f) => {
+                this.Flight = f.SendFlightFromFlightVM;
+
+                if (this.Flight.FlightID > 0)
+                {
+                    this.ForegroundForUser = "#33cc66";
+                    this.MessageForUser = this.Flight.FlightNumber.ToString();
+                }
+              
+            });
+
         }
 
         #endregion

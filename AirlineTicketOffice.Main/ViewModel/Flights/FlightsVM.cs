@@ -243,12 +243,23 @@ namespace AirlineTicketOffice.Main.ViewModel.Flights
                 {
                     _SendNewTicketCommand = new RelayCommand(() =>
                     {
-                        _navigationService.NavigateTo("NewTicketViewKey", "New Ticket Window");
-
-                        Messenger.Default.Send<MessageCommunicator>(new MessageCommunicator()
+                        if (this.Flight != null)
                         {
-                            MessageStatusFromFlight = "New Ticket Window"
-                        });
+                            _navigationService.NavigateTo("NewTicketViewKey", "New Ticket Window");
+
+                            Messenger.Default.Send<MessageToNewTicket>(new MessageToNewTicket()
+                            {
+                                SendFlightFromFlightVM = this.Flight
+                            });
+
+                            Messenger.Default.Send<MessageStatus>(new MessageStatus()
+                            {
+                                MessageStatusFromFlight = "New Ticket Window"
+                            });
+
+                           
+                        }                     
+
                     });
                 }
                 return _SendNewTicketCommand;
@@ -445,7 +456,7 @@ namespace AirlineTicketOffice.Main.ViewModel.Flights
                     {
                         if (f != null)
                         {
-                            Messenger.Default.Send<MessageCommunicator>(new MessageCommunicator()
+                            Messenger.Default.Send<MessageFlight>(new MessageFlight()
                             {
                                 SendFlight = f
                             });
@@ -507,7 +518,7 @@ namespace AirlineTicketOffice.Main.ViewModel.Flights
         {
             if (this.Flight != null)
             {
-                Messenger.Default.Register<MessageCommunicator>(this, (f) => {
+                Messenger.Default.Register<MessageFlight>(this, (f) => {
                     this.Flight = f.SendFlight;
                 });
             }

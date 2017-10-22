@@ -156,7 +156,7 @@ namespace AirlineTicketOffice.Main.ViewModel.Passengers
                     {
                         if (p != null)
                         {
-                            Messenger.Default.Send<MessageCommunicator>(new MessageCommunicator()
+                            Messenger.Default.Send<MessageSendPassenger>(new MessageSendPassenger()
                             {
                                 SendPassenger = p
                             });
@@ -224,7 +224,7 @@ namespace AirlineTicketOffice.Main.ViewModel.Passengers
         {
             if (this.Passenger != null)
             {
-                Messenger.Default.Register<MessageCommunicator>(this, (p) => {
+                Messenger.Default.Register<MessageSendPassenger>(this, (p) => {
                     this.Passenger = p.SendPassenger;
                 });
             }

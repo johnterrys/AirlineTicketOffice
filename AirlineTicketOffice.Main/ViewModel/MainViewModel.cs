@@ -39,7 +39,6 @@ namespace AirlineTicketOffice.Main.ViewModel
         public MainViewModel(IMainNavigationService navigationService)
         {
             _navigationService = navigationService;
-            this.StatusWindow = "Main Window";
 
             ReceiveStatusFromFlightVM();
         }
@@ -215,6 +214,9 @@ namespace AirlineTicketOffice.Main.ViewModel
 
             System.Threading.Thread.CurrentThread.CurrentUICulture = 
                 System.Threading.Thread.CurrentThread.CurrentCulture;
+
+            _navigationService.NavigateTo("NewTicketViewKey");
+            this.StatusWindow = "New Ticket Window";
         }
 
         /// <summary>
@@ -222,7 +224,7 @@ namespace AirlineTicketOffice.Main.ViewModel
         /// </summary>
         private void ReceiveStatusFromFlightVM()
         {                      
-            Messenger.Default.Register<MessageCommunicator>(this, (f) => {
+            Messenger.Default.Register<MessageStatus>(this, (f) => {
                 this.StatusWindow = f.MessageStatusFromFlight;
             });
 
