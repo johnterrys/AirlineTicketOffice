@@ -100,7 +100,6 @@
     <Compile Include="ViewModel\Passengers\AllPassengersVM.cs" />
     <Compile Include="ViewModel\Passengers\NewPassengerVM.cs" />
     <Compile Include="ViewModel\TariffsVM.cs" />
-    <Compile Include="ViewModel\Tickets\AllTicketsVM.cs" />
     <Compile Include="ViewModel\Tickets\BoughtTicketVM.cs" />
     <Compile Include="ViewModel\Tickets\NewTicketVM.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
@@ -121,9 +120,6 @@
     </Compile>
     <Compile Include="View\TariffsView.xaml.cs">
       <DependentUpon>TariffsView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\AllTicketsView.xaml.cs">
-      <DependentUpon>AllTicketsView.xaml</DependentUpon>
     </Compile>
     <Page Include="View\AllPassengerView.xaml">
       <SubType>Designer</SubType>
@@ -158,10 +154,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\TariffsView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\AllTicketsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
