@@ -94,7 +94,7 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
 
         private ICommand _getBoughtTicketCommand;
 
-
+        private ICommand _sendTicketCommand;
         public ICommand getBoughtTicketCommand
         {
             get
@@ -115,6 +115,27 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
             set { _getBoughtTicketCommand = value; }
         }
 
+        public ICommand SendTicketCommand
+        {
+            get
+            {
+                if (_sendTicketCommand == null)
+                {
+                    _sendTicketCommand = new RelayCommand<AllTicketsModel>((t) =>
+                    {
+                        if (t != null)
+                        {
+                            Messenger.Default.Send<MessageCommunicator>(new MessageCommunicator()
+                            {
+                                AllTicketMessage = t
+                            });
+                        }
+                    });
+                }
+                return _sendTicketCommand;
+            }
+            set { _sendTicketCommand = value; }
+        }
 
         #endregion
 

@@ -496,7 +496,7 @@ namespace AirlineTicketOffice.Main.ViewModel.Flights
             // PlaceInFlightModel for 'econom rate'
             PlaceInFlightModel economFreeRectModel = null;
 
-            // PlaceInAircraftModel for 'econom rate'
+            // PlaceInAircraftModel for 'business rate'
             PlaceInAircraftModel businessAllPlace = null;
             // PlaceInAircraftModel for 'econom rate'
             PlaceInAircraftModel economAllPlace = null;
