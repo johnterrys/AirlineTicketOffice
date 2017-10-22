@@ -120,6 +120,9 @@
                 <Button MinWidth="80" Background="#171717" Foreground="White" 
                         Content="Refrash Data" Command="{Binding GetAllFlightCommand}"
                         Margin="5 0 10 0"></Button>
+                <Button MinWidth="80" Background="#171717" Foreground="LightBlue" 
+                        Content="Select Flight For New Ticket" Command="{Binding SendNewTicketCommand}"
+                        Margin="5 0 10 0"></Button>
             </DockPanel>
         </StackPanel>
         <!-- Additional Data start. -->

@@ -15,5 +15,7 @@ namespace AirlineTicketOffice.Main.Services.Messenger
         public PassengerModel SendPassenger { get; set; }
 
         public FlightModel SendFlight { get; set; }
+
+        public string MessageStatusFromFlight { get; set; }
     }
 }

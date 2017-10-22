@@ -9,6 +9,10 @@ using System;
 using GalaSoft.MvvmLight.Threading;
 using System.Threading;
 using System.Windows;
+using GalaSoft.MvvmLight.Messaging;
+using System.Collections.Generic;
+using AirlineTicketOffice.Model.Models;
+using AirlineTicketOffice.Main.Services.Messenger;
 
 namespace AirlineTicketOffice.Main.ViewModel
 {
@@ -36,6 +40,8 @@ namespace AirlineTicketOffice.Main.ViewModel
         {
             _navigationService = navigationService;
             this.StatusWindow = "Main Window";
+
+            ReceiveStatusFromFlightVM();
         }
 
         #endregion
@@ -46,9 +52,10 @@ namespace AirlineTicketOffice.Main.ViewModel
 
         private string _statusWindow;
 
+
         #endregion
 
-        #region prop
+        #region properties
 
         public string StatusWindow
         {
@@ -198,6 +205,9 @@ namespace AirlineTicketOffice.Main.ViewModel
 
         #region methods
 
+        /// <summary>
+        /// Localization.
+        /// </summary>
         private void BeginLoadingMainWindow()
         {
             System.Threading.Thread.CurrentThread.CurrentCulture =
@@ -205,6 +215,17 @@ namespace AirlineTicketOffice.Main.ViewModel
 
             System.Threading.Thread.CurrentThread.CurrentUICulture = 
                 System.Threading.Thread.CurrentThread.CurrentCulture;
+        }
+
+        /// <summary>
+        /// Receive Status from SendFlightCommand
+        /// </summary>
+        private void ReceiveStatusFromFlightVM()
+        {                      
+            Messenger.Default.Register<MessageCommunicator>(this, (f) => {
+                this.StatusWindow = f.MessageStatusFromFlight;
+            });
+
         }
 
         #endregion

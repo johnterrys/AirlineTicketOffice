@@ -230,6 +230,33 @@ namespace AirlineTicketOffice.Main.ViewModel.Flights
 
         #region commands      
 
+        private ICommand _SendNewTicketCommand;
+
+        /// <summary>
+        /// Send this.Flight to NewTicket view model.
+        /// </summary>
+        public ICommand SendNewTicketCommand
+        {
+            get
+            {
+                if (_SendNewTicketCommand == null)
+                {
+                    _SendNewTicketCommand = new RelayCommand(() =>
+                    {
+                        _navigationService.NavigateTo("NewTicketViewKey", "New Ticket Window");
+
+                        Messenger.Default.Send<MessageCommunicator>(new MessageCommunicator()
+                        {
+                            MessageStatusFromFlight = "New Ticket Window"
+                        });
+                    });
+                }
+                return _SendNewTicketCommand;
+            }
+            set { _SendNewTicketCommand = value; }
+        }
+
+
         private ICommand _getAllFlightCommand;
 
         /// <summary>
@@ -396,7 +423,7 @@ namespace AirlineTicketOffice.Main.ViewModel.Flights
         }
 
         /// <summary>
-        /// The method to send the selected Passenger from the DataGrid on UI
+        /// The method to send the selected flight from the DataGrid on UI
         /// to the View Model
         /// </summary>
         /// <param name="p"></param>
