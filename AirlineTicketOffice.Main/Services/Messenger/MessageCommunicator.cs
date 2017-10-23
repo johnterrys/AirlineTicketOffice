@@ -32,10 +32,13 @@ namespace AirlineTicketOffice.Main.Services.Messenger
         public FlightModel SendFlight { get; set; }
     }
 
-    public class MessageToNewTicket
+    public class MessageFlightToNewTicket
     {
         public FlightModel SendFlightFromFlightVM { get; set; }
     }
 
-
+    public class MessagePassengerToNewTicket
+    {
+        public PassengerModel SendPassengerFromPassengerVM { get; set; }
+    }
 }

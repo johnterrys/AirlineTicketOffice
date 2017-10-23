@@ -247,7 +247,7 @@ namespace AirlineTicketOffice.Main.ViewModel.Flights
                         {
                             _navigationService.NavigateTo("NewTicketViewKey", "New Ticket Window");
 
-                            Messenger.Default.Send<MessageToNewTicket>(new MessageToNewTicket()
+                            Messenger.Default.Send<MessageFlightToNewTicket>(new MessageFlightToNewTicket()
                             {
                                 SendFlightFromFlightVM = this.Flight
                             });

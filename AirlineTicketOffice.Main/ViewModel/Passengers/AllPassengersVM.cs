@@ -16,15 +16,18 @@ using AirlineTicketOffice.Main.Services.Navigation;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Globalization;
+using GalaSoft.MvvmLight.Views;
 
 namespace AirlineTicketOffice.Main.ViewModel.Passengers
 {
     public sealed class AllPassengersVM : ViewModelBase
     {
         #region constructor
-        public AllPassengersVM(IPassengerRepository repository)
+        public AllPassengersVM(IPassengerRepository repository,
+                               IMainNavigationService navigationService)
         {
             _repository = repository;
+            _navigationService = navigationService;
 
             this.Passenger = new PassengerModel();
 
@@ -55,6 +58,8 @@ namespace AirlineTicketOffice.Main.ViewModel.Passengers
         #region fields
 
         private readonly IPassengerRepository _repository;
+
+        private readonly IMainNavigationService _navigationService;
 
         private ObservableCollection<PassengerModel> _passengers;
 
@@ -258,6 +263,42 @@ namespace AirlineTicketOffice.Main.ViewModel.Passengers
                 return _searchPassengerCommand;
             }
             set { _searchPassengerCommand = value; }
+        }
+
+        private ICommand _sendPassengerToTicketCommand;
+
+        /// <summary>
+        /// Send this.Passenger to NewTicket view model.
+        /// </summary>
+        public ICommand SendPassengerToTicketCommand
+        {
+            get
+            {
+                if (_sendPassengerToTicketCommand == null)
+                {
+                    _sendPassengerToTicketCommand = new RelayCommand(() =>
+                    {
+                        if (this.Passenger != null)
+                        {
+                            _navigationService.NavigateTo("NewTicketViewKey", "New Ticket Window");
+
+                            Messenger.Default.Send<MessagePassengerToNewTicket>(new MessagePassengerToNewTicket()
+                            {
+                                SendPassengerFromPassengerVM = this.Passenger
+                            });
+
+                            Messenger.Default.Send<MessageStatus>(new MessageStatus()
+                            {
+                                MessageStatusFromFlight = "New Ticket Window"
+                            });
+
+                        }
+
+                    });
+                }
+                return _sendPassengerToTicketCommand;
+            }
+            set { _sendPassengerToTicketCommand = value; }
         }
 
 

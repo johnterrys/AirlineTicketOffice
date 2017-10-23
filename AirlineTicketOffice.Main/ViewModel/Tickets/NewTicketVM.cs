@@ -41,13 +41,13 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
             {
                 lock (locker)
                 {
-                    this.AllPassenger = new ObservableCollection<PassengerModel>(_passengerRepository.GetAll());
+                    //this.AllPassenger = new ObservableCollection<PassengerModel>(_passengerRepository.GetAll());
 
-                    this.AllFlight = new ObservableCollection<FlightModel>(_flightRepository.GetAll());
+                    //this.AllFlight = new ObservableCollection<FlightModel>(_flightRepository.GetAll());
 
-                    this.AllCashier = new ObservableCollection<CashierModel>(_cashierRepository.GetAll());
+                   // this.AllCashier = new ObservableCollection<CashierModel>(_cashierRepository.GetAll());
 
-                    this._AllTariff = new ObservableCollection<TariffModel>(_tariffRepository.GetAll());
+                   // this._AllTariff = new ObservableCollection<TariffModel>(_tariffRepository.GetAll());
                 }
 
                 Application.Current.Dispatcher.Invoke(
@@ -62,9 +62,8 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
                       }));
             });
 
-            //ReceiveFlight();
-
             ReceiveFlightFromFlightVM();
+            ReceivePassengerFromFlightVM();
 
         }
         #endregion
@@ -103,9 +102,17 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
 
         private FlightModel _flight;
 
+        private PassengerModel _passenger;
+
         #endregion
 
         #region properties
+
+        public PassengerModel Passenger
+        {
+            get { return _passenger; }
+            set { Set(() => Passenger, ref _passenger, value); }
+        }
 
         public FlightModel Flight
         {
@@ -213,62 +220,18 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
                 return _saveNewTicketCommand;
             }
             set { _saveNewTicketCommand = value; }
-        }
-
-        ///// <summary>
-        ///// The method to send the selected Flight from the listbox on UI
-        ///// to the View Model
-        ///// </summary>
-        ///// <param name="p"></param>
-        //private ICommand _sendFlightCommand;
-
-        //public ICommand SendFlightCommand
-        //{
-        //    get
-        //    {
-        //        if (_sendFlightCommand == null)
-        //        {
-        //            _sendFlightCommand = new RelayCommand<FlightModel>((f) =>
-        //            {
-        //                if (f != null)
-        //                {
-        //                    Messenger.Default.Send<MessageCommunicator>(new MessageCommunicator()
-        //                    {
-        //                        SendFlight = f
-        //                    });
-        //                }
-        //            });
-        //        }
-        //        return _sendFlightCommand;
-        //    }
-        //    set { _sendFlightCommand = value; }
-        //}
+        }     
 
         #endregion
 
-        #region methods
-
-        /// <summary>
-        /// The Method used to Receive the send Flight from the listbox UI
-        /// and assigning it the the passenger Notifiable property so that
-        /// it will be displayed on the other view.
-        /// </summary>
-        //void ReceiveFlight()
-        //{
-        //    if (this.Flight != null)
-        //    {
-        //        Messenger.Default.Register<MessageCommunicator>(this, (f) => {
-        //            this.Flight = f.SendFlight;
-        //        });
-        //    }
-        //}
+        #region methods      
 
         /// <summary>
         /// Receive 'FlightModel' from SendNewTicketCommand(flight view model)
         /// </summary>
         private void ReceiveFlightFromFlightVM()
         {
-            Messenger.Default.Register<MessageToNewTicket>(this, (f) => {
+            Messenger.Default.Register<MessageFlightToNewTicket>(this, (f) => {
                 this.Flight = f.SendFlightFromFlightVM;
 
                 if (this.Flight.FlightID > 0)
@@ -277,6 +240,24 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
                     this.MessageForUser = this.Flight.FlightNumber.ToString();
                 }
               
+            });
+
+        }
+
+        /// <summary>
+        /// Receive 'PassengerModel' from SendNewTicketCommand(Passenger view model)
+        /// </summary>
+        private void ReceivePassengerFromFlightVM()
+        {
+            Messenger.Default.Register<MessagePassengerToNewTicket>(this, (p) => {
+                this.Passenger = p.SendPassengerFromPassengerVM;
+
+                if (this.Passenger.PassengerID > 0)
+                {
+                    this.ForegroundForUser = "#33cc66";
+                    this.MessageForUser += "|"+ this.Passenger.PassportNumber.ToString();
+                }
+
             });
 
         }

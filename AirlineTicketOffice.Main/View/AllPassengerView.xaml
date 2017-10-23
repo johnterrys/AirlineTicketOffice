@@ -29,10 +29,10 @@
         </StackPanel>
         <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" Background="#3a3938">
             <!-- Search Passenger from db. -->
-            <TextBlock Margin="5 10 5 0"
+            <TextBlock Margin="5 10 5 0"  Visibility="{Binding ButtonLoadVisible}" 
                        Foreground="LightBlue"
                        TextWrapping="Wrap" Text="Enter Passport Of Number:"/>
-            <TextBox Margin="5 5 10 5"
+            <TextBox Margin="5 5 10 5"  Visibility="{Binding ButtonLoadVisible}" 
                  TextWrapping="Wrap"  Text="{Binding PassportNumber, UpdateSourceTrigger=PropertyChanged}"
                  MinWidth="200">
                 <i:Interaction.Triggers>
@@ -42,6 +42,8 @@
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </TextBox>
+            <Button Background="#171717" Margin="5" Foreground="LightBlue" Visibility="{Binding ButtonLoadVisible}" 
+                        Content="Select Passenger For New Ticket" Command="{Binding SendPassengerToTicketCommand}"></Button>
         </StackPanel>
         <!-- Change data passengers start. -->
         <Border BorderBrush="Black" BorderThickness="0.5" CornerRadius="3"
