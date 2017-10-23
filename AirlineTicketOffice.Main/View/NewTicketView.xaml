@@ -28,7 +28,7 @@
             <Grid Margin="5" Background="#3a3938">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1.4*"></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition Width="1.4*"></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
@@ -105,6 +105,67 @@
                                     <Label Style="{StaticResource LabelStyleFlight}">Route Cost:</Label>
                                     <TextBlock Style="{StaticResource tblockForNewTicket}"  
                                            x:Name="Cost" Text="{Binding Flight.Route.Cost}" />
+                                </DockPanel>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                </Border>
+                <!-- Passenger field. -->
+                <Border Margin="5" Grid.Column="1" BorderBrush="White" BorderThickness="0.5">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.15*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="0" Margin="5" Background="White">
+                            <TextBlock FontSize="24" Text="Passenger:" HorizontalAlignment="Center"></TextBlock>
+                        </StackPanel>
+                        <Border Margin="5" Grid.Row="1" >
+                            <StackPanel Orientation="Vertical">
+                                <DockPanel>
+                                    <Label Style="{StaticResource LabelStyleFlight}">Citizenship:</Label>
+                                    <TextBlock Style="{StaticResource tblockForNewTicket}" 
+                                            Text="{Binding Passenger.Citizenship}"/>
+                                </DockPanel>
+                                <DockPanel>
+                                    <Label Style="{StaticResource LabelStyleFlight}">Passport Number:</Label>
+                                    <TextBlock Style="{StaticResource tblockForNewTicket}"  
+                                           Text="{Binding Passenger.PassportNumber}" />
+                                </DockPanel>
+                                <DockPanel>
+                                    <Label Style="{StaticResource LabelStyleFlight}">Sex:</Label>
+                                    <TextBlock Style="{StaticResource tblockForNewTicket}"  
+                                            Text="{Binding Passenger.Sex}" />
+                                </DockPanel>
+                                <DockPanel>
+                                    <Label Style="{StaticResource LabelStyleFlight}">Full Name:</Label>
+                                    <TextBlock Style="{StaticResource tblockForNewTicket}"  
+                                            Text="{Binding Passenger.FullName}" />
+                                </DockPanel>
+                                <DockPanel>
+                                    <Label Style="{StaticResource LabelStyleFlight}">Date Of Birth:</Label>
+                                    <TextBlock Style="{StaticResource tblockForNewTicket}"  
+                                           Text="{Binding Passenger.DateOfBirth, StringFormat={}{0:dd.MM.yyyy}}" />
+                                </DockPanel>
+                                <DockPanel>
+                                    <Label Style="{StaticResource LabelStyleFlight}">Term Of PassportDate:</Label>
+                                    <TextBlock Style="{StaticResource tblockForNewTicket}"  
+                                           Text="{Binding Passenger.TermOfPassportDate}" />
+                                </DockPanel>
+                                <DockPanel>
+                                    <Label Style="{StaticResource LabelStyleFlight}">Country Of Residence:</Label>
+                                    <TextBlock Style="{StaticResource tblockForNewTicket}" 
+                                           Text="{Binding Passenger.CountryOfResidence}" />
+                                </DockPanel>
+                                <DockPanel>
+                                    <Label Style="{StaticResource LabelStyleFlight}">Phone Mobile:</Label>
+                                    <TextBlock Style="{StaticResource tblockForNewTicket}"  
+                                            Text="{Binding Passenger.PhoneMobile}" />
+                                </DockPanel>
+                                <DockPanel>
+                                    <Label Style="{StaticResource LabelStyleFlight}">Email:</Label>
+                                    <TextBlock Style="{StaticResource tblockForNewTicket}" 
+                                           Text="{Binding Passenger.Email}" />
                                 </DockPanel>
                             </StackPanel>
                         </Border>
