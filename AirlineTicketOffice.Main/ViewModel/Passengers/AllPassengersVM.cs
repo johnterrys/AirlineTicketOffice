@@ -15,6 +15,7 @@ using AirlineTicketOffice.Main.Services.Messenger;
 using AirlineTicketOffice.Main.Services.Navigation;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Globalization;
 
 namespace AirlineTicketOffice.Main.ViewModel.Passengers
 {
@@ -69,9 +70,17 @@ namespace AirlineTicketOffice.Main.ViewModel.Passengers
 
         object locker = new object();
 
+        private string _passportNumber;
+
         #endregion
 
         #region properties
+
+        public string PassportNumber
+        {
+            get { return _passportNumber; }
+            set { Set(() => PassportNumber, ref _passportNumber, value); }
+        }
 
         public string ForegroundForUser
         {
@@ -210,6 +219,47 @@ namespace AirlineTicketOffice.Main.ViewModel.Passengers
             }
             set { _savePassengerChangeCommand = value; }
         }
+
+        private ICommand _searchPassengerCommand;
+
+        public ICommand SearchPassengerCommand
+        {
+            get
+            {
+                if (_searchPassengerCommand == null)
+                {
+                    _searchPassengerCommand = new RelayCommand(() =>
+                    {
+                        try
+                        {
+                            if (this.Passengers != null) this.Passengers.Clear();
+
+                            if (this.PassportNumber == String.Empty)
+                            {
+                                this.MessageForUser = "Need Enter Passport Of Number:)";
+                                return;
+                            }
+
+                            var res = from e in _repository.GetAll()
+                                      where e.PassportNumber.StartsWith(PassportNumber, true, CultureInfo.InvariantCulture)
+                                      select e;
+
+                            foreach (var item in res)
+                            {
+                                this.Passengers.Add(item);
+                            }
+                        }
+                        catch (Exception e)
+                        {
+                            this.MessageForUser = e.Message;
+                        }
+                    });
+                }
+                return _searchPassengerCommand;
+            }
+            set { _searchPassengerCommand = value; }
+        }
+
 
         #endregion
 

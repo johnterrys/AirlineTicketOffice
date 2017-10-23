@@ -20,12 +20,28 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <!-- Buttons. -->
-        <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal" Background="#3a3938">
-            <!-- load rates from db. -->
+        <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" Background="#3a3938">
+            <!-- Load Passengers from db. -->
             <Button Content="Refresh Data" Margin="5" Foreground="White" Background="#171717"
                     Visibility="{Binding ButtonLoadVisible}"
                  Command="{Binding GetAllPassengerCommand}">
             </Button>
+        </StackPanel>
+        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" Background="#3a3938">
+            <!-- Search Passenger from db. -->
+            <TextBlock Margin="5 10 5 0"
+                       Foreground="LightBlue"
+                       TextWrapping="Wrap" Text="Enter Passport Of Number:"/>
+            <TextBox Margin="5 5 10 5"
+                 TextWrapping="Wrap"  Text="{Binding PassportNumber, UpdateSourceTrigger=PropertyChanged}"
+                 MinWidth="200">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="TextChanged">
+                        <mvvm:EventToCommand 
+                        Command="{Binding SearchPassengerCommand, Mode=OneWay}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </TextBox>
         </StackPanel>
         <!-- Change data passengers start. -->
         <Border BorderBrush="Black" BorderThickness="0.5" CornerRadius="3"
