@@ -80,6 +80,8 @@ namespace AirlineTicketOffice.Main.ViewModel
 
         private ICommand _getNewTicketCommand;
 
+        private ICommand _getCashierCommand;
+
         public ICommand GetNewTicketCommand
         {
             get
@@ -165,7 +167,8 @@ namespace AirlineTicketOffice.Main.ViewModel
             }
 
         }
-      
+        
+
         public ICommand GetTariffsCommand
         {
             get
@@ -179,6 +182,22 @@ namespace AirlineTicketOffice.Main.ViewModel
                     });
                 }
                 return _getTariffsCommand;
+            }
+        }
+
+        public ICommand GetCashierCommand
+        {
+            get
+            {
+                if (_getCashierCommand == null)
+                {
+                    _getCashierCommand = new RelayCommand(() =>
+                    {
+                        _navigationService.NavigateTo("CashierViewKey");
+                        this.StatusWindow = "Cashiers Window";
+                    });
+                }
+                return _getCashierCommand;
             }
         }
 

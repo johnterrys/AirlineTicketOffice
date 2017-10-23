@@ -104,9 +104,17 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
 
         private PassengerModel _passenger;
 
+        private CashierModel _cashier;
+
         #endregion
 
         #region properties
+
+        public CashierModel Cashier
+        {
+            get { return _cashier; }
+            set { Set(() => Cashier, ref _cashier, value); }
+        }
 
         public PassengerModel Passenger
         {
@@ -256,6 +264,24 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
                 {
                     this.ForegroundForUser = "#33cc66";
                     this.MessageForUser += "|"+ this.Passenger.PassportNumber.ToString();
+                }
+
+            });
+
+        }
+
+        /// <summary>
+        /// Receive 'CashierModel' from SendNewTicketCommand(Passenger view model)
+        /// </summary>
+        private void ReceiveCashierFromFlightVM()
+        {
+            Messenger.Default.Register<MessageCashierToNewTicket>(this, (p) => {
+                this.Cashier = p.SendCashierFromCashierVM;
+
+                if (this.Cashier.CashierID > 0)
+                {
+                    this.ForegroundForUser = "#33cc66";
+                    this.MessageForUser += "|" + this.Cashier.CashierID.ToString();
                 }
 
             });

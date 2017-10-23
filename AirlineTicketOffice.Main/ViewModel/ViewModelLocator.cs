@@ -45,7 +45,8 @@ namespace AirlineTicketOffice.Main.ViewModel
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
-            var navigationService = new FrameNavigationService();
+            var navigationService = new FrameNavigationService(); 
+            navigationService.Configure("CashierViewKey", new Uri("../View/CashierView.xaml", UriKind.RelativeOrAbsolute));
             navigationService.Configure("NewTicketViewKey", new Uri("../View/NewTicketView.xaml", UriKind.RelativeOrAbsolute));
             navigationService.Configure("FlightsViewKey", new Uri("../View/FlightsView.xaml", UriKind.RelativeOrAbsolute));
             navigationService.Configure("TariffsViewKey", new Uri("../View/TariffsView.xaml", UriKind.RelativeOrAbsolute));
@@ -74,6 +75,7 @@ namespace AirlineTicketOffice.Main.ViewModel
             SimpleIoc.Default.Register<BoughtTicketVM>();
             SimpleIoc.Default.Register<AllPassengersVM>();
             SimpleIoc.Default.Register<NewPassengerVM>();
+            SimpleIoc.Default.Register<CashierVM>();
             //DispatcherHelper.Initialize();
 
         }
@@ -85,7 +87,15 @@ namespace AirlineTicketOffice.Main.ViewModel
                 return ServiceLocator.Current.GetInstance<MainViewModel>();
             }
         }
-      
+
+        public CashierVM CashierVM
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<CashierVM>();
+            }
+        }
+
 
         public  NewTicketVM NewTicketVM
         {

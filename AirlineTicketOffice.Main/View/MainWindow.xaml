@@ -86,6 +86,11 @@
                      Style="{StaticResource ResourceKey=MenuStyle}"
                      Command="{Binding GetTariffsCommand}">&#xf291; Tariff</Button>
             <Separator />
+            <!-- Cashier. -->
+            <Button  Foreground="White" FontFamily="{StaticResource FA}"
+                     Style="{StaticResource ResourceKey=MenuStyle}"
+                     Command="{Binding GetCashierCommand}">&#xf15a; Cashier</Button>
+            <Separator />
         </ToolBar>
         <!-- Main frame. -->
         <Frame Grid.Row="2" x:Name="MainFrame" NavigationUIVisibility="Hidden" 

@@ -37,6 +37,16 @@ namespace AirlineTicketOffice.Main.Services.Messenger
         public FlightModel SendFlightFromFlightVM { get; set; }
     }
 
+    public class MessageSendCashier
+    {
+        public CashierModel SendCashier { get; set; }
+    }
+
+    public class MessageCashierToNewTicket
+    {
+        public CashierModel SendCashierFromCashierVM { get; set; }
+    }
+   
     public class MessagePassengerToNewTicket
     {
         public PassengerModel SendPassengerFromPassengerVM { get; set; }
