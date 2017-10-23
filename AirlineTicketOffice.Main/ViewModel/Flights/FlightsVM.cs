@@ -59,8 +59,6 @@ namespace AirlineTicketOffice.Main.ViewModel.Flights
             });
 
             ReceiveFlight();
-
-            this.Flight = null;
         }
 
       
@@ -246,7 +244,8 @@ namespace AirlineTicketOffice.Main.ViewModel.Flights
                     _SendNewTicketCommand = new RelayCommand(() =>
                     {
                         if (this.Flight != null)
-                        {                           
+                        {
+                            _navigationService.NavigateTo("NewTicketViewKey", "New Ticket Window");
 
                             Messenger.Default.Send<MessageToNewTicket>(new MessageToNewTicket()
                             {
@@ -258,16 +257,7 @@ namespace AirlineTicketOffice.Main.ViewModel.Flights
                                 MessageStatusFromFlight = "New Ticket Window"
                             });
 
-                            // 'Reset' flight (user must select flight).
-                            this.Flight = null;
-
-                            _navigationService.NavigateTo("NewTicketViewKey", "New Ticket Window");
-                            
-                        }
-                        else
-                        {
-                            this.ForegroundForUser = "#ff420e";
-                            this.MessageForUser = "You Need Select Flight.";
+                           
                         }                     
 
                     });
@@ -464,11 +454,8 @@ namespace AirlineTicketOffice.Main.ViewModel.Flights
                 {
                     _sendFlightCommand = new RelayCommand<FlightModel>((f) =>
                     {
-                       
                         if (f != null)
                         {
-                            this.Flight = new FlightModel();
-
                             Messenger.Default.Send<MessageFlight>(new MessageFlight()
                             {
                                 SendFlight = f
