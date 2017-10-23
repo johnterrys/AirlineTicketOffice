@@ -33,17 +33,20 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
             _cashierRepository = cashierRepository;
             _tariffRepository = tariffRepository;
 
-            this.NewTicket = new AllTicketsModel();
 
             this.SaleDate = DateTime.Now;
 
-            this.Flight = new FlightModel();
+            //this.NewTicket = new AllTicketsModel();
 
-            this.Passenger = new PassengerModel();
+            //
 
-            this.Cashier = new CashierModel();
+            //this.Flight = new FlightModel();
 
-            this.Tariff = new TariffModel();
+            //this.Passenger = new PassengerModel();
+
+            //this.Cashier = new CashierModel();
+
+            //this.Tariff = new TariffModel();
 
             Task.Factory.StartNew(() =>
             {
@@ -122,9 +125,17 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
 
         private DateTime _saleDate;
 
+        private decimal _fullCost;
+
         #endregion
 
         #region properties
+
+        public decimal FullCost
+        {
+            get { return _fullCost; }
+            set { Set(() => FullCost, ref _fullCost, value); }
+        }
 
         public DateTime SaleDate
         {
@@ -213,7 +224,42 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
 
         #endregion
 
-        #region commands      
+        #region commands 
+
+        private ICommand _routeCostCommand;
+
+        public ICommand RouteCostCommand
+        {
+            get
+            {
+                if (_routeCostCommand == null)
+                {
+                    _routeCostCommand = new RelayCommand(() =>
+                    {
+                        if (this.Flight != null && this.Tariff != null)
+                        {
+                            decimal cost = AllTicketsModel.CalculateFullCost(this.Flight, this.Tariff);
+
+                            if (cost == Decimal.MinusOne)
+                            {
+                                this.MessageForUser = "Error occured... Try again, please...";
+                                this.ForegroundForUser = "#ff420e";
+                            }
+                            else
+                            {
+                                this.FullCost = cost;
+                            }
+                            
+                        }
+                        
+                    });
+                }
+                return _routeCostCommand;
+            }
+
+            set { _routeCostCommand = value; }
+        }
+
 
         /// <summary>
         /// Create new ticket in db via repository.

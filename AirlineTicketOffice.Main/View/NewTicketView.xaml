@@ -7,7 +7,7 @@
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:mvvm="http://www.galasoft.ch/mvvmlight"
              mc:Ignorable="d" 
-             d:DesignHeight="600" d:DesignWidth="1000"
+             d:DesignHeight="960" d:DesignWidth="1280"
              DataContext="{Binding NewTicketVM, Source={StaticResource Locator}}">
     <UserControl.Resources>
         <!-- Style textblock for new ticket view. -->
@@ -16,21 +16,21 @@
             <Setter Property="Foreground" Value="White"></Setter>
         </Style>
     </UserControl.Resources>
-<!-- Data template textblock => Flight. -->   
+    <!-- Data template textblock => Flight. -->   
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="0.1*"></RowDefinition>
-            <RowDefinition Height="0.5*"></RowDefinition>
+            <RowDefinition Height="0.3*"></RowDefinition>
         </Grid.RowDefinitions>
         <!-- Start New Ticket Field. -->
         <Grid Grid.Row="0">
             <Grid Margin="5" Background="#3a3938">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1.6*"></ColumnDefinition>
+                    <ColumnDefinition Width="1.5*"></ColumnDefinition>
                     <ColumnDefinition Width="1.4*"></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition Width="1.4*"></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
@@ -104,7 +104,8 @@
                                 <DockPanel>
                                     <Label Style="{StaticResource LabelStyleFlight}">Route Cost:</Label>
                                     <TextBlock Style="{StaticResource tblockForNewTicket}"  
-                                           x:Name="Cost" Text="{Binding Flight.Route.Cost}" />
+                                           x:Name="RouteCost" Text="{Binding Flight.Route.Cost}">
+                                    </TextBlock>
                                 </DockPanel>
                             </StackPanel>
                         </Border>
@@ -266,6 +267,39 @@
                         </Border>
                     </Grid>
                 </Border>
+                <!-- Full Cost field. -->
+                <Border Margin="5" Grid.Column="5" BorderBrush="White" BorderThickness="0.5">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.15*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="0" Margin="5" Background="White">
+                            <TextBlock FontSize="24" Text="Full Cost:" HorizontalAlignment="Center"></TextBlock>
+                        </StackPanel>
+                        <Border Margin="5" Grid.Row="1" >
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock HorizontalAlignment="Center"
+                                           Foreground="LightBlue"
+                                           TextWrapping="Wrap" Text="Enter Full Cost:"/>
+                                <TextBox Margin="10" Text="{Binding FullCost}">
+                                </TextBox>
+                                <Button Content="Calculate" Margin="5" MinWidth="100" HorizontalAlignment="Center" 
+                                        Background="#171717"
+                                        Visibility="{Binding ButtonLoadVisible}"
+                                        Command="{Binding RouteCostCommand}">
+                                    <Button.Foreground>
+                                        <LinearGradientBrush>
+                                            <GradientStop Color="GreenYellow" Offset="0.0" />
+                                            <GradientStop Color="White" Offset="0.5" />
+                                            <GradientStop Color="LightBlue" Offset="1" />
+                                        </LinearGradientBrush>
+                                    </Button.Foreground>
+                                </Button>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                </Border>
             </Grid>
             
         </Grid>
@@ -275,7 +309,7 @@
             <Button Content="Save Data" Margin="5" MinWidth="100" HorizontalAlignment="Center" Foreground="GreenYellow" 
                     Background="#171717"
                     Visibility="{Binding ButtonLoadVisible}"
-                 Command="{Binding SaveNewTicketCommand}" CommandParameter="{Binding NewTicket}">
+                    Command="{Binding SaveNewTicketCommand}" CommandParameter="{Binding NewTicket}">
             </Button>
         </StackPanel>
         <!-- Just field. -->

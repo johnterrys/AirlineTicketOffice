@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using GalaSoft.MvvmLight;
+using System.Diagnostics;
 
 namespace AirlineTicketOffice.Model.Models
 {
@@ -94,6 +95,50 @@ namespace AirlineTicketOffice.Model.Models
         {
             get { return rate; }
             set { Set(() => Rate, ref rate, value); }
+        }
+
+        public static decimal CalculateFullCost(FlightModel flight, TariffModel tariff)
+        {
+            try
+            {
+                decimal fullCost = Decimal.Zero;
+
+                if (tariff.TypeOfPlace.ToUpper() == "A")
+                {
+                    fullCost = Decimal.Add(Decimal.Multiply(flight.Route.Cost, 0.4m), flight.Route.Cost);
+
+                    return CheckResult(fullCost);
+                }
+                if (tariff.TypeOfPlace.ToUpper() == "B")
+                {
+                    fullCost = Decimal.Add(Decimal.Multiply(flight.Route.Cost, 0.2m), flight.Route.Cost);
+
+                    return CheckResult(fullCost);
+
+                }
+                else
+                {
+                    return Decimal.MinusOne;
+                }
+            }
+            catch (ArithmeticException ex)
+            {
+                Debug.WriteLine("CalculateFullCost(FlightModel flight, TariffModel tariff) method fail..." + ex.Message);
+
+                return Decimal.MinusOne;
+            }
+           
+        }
+
+        ///* Check result operation. */
+        private static decimal CheckResult(decimal d)
+        {
+            if (d <= Decimal.Zero || d > Decimal.MaxValue)
+            {
+                throw new ArithmeticException();
+            }
+            else
+                return d;
         }
 
     }
