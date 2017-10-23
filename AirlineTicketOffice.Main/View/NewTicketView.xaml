@@ -9,26 +9,26 @@
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="800"
              DataContext="{Binding NewTicketVM, Source={StaticResource Locator}}">
-    <!-- Data template textblock => Flight. -->
     <UserControl.Resources>
-        <DataTemplate x:Key="lbFlightTemplate">
-            <StackPanel Margin="3" Orientation="Horizontal">
-                <TextBlock FontSize="16" Text="{Binding Path=FlightNumber}"/>
-                <TextBlock Text=" "/>
-                <TextBlock FontSize="16" Text="{Binding Path=Route.NameRoute}"/>
-            </StackPanel>
-        </DataTemplate>
+        <!-- Style textblock for new ticket view. -->
+        <Style TargetType="{x:Type TextBlock}" x:Key="tblockForNewTicket">
+            <Setter Property="Margin" Value="5 3 5 10"></Setter>
+            <Setter Property="Foreground" Value="White"></Setter>
+        </Style>
     </UserControl.Resources>
+<!-- Data template textblock => Flight. -->   
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="0.1*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="0.5*"></RowDefinition>
         </Grid.RowDefinitions>
         <!-- Start New Ticket Field. -->
         <Grid Grid.Row="0">
             <Grid Margin="5" Background="#3a3938">
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.4*"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
@@ -36,46 +36,82 @@
                 </Grid.ColumnDefinitions>
                 <!-- Flight field. -->
                 <Border Margin="5" Grid.Column="0" BorderBrush="White" BorderThickness="0.5">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="0.2*"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <StackPanel Grid.Row="0" Margin="5" Background="White">
-                    <TextBlock FontSize="26" Text="{Binding Flight.FlightID}" HorizontalAlignment="Center"></TextBlock>
-                </StackPanel>
-                <ScrollViewer Margin="5" Grid.Row="1">
-                    <ListBox  x:Name="lbFlight" ItemsSource="{Binding AllFlight, UpdateSourceTrigger=PropertyChanged}"
-                                         ItemTemplate="{StaticResource ResourceKey=lbFlightTemplate}" VerticalContentAlignment="Stretch">
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="SelectionChanged">
-                                <mvvm:EventToCommand 
-                                          Command="{Binding  SendFlightCommand, Mode=OneWay}"
-                                          CommandParameter="{Binding ElementName=lbFlight, Path=SelectedItem}"/>
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
-                    </ListBox>
-                </ScrollViewer>
-                </Grid>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.15*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="0" Margin="5" Background="White">
+                            <TextBlock FontSize="24" Text="Flight:" HorizontalAlignment="Center"></TextBlock>
+                        </StackPanel>
+                        <Border Margin="5" Grid.Row="1" >
+                            <StackPanel Orientation="Vertical">
+                                <DockPanel>
+                                    <Label Style="{StaticResource LabelStyleFlight}">Flight Number:</Label>
+                                    <TextBlock Style="{StaticResource tblockForNewTicket}" 
+                                           x:Name="FlightNumber" Text="{Binding Flight.FlightNumber}"/>
+                                </DockPanel>
+                                <DockPanel>
+                                    <Label Style="{StaticResource LabelStyleFlight}">Date Of Departure:</Label>
+                                    <TextBlock Style="{StaticResource tblockForNewTicket}"  
+                                           x:Name="DateOfDeparture" Text="{Binding Flight.DateOfDeparture, StringFormat={}{0:dd.MM.yyyy}}" />
+                                </DockPanel>
+                                <DockPanel>
+                                    <Label Style="{StaticResource LabelStyleFlight}">Departure Time:</Label>
+                                    <TextBlock Style="{StaticResource tblockForNewTicket}"  
+                                           x:Name="DepartureTime" Text="{Binding Flight.DepartureTime}" />
+                                </DockPanel>
+                                <DockPanel>
+                                    <Label Style="{StaticResource LabelStyleFlight}">Time Of Arrival:</Label>
+                                    <TextBlock Style="{StaticResource tblockForNewTicket}"  
+                                           x:Name="TimeOfArrival" Text="{Binding Flight.TimeOfArrival}" />
+                                </DockPanel>
+                                <DockPanel>
+                                    <Label Style="{StaticResource LabelStyleFlight}">Type Of Aircraft:</Label>
+                                    <TextBlock Style="{StaticResource tblockForNewTicket}"  
+                                           x:Name="TypeOfAircraft" Text="{Binding Flight.Aircraft.TypeOfAircraft}" />
+                                </DockPanel>
+                                <DockPanel>
+                                    <Label Style="{StaticResource LabelStyleFlight}">Tail Number:</Label>
+                                    <TextBlock Style="{StaticResource tblockForNewTicket}"  
+                                           x:Name="TailNumber" Text="{Binding Flight.Aircraft.TailNumber}" />
+                                </DockPanel>
+                                <DockPanel>
+                                    <Label Style="{StaticResource LabelStyleFlight}">Name Route:</Label>
+                                    <TextBlock Style="{StaticResource tblockForNewTicket}" 
+                                           x:Name="NameRoute" Text="{Binding Flight.Route.NameRoute}" />
+                                </DockPanel>
+                                <DockPanel>
+                                    <Label Style="{StaticResource LabelStyleFlight}">Airport Of Departure:</Label>
+                                    <TextBlock Style="{StaticResource tblockForNewTicket}"  
+                                           x:Name="AirportOfDeparture" Text="{Binding Flight.Route.AirportOfDeparture}" />
+                                </DockPanel>
+                                <DockPanel>
+                                    <Label Style="{StaticResource LabelStyleFlight}">Airport Of Arrival:</Label>
+                                    <TextBlock Style="{StaticResource tblockForNewTicket}" 
+                                           x:Name="AirportOfArrival" Text="{Binding Flight.Route.AirportOfArrival}" />
+                                </DockPanel>
+                                <DockPanel>
+                                    <Label Style="{StaticResource LabelStyleFlight}">Travel Time:</Label>
+                                    <TextBlock Style="{StaticResource tblockForNewTicket}"  
+                                           x:Name="TravelTime" Text="{Binding Flight.Route.TravelTime}" />
+                                </DockPanel>
+                                <DockPanel>
+                                    <Label Style="{StaticResource LabelStyleFlight}">Distance:</Label>
+                                    <TextBlock Style="{StaticResource tblockForNewTicket}"  
+                                           x:Name="Distance" Text="{Binding Flight.Route.Distance}" />
+                                </DockPanel>
+                                <DockPanel>
+                                    <Label Style="{StaticResource LabelStyleFlight}">Route Cost:</Label>
+                                    <TextBlock Style="{StaticResource tblockForNewTicket}"  
+                                           x:Name="Cost" Text="{Binding Flight.Route.Cost}" />
+                                </DockPanel>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
                 </Border>
             </Grid>
-
-            <!--<DataGridTextColumn  x:Name="TicketID" Binding="{Binding TicketID}" 
-                                    Header="TicketID"/>
-                    <DataGridTextColumn  x:Name="FlightID" Binding="{Binding FlightID}" 
-                                    Header="FlightID"/>
-                    <DataGridTextColumn x:Name="PassengerID" Binding="{Binding PassengerID}" 
-                                    Header="PassengerID"/>
-                    <DataGridTextColumn  x:Name="CashierID" Binding="{Binding CashierID}" 
-                                    Header="CashierID"/>
-                    <DataGridTextColumn  x:Name="RateID" Binding="{Binding RateID}" 
-                                    Header="RateID"/>
-                    <DataGridTextColumn  x:Name="SaleDate" Binding="{Binding SaleDate, StringFormat={}{0:dd.MM.yyyy}}" 
-                                    Header="SaleDate"/>
-                    <DataGridTextColumn  x:Name="TotalCost" Binding="{Binding TotalCost}" 
-                                    Header="TotalCost"/>
-                    <DataGridTextColumn  x:Name="CashierFullName" Binding="{Binding Cashier.FullName}" 
-                                    Header="CashierFullName"/>-->
+            
         </Grid>
         <!-- End New Ticket Field. -->
         <!-- Button for save new ticket. -->
