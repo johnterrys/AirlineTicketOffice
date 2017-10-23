@@ -38,6 +38,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"></RowDefinition>
                     <RowDefinition Height="0.1*"></RowDefinition>
+                    <RowDefinition Height="0.1*"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
                 <StackPanel Grid.Row="0" Orientation="Vertical" Margin="5" Background="#3a3938">
@@ -63,14 +64,20 @@
                         </DockPanel>
                     </StackPanel>
                 </StackPanel>
-                <!-- Button for change passwenger.. -->
+                <!-- Button for Change cashier.. -->
                 <StackPanel Grid.Row="1" Background="#3a3938">
                     <Button Content="Save Data" Margin="5" MinWidth="100" HorizontalAlignment="Center" Foreground="White" Background="#171717"
                  Command="{Binding SaveCashierChangeCommand}" CommandParameter="{Binding Cashier}">
                     </Button>
                 </StackPanel>
+                <!-- Button for Add Cashier. -->
+                <StackPanel Grid.Row="2" Background="#3a3938">
+                    <Button Content="Add Cashier" Margin="5" MinWidth="100" HorizontalAlignment="Center" Foreground="#68a225" Background="#171717"
+                 Command="{Binding AddCashierCommand}" CommandParameter="{Binding Cashier}">
+                    </Button>
+                </StackPanel>
                 <!-- Just field. -->
-                <Grid Grid.Row="2" Margin="5" Background="#3a3938">
+                <Grid Grid.Row="3" Margin="5" Background="#3a3938">
                     <TextBlock Text="{Binding MessageForUser}"
                     TextWrapping="Wrap"
                     Foreground="{Binding ForegroundForUser}"

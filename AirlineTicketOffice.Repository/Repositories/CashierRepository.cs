@@ -16,7 +16,29 @@ namespace AirlineTicketOffice.Repository.Repositories
     {
         public bool Add(CashierModel entity)
         {
-            throw new NotImplementedException();
+
+            try
+            {
+                if (entity != null)
+                {
+
+                    _context.Cashiers.Add(new Cashier
+                    {
+                       NumberOfOffices = entity.NumberOfOffices,
+                       FullName = entity.FullName
+                    });
+
+                    _context.SaveChanges();
+
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("'Add(Passenger)' method fail..." + ex.Message);
+                return false;
+            }
         }
 
         public IEnumerable<CashierModel> GetAll()

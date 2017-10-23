@@ -118,10 +118,52 @@ namespace AirlineTicketOffice.Main.ViewModel
 
         #endregion
 
-        #region commands      
+        #region commands    
+
+        /// <summary>
+        /// Create new passenger in db via repository.
+        /// </summary>
+        private ICommand _addCashierCommand;
+
+        public ICommand AddCashierCommand
+        {
+            get
+            {
+                if (_addCashierCommand == null)
+                {
+                    _addCashierCommand = new RelayCommand<CashierModel>((c) =>
+                    {
+
+                        try
+                        {
+                            if (_repository.Add(c))
+                            {
+                                RaisePropertyChanged("Cashier");
+                                this.Cashier = new CashierModel();
+                                this.MessageForUser = "Inserting of data has passed successfully..";
+                                this.ForegroundForUser = "#68a225";
+                            }
+                            else
+                            {
+                                this.MessageForUser = "Inserting Data Is Not Passed.";
+                                this.ForegroundForUser = "#ff420e";
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            this.MessageForUser = "Inserting Data Is Not Passed.";
+                            this.ForegroundForUser = "#ff420e";
+                            Debug.WriteLine("'SaveNewPassengerCommand' method fail..." + ex.Message);
+                        }
+
+                    });
+                }
+                return _addCashierCommand;
+            }
+            set { _addCashierCommand = value; }
+        }
 
         private ICommand _getAllCashierCommand;
-
 
         public ICommand GetAllCashierCommand
         {
