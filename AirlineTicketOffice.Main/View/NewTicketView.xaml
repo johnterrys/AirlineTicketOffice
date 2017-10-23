@@ -7,12 +7,12 @@
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:mvvm="http://www.galasoft.ch/mvvmlight"
              mc:Ignorable="d" 
-             d:DesignHeight="600" d:DesignWidth="800"
+             d:DesignHeight="600" d:DesignWidth="1000"
              DataContext="{Binding NewTicketVM, Source={StaticResource Locator}}">
     <UserControl.Resources>
         <!-- Style textblock for new ticket view. -->
         <Style TargetType="{x:Type TextBlock}" x:Key="tblockForNewTicket">
-            <Setter Property="Margin" Value="5 3 5 10"></Setter>
+            <Setter Property="Margin" Value="0 8 0 10"></Setter>
             <Setter Property="Foreground" Value="White"></Setter>
         </Style>
     </UserControl.Resources>
@@ -27,7 +27,7 @@
         <Grid Grid.Row="0">
             <Grid Margin="5" Background="#3a3938">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1.4*"></ColumnDefinition>
+                    <ColumnDefinition Width="1.6*"></ColumnDefinition>
                     <ColumnDefinition Width="1.4*"></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
@@ -148,9 +148,9 @@
                                            Text="{Binding Passenger.DateOfBirth, StringFormat={}{0:dd.MM.yyyy}}" />
                                 </DockPanel>
                                 <DockPanel>
-                                    <Label Style="{StaticResource LabelStyleFlight}">Term Of PassportDate:</Label>
+                                    <Label Style="{StaticResource LabelStyleFlight}">Date Of Passport Crash:</Label>
                                     <TextBlock Style="{StaticResource tblockForNewTicket}"  
-                                           Text="{Binding Passenger.TermOfPassportDate}" />
+                                           Text="{Binding Passenger.TermOfPassportDate, StringFormat={}{0:dd.MM.yyyy}}" />
                                 </DockPanel>
                                 <DockPanel>
                                     <Label Style="{StaticResource LabelStyleFlight}">Country Of Residence:</Label>
@@ -189,6 +189,52 @@
                                 <TextBlock HorizontalAlignment="Center" Foreground="LightBlue">FullName:</TextBlock>
                                 <TextBlock Style="{StaticResource tblockForNewTicket}"  
                                            Text="{Binding Cashier.FullName}" />
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                </Border>
+                <!-- Tariff field. -->
+                <Border Margin="5" Grid.Column="3" BorderBrush="White" BorderThickness="0.5">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.15*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="0" Margin="5" Background="White">
+                            <TextBlock FontSize="24" Text="Tariff:" HorizontalAlignment="Center"></TextBlock>
+                        </StackPanel>
+                        <Border Margin="5" Grid.Row="1" >
+                            <StackPanel Orientation="Vertical">
+                                <DockPanel>
+                                    <Label Style="{StaticResource LabelStyleFlight}">Tariff Name:</Label>
+                                    <TextBlock Style="{StaticResource tblockForNewTicket}" 
+                                            Text="{Binding Tariff.RateName}"/>
+                                </DockPanel>
+                                <DockPanel>
+                                    <Label Style="{StaticResource LabelStyleFlight}">Ticket Refund:</Label>
+                                    <TextBlock Style="{StaticResource tblockForNewTicket}"  
+                                           Text="{Binding Tariff.TicketRefund}" />
+                                </DockPanel>
+                                <DockPanel>
+                                    <Label Style="{StaticResource LabelStyleFlight}">Booking Changes:</Label>
+                                    <TextBlock Style="{StaticResource tblockForNewTicket}"  
+                                            Text="{Binding Tariff.BookingChanges}" />
+                                </DockPanel>
+                                <DockPanel>
+                                    <Label Style="{StaticResource LabelStyleFlight}">Baggage Allowance:</Label>
+                                    <TextBlock Style="{StaticResource tblockForNewTicket}"  
+                                            Text="{Binding Tariff.BaggageAllowance}" />
+                                </DockPanel>
+                                <DockPanel>
+                                    <Label Style="{StaticResource LabelStyleFlight}">Free Food:</Label>
+                                    <TextBlock Style="{StaticResource tblockForNewTicket}"  
+                                           Text="{Binding Tariff.FreeFood}" />
+                                </DockPanel>
+                                <DockPanel>
+                                    <Label Style="{StaticResource LabelStyleFlight}">Type Of Place:</Label>
+                                    <TextBlock Style="{StaticResource tblockForNewTicket}"  
+                                           Text="{Binding Tariff.TypeOfPlace}" />
+                                </DockPanel>
                             </StackPanel>
                         </Border>
                     </Grid>

@@ -65,8 +65,11 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
             ReceiveFlightFromFlightVM();
             ReceivePassengerFromFlightVM();
             ReceiveCashierFromFlightVM();
+            ReceiveTariffFromFlightVM();
 
         }
+
+      
         #endregion
 
         #region fields
@@ -107,9 +110,17 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
 
         private CashierModel _cashier;
 
+        private TariffModel _tariff;
+
         #endregion
 
         #region properties
+
+        public TariffModel Tariff
+        {
+            get { return _tariff; }
+            set { Set(() => Tariff, ref _tariff, value); }
+        }
 
         public CashierModel Cashier
         {
@@ -254,7 +265,7 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
         }
 
         /// <summary>
-        /// Receive 'PassengerModel' from SendNewTicketCommand(Passenger view model)
+        /// Receive 'PassengerModel' from SendNewPassengerCommand(Passenger view model)
         /// </summary>
         private void ReceivePassengerFromFlightVM()
         {
@@ -272,7 +283,7 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
         }
 
         /// <summary>
-        /// Receive 'CashierModel' from SendNewTicketCommand(Passenger view model)
+        /// Receive 'CashierModel' from SendNewCashierCommand(Cashier view model)
         /// </summary>
         private void ReceiveCashierFromFlightVM()
         {
@@ -283,6 +294,24 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
                 {
                     this.ForegroundForUser = "#33cc66";
                     this.MessageForUser += "|" + this.Cashier.CashierID.ToString();
+                }
+
+            });
+
+        }
+
+        /// <summary>
+        /// Receive 'TariffModel' from SendNewTariffCommand(Tarrif(Rate) view model)
+        /// </summary>
+        private void ReceiveTariffFromFlightVM()
+        {
+            Messenger.Default.Register<MessageTariffToNewTicket>(this, (p) => {
+                this.Tariff = p.SendTariffFromTariffVM;
+
+                if (this.Tariff.RateID > 0)
+                {
+                    this.ForegroundForUser = "#33cc66";
+                    this.MessageForUser += "|" + this.Tariff.RateName.ToString();
                 }
 
             });

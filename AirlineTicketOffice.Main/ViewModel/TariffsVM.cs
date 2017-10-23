@@ -1,8 +1,11 @@
 ﻿using AirlineTicketOffice.Main.Services.Dialog;
+using AirlineTicketOffice.Main.Services.Messenger;
+using AirlineTicketOffice.Main.Services.Navigation;
 using AirlineTicketOffice.Model.IRepository;
 using AirlineTicketOffice.Model.Models;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -24,15 +27,20 @@ namespace AirlineTicketOffice.Main.ViewModel
         #region constructor
         public TariffsVM(ITariffsRepository tariffRepository,
                          IPdfFileDialogService pdfFileDialogService,
-                         IWordFileDialogService wordFileDialogService)
+                         IWordFileDialogService wordFileDialogService,
+                         IMainNavigationService navigationService)
         {
 
             _tariffsRepository = tariffRepository;
             _pdfFileDialogService = pdfFileDialogService;
             _wordFileDialogService = wordFileDialogService;
+            _navigationService = navigationService;
+
             this.ButtonWordFileVisible = "Hidden";
             this.ButtonLoadVisible = "Hidden";
             this.ButtonPdfFileVisible = "Hidden";
+            this.Tariff = new TariffModel();
+
 
             Task.Factory.StartNew(() =>
             {
@@ -53,11 +61,14 @@ namespace AirlineTicketOffice.Main.ViewModel
 
             });
 
+            ReceiveTariff();
 
         }
         #endregion
 
         #region fields
+
+        private readonly IMainNavigationService _navigationService;
 
         object locker = new object();
 
@@ -67,7 +78,9 @@ namespace AirlineTicketOffice.Main.ViewModel
 
         private readonly IWordFileDialogService _wordFileDialogService;
 
-        private ObservableCollection<TariffModel> _tariffs;     
+        private ObservableCollection<TariffModel> _tariffs;
+
+        private TariffModel _tariff;
 
         private string _dataGridVisibility;
 
@@ -78,9 +91,15 @@ namespace AirlineTicketOffice.Main.ViewModel
         private string _ButtonPdfFileVisible;
 
 
-        # endregion
+        #endregion
 
         #region properties
+
+        public TariffModel Tariff
+        {
+            get { return _tariff; }
+            set { Set(() => Tariff, ref _tariff, value); }
+        }
 
         public string DataGridVisibility
         {
@@ -227,12 +246,90 @@ namespace AirlineTicketOffice.Main.ViewModel
             set { _openFileWordCommand = value; }
         }
 
+        private ICommand _sendTariffToTicketCommand;
+
+        /// <summary>
+        /// Send this.Cashier to NewTicket view model.
+        /// </summary>
+        public ICommand SendTariffToTicketCommand
+        {
+            get
+            {
+                if (_sendTariffToTicketCommand == null)
+                {
+                    _sendTariffToTicketCommand = new RelayCommand(() =>
+                    {
+                        if (this.Tariff != null)
+                        {
+                            _navigationService.NavigateTo("NewTicketViewKey", "New Ticket Window");
+
+                            Messenger.Default.Send<MessageTariffToNewTicket>(new MessageTariffToNewTicket()
+                            {
+                                SendTariffFromTariffVM = this.Tariff
+                            });
+
+                            Messenger.Default.Send<MessageStatus>(new MessageStatus()
+                            {
+                                MessageStatusFromFlight = "New Ticket Window"
+                            });
+
+                        }
+
+                    });
+                }
+                return _sendTariffToTicketCommand;
+            }
+            set { _sendTariffToTicketCommand = value; }
+        }
+
+        /// <summary>
+        /// The method to send the selected Tariff from the DataGrid on UI
+        /// to the View Model
+        /// </summary>
+        /// <param name="p"></param>
+        private ICommand _sendTariffCommand;
+
+        public ICommand SendTariffCommand
+        {
+            get
+            {
+                if (_sendTariffCommand == null)
+                {
+                    _sendTariffCommand = new RelayCommand<TariffModel>((t) =>
+                    {
+                        if (t != null)
+                        {
+                            Messenger.Default.Send<MessageSendTariff>(new MessageSendTariff()
+                            {
+                                SendTariff = t
+                            });
+                        }
+                    });
+                }
+                return _sendTariffCommand;
+            }
+            set { _sendTariffCommand = value; }
+        }
 
         #endregion
 
 
         #region methods
 
+        /// <summary>
+        /// The Method used to Receive the send Tariff(Rate) from the DataGrid UI
+        /// and assigning it the the Tariff Notifiable property so that
+        /// it will be displayed on the other view.
+        /// </summary>
+        void ReceiveTariff()
+        {
+            if (this.Tariff != null)
+            {
+                Messenger.Default.Register<MessageSendTariff>(this, (t) => {
+                    this.Tariff = t.SendTariff;
+                });
+            }
+        }
 
         #endregion
 

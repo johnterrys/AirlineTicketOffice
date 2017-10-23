@@ -17,7 +17,7 @@
         </Grid.RowDefinitions>
         <!-- DataGrid tarifs. -->
         <ScrollViewer Margin="5" Background="White" Grid.Row="0">
-            <DataGrid Name="dgTicket" 
+            <DataGrid Name="dgRate" 
                       SelectionMode="Single"
                       VerticalGridLinesBrush="Transparent"
                       HorizontalGridLinesBrush="Transparent"
@@ -33,8 +33,8 @@
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="SelectionChanged">
                         <mvvm:EventToCommand 
-                        Command="{Binding  SendTicketCommand, Mode=OneWay}"
-                        CommandParameter="{Binding ElementName=dgTicket, Path=SelectedItem}"    
+                        Command="{Binding  SendTariffCommand, Mode=OneWay}"
+                        CommandParameter="{Binding ElementName=dgRate, Path=SelectedItem}"    
                          />
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
@@ -72,6 +72,9 @@
                     Visibility="{Binding ButtonLoadVisible}"
                  Command="{Binding GetAllTariffsCommand}">
             </Button>
+            <!-- Send Rate To New Ticket -->
+            <Button Background="#171717" Margin="5" Foreground="LightBlue" Visibility="{Binding ButtonLoadVisible}" 
+                        Content="Select Tariff For New Ticket" Command="{Binding SendTariffToTicketCommand}"></Button>
         </StackPanel>
         <!-- View files(pdf, word, etc). -->
         <Grid x:Name="GridForWebBrowser" Grid.Row="2" Margin="5">

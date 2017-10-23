@@ -42,6 +42,11 @@ namespace AirlineTicketOffice.Main.Services.Messenger
         public CashierModel SendCashier { get; set; }
     }
 
+    public class MessageSendTariff
+    {
+        public TariffModel SendTariff { get; set; }
+    }
+
     public class MessageCashierToNewTicket
     {
         public CashierModel SendCashierFromCashierVM { get; set; }
@@ -50,5 +55,10 @@ namespace AirlineTicketOffice.Main.Services.Messenger
     public class MessagePassengerToNewTicket
     {
         public PassengerModel SendPassengerFromPassengerVM { get; set; }
+    }
+
+    public class MessageTariffToNewTicket
+    {
+        public TariffModel SendTariffFromTariffVM { get; set; }
     }
 }
