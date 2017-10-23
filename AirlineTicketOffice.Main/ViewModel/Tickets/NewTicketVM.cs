@@ -35,7 +35,15 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
 
             this.NewTicket = new AllTicketsModel();
 
-            this.Flight = new FlightModel(); 
+            this.SaleDate = DateTime.Now;
+
+            this.Flight = new FlightModel();
+
+            this.Passenger = new PassengerModel();
+
+            this.Cashier = new CashierModel();
+
+            this.Tariff = new TariffModel();
 
             Task.Factory.StartNew(() =>
             {
@@ -112,9 +120,17 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
 
         private TariffModel _tariff;
 
+        private DateTime _saleDate;
+
         #endregion
 
         #region properties
+
+        public DateTime SaleDate
+        {
+            get { return _saleDate; }
+            set { Set(() => SaleDate, ref _saleDate, value); }
+        }
 
         public TariffModel Tariff
         {
@@ -213,27 +229,29 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
                     _saveNewTicketCommand = new RelayCommand<AllTicketsModel>((t) =>
                     {
 
-                        try
-                        {
-                            if (_ticketRepository.Add(t))
-                            {
-                                RaisePropertyChanged("NewTicket");
-                                this.NewTicket = new AllTicketsModel();
-                                this.MessageForUser = "Inserting of data has passed successfully..";
-                                this.ForegroundForUser = "#68a225";
-                            }
-                            else
-                            {
-                                this.MessageForUser = "Inserting Data Is Not Passed.";
-                                this.ForegroundForUser = "#ff420e";
-                            }
-                        }
-                        catch (Exception ex)
-                        {
-                            this.MessageForUser = "Inserting Data Is Not Passed.";
-                            this.ForegroundForUser = "#ff420e";
-                            Debug.WriteLine("'SaveNewTicketCommand' fail..." + ex.Message);
-                        }
+                        //try
+                        //{
+                        //    if (_ticketRepository.Add(t))
+                        //    {
+                        //        RaisePropertyChanged("NewTicket");
+                        //        this.NewTicket = new AllTicketsModel();
+                        //        this.MessageForUser = "Inserting of data has passed successfully..";
+                        //        this.ForegroundForUser = "#68a225";
+                        //    }
+                        //    else
+                        //    {
+                        //        this.MessageForUser = "Inserting Data Is Not Passed.";
+                        //        this.ForegroundForUser = "#ff420e";
+                        //    }
+                        //}
+                        //catch (Exception ex)
+                        //{
+                        //    this.MessageForUser = "Inserting Data Is Not Passed.";
+                        //    this.ForegroundForUser = "#ff420e";
+                        //    Debug.WriteLine("'SaveNewTicketCommand' fail..." + ex.Message);
+                        //}
+
+                        this.MessageForUser = this.SaleDate.ToShortDateString();
 
                     });
                 }

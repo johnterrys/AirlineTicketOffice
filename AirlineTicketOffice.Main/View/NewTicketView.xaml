@@ -239,6 +239,33 @@
                         </Border>
                     </Grid>
                 </Border>
+                <!-- Sale Date field. -->
+                <Border Margin="5" Grid.Column="4" BorderBrush="White" BorderThickness="0.5">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.15*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="0" Margin="5" Background="White">
+                            <TextBlock FontSize="24" Text="Sale Date:" HorizontalAlignment="Center"></TextBlock>
+                        </StackPanel>
+                        <Border Margin="5" Grid.Row="1" >
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock HorizontalAlignment="Center"
+                                           Foreground="LightBlue"
+                                           TextWrapping="Wrap" Text="Select Sale Date:"/>
+                                <DatePicker Name="dpTermOfPassportDate"                                            
+                                            Margin="10"
+                                            Text="{Binding Path=SaleDate,
+                                            UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                            FirstDayOfWeek="Monday"
+                                            Language="ru-Ru"
+                                            Height="25" >
+                                </DatePicker>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                </Border>
             </Grid>
             
         </Grid>
