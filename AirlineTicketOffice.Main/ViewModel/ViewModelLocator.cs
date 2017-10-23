@@ -43,6 +43,8 @@ namespace AirlineTicketOffice.Main.ViewModel
         /// </summary>
         public ViewModelLocator()
         {
+            SimpleIoc.Default.Reset();
+
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
             var navigationService = new FrameNavigationService(); 
@@ -54,7 +56,7 @@ namespace AirlineTicketOffice.Main.ViewModel
             navigationService.Configure("AllPassengerViewKey", new Uri("../View/AllPassengerView.xaml", UriKind.RelativeOrAbsolute));
             navigationService.Configure("NewPassengerViewKey", new Uri("../View/NewPassengerView.xaml", UriKind.RelativeOrAbsolute));
 
-            SimpleIoc.Default.Unregister<IMainNavigationService>();
+            //SimpleIoc.Default.Unregister<IMainNavigationService>();
             SimpleIoc.Default.Register<IMainNavigationService>(() => navigationService);
 
             SimpleIoc.Default.Register<ITicketRepository, AllTicketsModelRepository>();
