@@ -183,21 +183,12 @@
                         </StackPanel>
                         <Border Margin="5" Grid.Row="1" >
                             <StackPanel Orientation="Vertical">
-                                <!--<DockPanel>
-                                    <Label Style="{StaticResource LabelStyleFlight}">Citizenship:</Label>
-                                    <TextBlock Style="{StaticResource tblockForNewTicket}" 
-                                            Text="{Binding Passenger.Citizenship}"/>
-                                </DockPanel>
-                                <DockPanel>
-                                    <Label Style="{StaticResource LabelStyleFlight}">Passport Number:</Label>
-                                    <TextBlock Style="{StaticResource tblockForNewTicket}"  
-                                           Text="{Binding Passenger.PassportNumber}" />
-                                </DockPanel>
-                                <DockPanel>
-                                    <Label Style="{StaticResource LabelStyleFlight}">Sex:</Label>
-                                    <TextBlock Style="{StaticResource tblockForNewTicket}"  
-                                            Text="{Binding Passenger.Sex}" />
-                                </DockPanel>-->
+                                <TextBlock HorizontalAlignment="Center" Foreground="LightBlue">Office Number:</TextBlock>
+                                <TextBlock Style="{StaticResource tblockForNewTicket}" 
+                                            Text="{Binding Cashier.NumberOfOffices}"/>
+                                <TextBlock HorizontalAlignment="Center" Foreground="LightBlue">FullName:</TextBlock>
+                                <TextBlock Style="{StaticResource tblockForNewTicket}"  
+                                           Text="{Binding Cashier.FullName}" />
                             </StackPanel>
                         </Border>
                     </Grid>

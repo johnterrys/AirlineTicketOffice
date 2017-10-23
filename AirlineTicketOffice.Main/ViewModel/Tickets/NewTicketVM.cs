@@ -64,6 +64,7 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
 
             ReceiveFlightFromFlightVM();
             ReceivePassengerFromFlightVM();
+            ReceiveCashierFromFlightVM();
 
         }
         #endregion
