@@ -101,6 +101,7 @@ namespace AirlineTicketOffice.Model.Models
         {
             try
             {
+
                 decimal fullCost = Decimal.Zero;
 
                 if (tariff.TypeOfPlace.ToUpper() == "A")
@@ -120,6 +121,12 @@ namespace AirlineTicketOffice.Model.Models
                 {
                     return Decimal.MinusOne;
                 }
+            }
+            catch (NullReferenceException ex)
+            {
+                Debug.WriteLine("CalculateFullCost(FlightModel flight, TariffModel tariff) method fail..." + ex.Message);
+
+                return Decimal.MinusOne;
             }
             catch (ArithmeticException ex)
             {

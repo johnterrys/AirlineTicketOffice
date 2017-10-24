@@ -21,45 +21,14 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
     public sealed class NewTicketVM:ViewModelBase
     {
         #region constructor
-        public NewTicketVM(ITicketRepository ticketRepository,
-                           IFlightRepository flightRepository,
-                           IPassengerRepository passengerRepository,
-                           ICashierRepository cashierRepository,
-                           ITariffsRepository tariffRepository)
+        public NewTicketVM(ITicketRepository ticketRepository)
         {
             _ticketRepository = ticketRepository;
-            _flightRepository = flightRepository;
-            _passengerRepository = passengerRepository;
-            _cashierRepository = cashierRepository;
-            _tariffRepository = tariffRepository;
 
-
-            this.SaleDate = DateTime.Now;
-
-            //this.NewTicket = new AllTicketsModel();
-
-            //
-
-            //this.Flight = new FlightModel();
-
-            //this.Passenger = new PassengerModel();
-
-            //this.Cashier = new CashierModel();
-
-            //this.Tariff = new TariffModel();
+            this.SaleDate = DateTime.Now;           
 
             Task.Factory.StartNew(() =>
             {
-                lock (locker)
-                {
-                    //this.AllPassenger = new ObservableCollection<PassengerModel>(_passengerRepository.GetAll());
-
-                    //this.AllFlight = new ObservableCollection<FlightModel>(_flightRepository.GetAll());
-
-                   // this.AllCashier = new ObservableCollection<CashierModel>(_cashierRepository.GetAll());
-
-                   // this._AllTariff = new ObservableCollection<TariffModel>(_tariffRepository.GetAll());
-                }
 
                 Application.Current.Dispatcher.Invoke(
                       new Action(() =>
@@ -87,29 +56,13 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
 
         object locker = new object();
 
-        private readonly ITicketRepository _ticketRepository;
-
-        private readonly IFlightRepository _flightRepository;
-
-        private readonly IPassengerRepository _passengerRepository;
-
-        private readonly ICashierRepository _cashierRepository;
-
-        private readonly ITariffsRepository _tariffRepository;
+        private readonly ITicketRepository _ticketRepository;        
 
         private AllTicketsModel _newTicket;
 
         private string _ForegroundForUser;
 
         private string _MessageForUser;
-
-        private ObservableCollection<FlightModel> _AllFlight;
-
-        private ObservableCollection<PassengerModel> _AllPassenger;
-
-        private ObservableCollection<CashierModel> _AllCashier;
-
-        private ObservableCollection<TariffModel> _AllTariff;
 
         private string _dataGridVisibility;
 
@@ -179,30 +132,6 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
             set { Set(() => ButtonLoadVisible, ref _ButtonLoadVisible, value); }
         }
 
-        public ObservableCollection<FlightModel> AllFlight
-        { 
-            get { return _AllFlight; }
-            set { Set(() => AllFlight, ref _AllFlight, value); }
-        }
-
-        public ObservableCollection<PassengerModel> AllPassenger
-        {
-            get { return _AllPassenger; }
-            set { Set(() => AllPassenger, ref _AllPassenger, value); }
-        }
-
-        public ObservableCollection<CashierModel> AllCashier
-        {
-            get { return _AllCashier; }
-            set { Set(() => AllCashier, ref _AllCashier, value); }
-        }
-
-        public ObservableCollection<TariffModel> AllTariff
-        {
-            get { return _AllTariff; }
-            set { Set(() => AllTariff, ref _AllTariff, value); }
-        }
-
         public AllTicketsModel NewTicket
         {
             get { return _newTicket; }
@@ -248,6 +177,9 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
                             else
                             {
                                 this.FullCost = cost;
+                                this.MessageForUser = "Full Cost was Calculated.";
+                                this.ForegroundForUser = "#68a225";
+
                             }
                             
                         }
@@ -275,29 +207,27 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
                     _saveNewTicketCommand = new RelayCommand<AllTicketsModel>((t) =>
                     {
 
-                        //try
-                        //{
-                        //    if (_ticketRepository.Add(t))
-                        //    {
-                        //        RaisePropertyChanged("NewTicket");
-                        //        this.NewTicket = new AllTicketsModel();
-                        //        this.MessageForUser = "Inserting of data has passed successfully..";
-                        //        this.ForegroundForUser = "#68a225";
-                        //    }
-                        //    else
-                        //    {
-                        //        this.MessageForUser = "Inserting Data Is Not Passed.";
-                        //        this.ForegroundForUser = "#ff420e";
-                        //    }
-                        //}
-                        //catch (Exception ex)
-                        //{
-                        //    this.MessageForUser = "Inserting Data Is Not Passed.";
-                        //    this.ForegroundForUser = "#ff420e";
-                        //    Debug.WriteLine("'SaveNewTicketCommand' fail..." + ex.Message);
-                        //}
-
-                        this.MessageForUser = this.SaleDate.ToShortDateString();
+                        try
+                        {
+                            if (_ticketRepository.Add(t))
+                            {
+                                RaisePropertyChanged("NewTicket");
+                                this.NewTicket = new AllTicketsModel();
+                                this.MessageForUser = "Inserting of data has passed successfully..";
+                                this.ForegroundForUser = "#68a225";
+                            }
+                            else
+                            {
+                                this.MessageForUser = "Inserting Data Is Not Passed.";
+                                this.ForegroundForUser = "#ff420e";
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            this.MessageForUser = "Inserting Data Is Not Passed.";
+                            this.ForegroundForUser = "#ff420e";
+                            Debug.WriteLine("'SaveNewTicketCommand' fail..." + ex.Message);
+                        }
 
                     });
                 }
@@ -321,7 +251,7 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
                 if (this.Flight.FlightID > 0)
                 {
                     this.ForegroundForUser = "#33cc66";
-                    this.MessageForUser = this.Flight.FlightNumber.ToString();
+                    this.MessageForUser = "Flight Was Added";
                 }
               
             });
@@ -339,7 +269,7 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
                 if (this.Passenger.PassengerID > 0)
                 {
                     this.ForegroundForUser = "#33cc66";
-                    this.MessageForUser += "|"+ this.Passenger.PassportNumber.ToString();
+                    this.MessageForUser = "Passenger Was Added";
                 }
 
             });
@@ -357,7 +287,7 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
                 if (this.Cashier.CashierID > 0)
                 {
                     this.ForegroundForUser = "#33cc66";
-                    this.MessageForUser += "|" + this.Cashier.CashierID.ToString();
+                    this.MessageForUser = "Cashier Was Added";
                 }
 
             });
@@ -375,7 +305,7 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
                 if (this.Tariff.RateID > 0)
                 {
                     this.ForegroundForUser = "#33cc66";
-                    this.MessageForUser += "|" + this.Tariff.RateName.ToString();
+                    this.MessageForUser = "Tariff Was Added";
                 }
 
             });
