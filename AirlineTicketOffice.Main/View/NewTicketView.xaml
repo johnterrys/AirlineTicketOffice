@@ -4,8 +4,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:AirlineTicketOffice.Main.View"
-             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-             xmlns:mvvm="http://www.galasoft.ch/mvvmlight"
              mc:Ignorable="d" 
              d:DesignHeight="960" d:DesignWidth="1280"
              DataContext="{Binding NewTicketVM, Source={StaticResource Locator}}">
@@ -286,7 +284,6 @@
                                 </TextBox>
                                 <Button Content="Calculate" Margin="5" MinWidth="100" HorizontalAlignment="Center" 
                                         Background="#171717"
-                                        Visibility="{Binding ButtonLoadVisible}"
                                         Command="{Binding RouteCostCommand}">
                                     <Button.Foreground>
                                         <LinearGradientBrush>
@@ -308,11 +305,10 @@
         <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Background="#3a3938">
             <Button Content="Save Data" Margin="5" MinWidth="100" HorizontalAlignment="Center" Foreground="GreenYellow" 
                     Background="#171717"
-                    Visibility="{Binding ButtonLoadVisible}"
                     Command="{Binding SaveNewTicketCommand}" CommandParameter="{Binding NewTicket}">
             </Button>
         </StackPanel>
-        <!-- Just field. -->
+        <!-- Field For Message To User. -->
         <Grid Grid.Row="2" Grid.ColumnSpan="2" Background="#3a3938" Margin="5">
             <TextBlock Text="{Binding MessageForUser}"
                        TextWrapping="Wrap"
@@ -321,13 +317,5 @@
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"></TextBlock>
         </Grid>
-
-        <!-- Dummy-panel for loading. -->
-        <DockPanel Background="#abbfd4"
-                   Visibility="{Binding DataGridVisibility}"
-                   Grid.Row="1">
-            <TextBlock Style="{StaticResource LoadingStyleTB}"></TextBlock>
-        </DockPanel>
-        <!-- End dummy-panel. -->
     </Grid>
 </UserControl>
