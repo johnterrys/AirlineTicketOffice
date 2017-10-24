@@ -95,7 +95,7 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
         private ICommand _getBoughtTicketCommand;
 
         private ICommand _sendTicketCommand;
-        public ICommand getBoughtTicketCommand
+        public ICommand GetBoughtTicketCommand
         {
             get
             {

@@ -29,7 +29,7 @@
         <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" Background="#3a3938">
             <!-- Send Cashier To New Ticket -->         
             <Button Background="#171717" Margin="5" Foreground="LightBlue" Visibility="{Binding ButtonLoadVisible}" 
-                        Content="Select Cashier For New Ticket" Command="{Binding SendCashierToTicketCommand}"></Button>
+                        Content="Add Cashier For New Ticket" Command="{Binding SendCashierToTicketCommand}"></Button>
         </StackPanel>
         <!-- Change data passengers start. -->
         <Border BorderBrush="Black" BorderThickness="0.5" CornerRadius="3"

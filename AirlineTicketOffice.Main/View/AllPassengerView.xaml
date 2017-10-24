@@ -43,7 +43,7 @@
                 </i:Interaction.Triggers>
             </TextBox>
             <Button Background="#171717" Margin="5" Foreground="LightBlue" Visibility="{Binding ButtonLoadVisible}" 
-                        Content="Select Passenger For New Ticket" Command="{Binding SendPassengerToTicketCommand}"></Button>
+                        Content="Add Passenger For New Ticket" Command="{Binding SendPassengerToTicketCommand}"></Button>
         </StackPanel>
         <!-- Change data passengers start. -->
         <Border BorderBrush="Black" BorderThickness="0.5" CornerRadius="3"

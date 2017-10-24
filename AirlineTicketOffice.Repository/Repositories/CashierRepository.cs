@@ -43,6 +43,10 @@ namespace AirlineTicketOffice.Repository.Repositories
 
         public IEnumerable<CashierModel> GetAll()
         {
+            RefreshAll();
+
+            _context.Database.Log = (s => Console.WriteLine(s));
+
             return _context.Cashiers.AsNoTracking().ToArray().Select((Cashier c) =>
             {
                 return new CashierModel

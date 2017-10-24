@@ -121,7 +121,7 @@
                         Content="Refrash Data" Command="{Binding GetAllFlightCommand}"
                         Margin="5 0 10 0"></Button>
                 <Button Background="#171717" Foreground="LightBlue" 
-                        Content="Select Flight For New Ticket" Command="{Binding SendNewTicketCommand}"
+                        Content="Add Flight For New Ticket" Command="{Binding SendNewTicketCommand}"
                         Margin="5 0 10 0"></Button>
             </DockPanel>
         </StackPanel>
