@@ -19,7 +19,7 @@ namespace AirlineTicketOffice.Repository.Repositories
 
         public IEnumerable<PlaceInAircraftModel> GetAll()
         {
-            RefreshAll();
+            //RefreshAll();
 
             _context.Database.Log = (s => Console.WriteLine(s));
 
@@ -36,7 +36,7 @@ namespace AirlineTicketOffice.Repository.Repositories
 
         public IEnumerable<PlaceInAircraftModel> GetPlacesOnAircraft(int id)
         {
-            RefreshAll();
+            //RefreshAll();
 
             _context.Database.Log = (s => Console.WriteLine(s));
 

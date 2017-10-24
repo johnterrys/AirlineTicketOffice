@@ -16,7 +16,7 @@ namespace AirlineTicketOffice.Repository.Repositories
         {
             _context.Database.Log = (s => Console.WriteLine(s));
 
-            RefreshAll();
+            //RefreshAll();
 
             return _context.BoughtTickets_ATO.AsNoTracking().ToList().Select((BoughtTickets_ATO b) =>
             {

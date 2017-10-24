@@ -55,9 +55,8 @@ namespace AirlineTicketOffice.Repository.Repositories
 
         public IEnumerable<AllTicketsModel> GetAll()
         {
-            _context.Database.Log = (s => Console.WriteLine(s));
 
-            RefreshAll();
+            _context.Database.Log = (s => Console.WriteLine(s));
 
             return _context.Tickets.Include(c => c.Cashier).AsNoTracking().ToArray().Select((Ticket t) =>
             {

@@ -25,7 +25,7 @@ namespace AirlineTicketOffice.Repository.Repositories
         {
             try
             {
-                RefreshAll();
+                //RefreshAll();
 
                 _context.Database.Log = (s => Console.WriteLine(s));
 
