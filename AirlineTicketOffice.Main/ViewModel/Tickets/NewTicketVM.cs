@@ -27,6 +27,8 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
 
             this.SaleDate = DateTime.Now;
 
+            this.NewTicket = new AllTicketsModel();
+
             this.ForegroundForUser = "#f2f2f2";
             this.MessageForUser = "At First You Need Select The Flight.";
 
@@ -41,8 +43,6 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
         #endregion
 
         #region fields
-
-        object locker = new object();
 
         private readonly ITicketRepository _ticketRepository;        
 
@@ -127,15 +127,15 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
 
         #region commands 
 
-        private ICommand _routeCostCommand;
+        private ICommand _fullCostCommand;
 
-        public ICommand RouteCostCommand
+        public ICommand FullCostCommand
         {
             get
             {
-                if (_routeCostCommand == null)
+                if (_fullCostCommand == null)
                 {
-                    _routeCostCommand = new RelayCommand(() =>
+                    _fullCostCommand = new RelayCommand(() =>
                     {
                         if (this.Flight != null && this.Tariff != null)
                         {
@@ -148,6 +148,7 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
                             }
                             else
                             {
+                                this.NewTicket.TotalCost = cost;
                                 this.FullCost = cost;
                                 this.MessageForUser = "Full Cost was Calculated.";
                                 this.ForegroundForUser = "#68a225";
@@ -163,10 +164,10 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
                         
                     });
                 }
-                return _routeCostCommand;
+                return _fullCostCommand;
             }
 
-            set { _routeCostCommand = value; }
+            set { _fullCostCommand = value; }
         }
 
 
@@ -186,10 +187,11 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
 
                         try
                         {
-                            if (_ticketRepository.Add(t))
+                            this.NewTicket.SaleDate = this.SaleDate;
+                                                       
+                            if (AllTicketsModel.CheckNewTicket(this.NewTicket) && _ticketRepository.Add(t))
                             {
                                 RaisePropertyChanged("NewTicket");
-                                this.NewTicket = new AllTicketsModel();
                                 this.MessageForUser = "Inserting of data has passed successfully..";
                                 this.ForegroundForUser = "#68a225";
                             }
@@ -227,6 +229,7 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
 
                 if (this.Flight.FlightID > 0)
                 {
+                    this.NewTicket.Flight = this.Flight;
                     this.ForegroundForUser = "#68a225";
                     this.MessageForUser = "Flight Was Added";
                 }
@@ -245,6 +248,7 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
 
                 if (this.Passenger.PassengerID > 0)
                 {
+                    this.NewTicket.Passenger = this.Passenger;
                     this.ForegroundForUser = "#68a225";
                     this.MessageForUser = "Passenger Was Added";
                 }
@@ -263,6 +267,7 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
 
                 if (this.Cashier.CashierID > 0)
                 {
+                    this.NewTicket.Cashier = this.Cashier;
                     this.ForegroundForUser = "#68a225";
                     this.MessageForUser = "Cashier Was Added";
                 }
@@ -281,6 +286,7 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
 
                 if (this.Tariff.RateID > 0)
                 {
+                    this.NewTicket.Rate = this.Tariff;
                     this.ForegroundForUser = "#68a225";
                     this.MessageForUser = "Tariff Was Added";
                 }

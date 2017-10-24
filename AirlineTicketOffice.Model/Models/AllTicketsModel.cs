@@ -89,12 +89,34 @@ namespace AirlineTicketOffice.Model.Models
             set { Set(() => Passenger, ref passenger, value); }
         }
 
-        private RateModel rate;
+        private TariffModel rate;
 
-        public RateModel Rate
+        public TariffModel Rate
         {
             get { return rate; }
             set { Set(() => Rate, ref rate, value); }
+        }
+
+        public static bool CheckNewTicket(AllTicketsModel ticket)
+        {
+            if (ticket == null
+                || ticket.Rate == null
+                || ticket.Passenger == null
+                || ticket.flight == null
+                || ticket.Cashier == null)
+            {
+                return false;
+            }
+            if (ticket.totalCost <= Decimal.Zero)
+            {
+                return false;
+            }
+            if (ticket.saleDate.Date < DateTime.Now.Date)
+            {
+                return false;
+            }
+
+            return true;
         }
 
         public static decimal CalculateFullCost(FlightModel flight, TariffModel tariff)
