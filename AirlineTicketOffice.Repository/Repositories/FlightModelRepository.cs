@@ -25,6 +25,8 @@ namespace AirlineTicketOffice.Repository.Repositories
         {
             try
             {
+                RefreshAll();
+
                 _context.Database.Log = (s => Console.WriteLine(s));
 
                 return _context.Flights.Include(a => a.Aircraft).Include(r => r.Route).ToList().Select((Flight f) =>

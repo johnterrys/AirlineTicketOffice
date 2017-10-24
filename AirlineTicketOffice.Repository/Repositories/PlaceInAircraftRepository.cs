@@ -19,6 +19,8 @@ namespace AirlineTicketOffice.Repository.Repositories
 
         public IEnumerable<PlaceInAircraftModel> GetAll()
         {
+            RefreshAll();
+
             _context.Database.Log = (s => Console.WriteLine(s));
 
             return _context.PlaceInAircrafts.AsNoTracking().ToArray().Select((PlaceInAircraft p) =>
@@ -34,6 +36,10 @@ namespace AirlineTicketOffice.Repository.Repositories
 
         public IEnumerable<PlaceInAircraftModel> GetPlacesOnAircraft(int id)
         {
+            RefreshAll();
+
+            _context.Database.Log = (s => Console.WriteLine(s));
+
             return _context.PlaceInAircrafts.AsNoTracking().Where(p => p.AircraftID == id).ToArray().Select((PlaceInAircraft p) =>
             {
                 return new PlaceInAircraftModel

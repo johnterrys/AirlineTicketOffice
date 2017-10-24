@@ -9,7 +9,5 @@ namespace AirlineTicketOffice.Model.IRepository
 {
     public interface ITicketRepository : IBaseRepository<AllTicketsModel>, IMainRepository<AllTicketsModel>
     {
-        AllTicketsModel GetById(int id);
-        IEnumerable<AllTicketsModel> Find(Expression<Func<AllTicketsModel, bool>> predicate);
     }
 }

@@ -7,6 +7,7 @@ using AirlineTicketOffice.Model.Models;
 using System.Linq.Expressions;
 using System.Data.Entity;
 using AirlineTicketOffice.Data;
+using System.Diagnostics;
 
 namespace AirlineTicketOffice.Repository.Repositories
 {
@@ -20,17 +21,43 @@ namespace AirlineTicketOffice.Repository.Repositories
 
         public bool Add(AllTicketsModel entity)
         {
-            return false;
-        }
+           
+            try
+            {
+                if (entity != null)
+                {
 
-        public IEnumerable<AllTicketsModel> Find(Expression<Func<AllTicketsModel, bool>> predicate)
-        {
-            throw new NotImplementedException();
-        }
+                    _context.Tickets.Add(new Ticket
+                    {
+                        TicketID = entity.TicketID,
+                        FlightID = entity.FlightID,
+                        PassengerID = entity.PassengerID,
+                        CashierID = entity.CashierID,
+                        RateID = entity.RateID,
+                        SaleDate = entity.SaleDate,
+                        TotalCost = entity.TotalCost
+                    });
+
+                    _context.SaveChanges();
+
+                    return true;
+                }
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("'Add(AllTicketsModel entity)' method fail..." + ex.Message);
+                return false;
+            }
+           
+        }     
 
         public IEnumerable<AllTicketsModel> GetAll()
         {
             _context.Database.Log = (s => Console.WriteLine(s));
+
+            RefreshAll();
 
             return _context.Tickets.Include(c => c.Cashier).AsNoTracking().ToArray().Select((Ticket t) =>
             {
@@ -52,12 +79,7 @@ namespace AirlineTicketOffice.Repository.Repositories
 
                 };
             });
-        }
-
-        public AllTicketsModel GetById(int id)
-        {
-            throw new NotImplementedException();
-        }
+        }     
 
         public bool Remove(AllTicketsModel entity)
         {

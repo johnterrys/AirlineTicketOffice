@@ -12,6 +12,10 @@ namespace AirlineTicketOffice.Repository.Repositories
     {
         public IEnumerable<TariffModel> GetAll()
         {
+            RefreshAll();
+
+            _context.Database.Log = (s => Console.WriteLine(s));
+
             return _context.GetTariffs_ATO.AsNoTracking().ToList().Select((GetTariffs_ATO t) =>
             {
                 return new TariffModel

@@ -14,10 +14,12 @@ namespace AirlineTicketOffice.Repository.Repositories
     {
         public IEnumerable<BoughtTicketModel> GetAll()
         {
+            _context.Database.Log = (s => Console.WriteLine(s));
+
+            RefreshAll();
+
             return _context.BoughtTickets_ATO.AsNoTracking().ToList().Select((BoughtTickets_ATO b) =>
             {
-                _context.Database.Log = (s => Console.WriteLine(s));
-
                 return new BoughtTicketModel
                 {
                     FullName = b.FullName,

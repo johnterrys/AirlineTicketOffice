@@ -19,10 +19,10 @@ namespace AirlineTicketOffice.Repository.Repositories
         {
             RefreshAll();
 
+            _context.Database.Log = (s => Console.WriteLine(s));
+
             return _context.Passengers.ToList().Select((Passenger p) =>
             {
-                _context.Database.Log = (s => Console.WriteLine(s));
-
                 return new PassengerModel
                 {
                    PassengerID = p.PassengerID,
@@ -45,10 +45,10 @@ namespace AirlineTicketOffice.Repository.Repositories
 
             RefreshAll();
 
+            _context.Database.Log = (s => Console.WriteLine(s));
+
             return _context.Passenger_ATO.AsNoTracking().ToList().Select((Passenger_ATO p) =>
             {
-                _context.Database.Log = (s => Console.WriteLine(s));
-
                 return new PassengerModel
                 {
                     PassengerID = p.PassengerID,

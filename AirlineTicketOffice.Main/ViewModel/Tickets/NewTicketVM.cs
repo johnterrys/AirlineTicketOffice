@@ -182,16 +182,18 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
             {
                 if (_saveNewTicketCommand == null)
                 {
-                    _saveNewTicketCommand = new RelayCommand<AllTicketsModel>((t) =>
+                    _saveNewTicketCommand = new RelayCommand(() =>
                     {
 
                         try
                         {
                             this.NewTicket.SaleDate = this.SaleDate;
                                                        
-                            if (AllTicketsModel.CheckNewTicket(this.NewTicket) && _ticketRepository.Add(t))
+                            if (AllTicketsModel.CheckNewTicket(this.NewTicket)
+                                && _ticketRepository.Add(this.NewTicket))
                             {
-                                RaisePropertyChanged("NewTicket");
+
+                                RaisePropertyChanged("NewTicket");                             
                                 this.MessageForUser = "Inserting of data has passed successfully..";
                                 this.ForegroundForUser = "#68a225";
                             }
@@ -229,6 +231,7 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
 
                 if (this.Flight.FlightID > 0)
                 {
+                    this.NewTicket.FlightID = this.Flight.FlightID;
                     this.NewTicket.Flight = this.Flight;
                     this.ForegroundForUser = "#68a225";
                     this.MessageForUser = "Flight Was Added";
@@ -248,6 +251,7 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
 
                 if (this.Passenger.PassengerID > 0)
                 {
+                    this.NewTicket.PassengerID = this.Passenger.PassengerID;
                     this.NewTicket.Passenger = this.Passenger;
                     this.ForegroundForUser = "#68a225";
                     this.MessageForUser = "Passenger Was Added";
@@ -267,6 +271,7 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
 
                 if (this.Cashier.CashierID > 0)
                 {
+                    this.NewTicket.CashierID = this.Cashier.CashierID;
                     this.NewTicket.Cashier = this.Cashier;
                     this.ForegroundForUser = "#68a225";
                     this.MessageForUser = "Cashier Was Added";
@@ -286,6 +291,7 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
 
                 if (this.Tariff.RateID > 0)
                 {
+                    this.NewTicket.RateID = this.Tariff.RateID;
                     this.NewTicket.Rate = this.Tariff;
                     this.ForegroundForUser = "#68a225";
                     this.MessageForUser = "Tariff Was Added";
@@ -298,3 +304,10 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
         #endregion
     }
 }
+//    TicketID = entity.TicketID,
+//    FlightID = entity.FlightID,
+//    PassengerID = entity.PassengerID,
+//    CashierID = entity.CashierID,
+//    RateID = entity.RateID,
+//    SaleDate = entity.SaleDate,
+//    TotalCost = entity.TotalCost

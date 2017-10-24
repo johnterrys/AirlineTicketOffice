@@ -97,6 +97,10 @@ namespace AirlineTicketOffice.Model.Models
             set { Set(() => Rate, ref rate, value); }
         }
 
+
+
+        #region methods
+
         public static bool CheckNewTicket(AllTicketsModel ticket)
         {
             if (ticket == null
@@ -169,6 +173,8 @@ namespace AirlineTicketOffice.Model.Models
             else
                 return d;
         }
+
+        #endregion
 
     }
 }
