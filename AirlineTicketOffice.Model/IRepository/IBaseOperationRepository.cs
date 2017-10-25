@@ -5,7 +5,7 @@ using System.Text;
 
 namespace AirlineTicketOffice.Model.IRepository
 {
-    public interface IBaseRepository<TEntity> where TEntity : class
+    public interface IBaseOperationRepository<TEntity> where TEntity : class
     {
 
         bool Add(TEntity entity);

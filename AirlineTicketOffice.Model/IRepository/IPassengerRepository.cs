@@ -6,7 +6,7 @@ using System.Text;
 
 namespace AirlineTicketOffice.Model.IRepository
 {
-    public interface IPassengerRepository : IGetAllRepository<PassengerModel>, IBaseRepository<PassengerModel>
+    public interface IPassengerRepository : IGetAllRepository<PassengerModel>, IBaseOperationRepository<PassengerModel>
     {
         IEnumerable<PassengerModel> GetAllForRead();
     }
