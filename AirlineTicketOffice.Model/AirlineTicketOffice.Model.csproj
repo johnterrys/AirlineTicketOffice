@@ -55,7 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IRepository\IBaseRepository.cs" />
+    <Compile Include="IRepository\IBaseOperationRepository.cs" />
     <Compile Include="IRepository\IBoughtTicketRepository.cs" />
     <Compile Include="IRepository\ICashierRepository.cs" />
     <Compile Include="IRepository\IFlightRepository.cs" />
