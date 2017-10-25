@@ -11,8 +11,7 @@ namespace AirlineTicketOffice.Repository.Repositories
     public sealed class TariffsRepository : BaseModelRepository<GetTariffs_ATO>, ITariffsRepository
     {
         public IEnumerable<TariffModel> GetAll()
-        {
-            //RefreshAll();
+        {           
 
             _context.Database.Log = (s => Console.WriteLine(s));
 

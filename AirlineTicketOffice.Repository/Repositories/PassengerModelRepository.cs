@@ -17,7 +17,6 @@ namespace AirlineTicketOffice.Repository.Repositories
 
         public IEnumerable<PassengerModel> GetAll()
         {
-            //RefreshAll();
 
             _context.Database.Log = (s => Console.WriteLine(s));
 
@@ -42,8 +41,6 @@ namespace AirlineTicketOffice.Repository.Repositories
 
         public IEnumerable<PassengerModel> GetAllForRead()
         {
-
-            //RefreshAll();
 
             _context.Database.Log = (s => Console.WriteLine(s));
 

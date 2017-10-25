@@ -490,8 +490,15 @@ namespace AirlineTicketOffice.Main.ViewModel.Flights
                 try
                 {
                     this.Flights = new ObservableCollection<FlightModel>(_flightRepository.GetAll());
-                    this.ForegroundForUser = "#68a225";
-                    this.MessageForUser = "Data Load Success.";
+
+                    Application.Current.Dispatcher.Invoke(
+                    new Action(() =>
+                    {
+                        this.ForegroundForUser = "#68a225";
+                        this.MessageForUser = "Data Load Success.";
+
+                    }));
+                   
                 }
                 catch (ArgumentNullException ex)
                 {

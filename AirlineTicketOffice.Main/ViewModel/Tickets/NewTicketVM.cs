@@ -33,9 +33,9 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
             this.MessageForUser = "At First You Need Select The Flight.";
 
             ReceiveFlightFromFlightVM();
-            ReceivePassengerFromFlightVM();
-            ReceiveCashierFromFlightVM();
-            ReceiveTariffFromFlightVM();
+            ReceivePassengerFromPassengerVM();
+            ReceiveCashierFromCashierVM();
+            ReceiveTariffFromRateVM();
 
         }
 
@@ -244,7 +244,7 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
         /// <summary>
         /// Receive 'PassengerModel' from SendNewPassengerCommand(Passenger view model)
         /// </summary>
-        private void ReceivePassengerFromFlightVM()
+        private void ReceivePassengerFromPassengerVM()
         {
             Messenger.Default.Register<MessagePassengerToNewTicket>(this, (p) => {
                 this.Passenger = p.SendPassengerFromPassengerVM;
@@ -264,7 +264,7 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
         /// <summary>
         /// Receive 'CashierModel' from SendNewCashierCommand(Cashier view model)
         /// </summary>
-        private void ReceiveCashierFromFlightVM()
+        private void ReceiveCashierFromCashierVM()
         {
             Messenger.Default.Register<MessageCashierToNewTicket>(this, (p) => {
                 this.Cashier = p.SendCashierFromCashierVM;
@@ -284,7 +284,7 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
         /// <summary>
         /// Receive 'TariffModel' from SendNewTariffCommand(Tarrif(Rate) view model)
         /// </summary>
-        private void ReceiveTariffFromFlightVM()
+        private void ReceiveTariffFromRateVM()
         {
             Messenger.Default.Register<MessageTariffToNewTicket>(this, (p) => {
                 this.Tariff = p.SendTariffFromTariffVM;
@@ -304,10 +304,3 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
         #endregion
     }
 }
-//    TicketID = entity.TicketID,
-//    FlightID = entity.FlightID,
-//    PassengerID = entity.PassengerID,
-//    CashierID = entity.CashierID,
-//    RateID = entity.RateID,
-//    SaleDate = entity.SaleDate,
-//    TotalCost = entity.TotalCost

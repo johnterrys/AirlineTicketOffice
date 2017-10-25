@@ -43,7 +43,6 @@ namespace AirlineTicketOffice.Repository.Repositories
 
         public IEnumerable<CashierModel> GetAll()
         {
-            //RefreshAll();
 
             _context.Database.Log = (s => Console.WriteLine(s));
 
