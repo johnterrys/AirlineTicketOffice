@@ -82,6 +82,8 @@ namespace AirlineTicketOffice.Main.ViewModel
 
         private ICommand _getCashierCommand;
 
+        public ICommand _closingCommand;
+
         public ICommand GetNewTicketCommand
         {
             get
@@ -216,6 +218,22 @@ namespace AirlineTicketOffice.Main.ViewModel
                 return _loadedCommand;
             }
             set { _loadedCommand = value; }
+
+        }
+
+        public ICommand ClosingCommand
+        {
+            get
+            {
+                if (_closingCommand == null)
+                {
+                    _closingCommand = new RelayCommand(() =>
+                    {
+                        
+                    });
+                }
+                return _closingCommand;
+            }
 
         }
 

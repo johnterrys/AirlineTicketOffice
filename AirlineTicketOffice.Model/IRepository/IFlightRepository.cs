@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace AirlineTicketOffice.Model.IRepository
 {
 
-    public interface IFlightRepository : IMainRepository<FlightModel>
+    public interface IFlightRepository : IGetAllRepository<FlightModel>
     {
     }
 }

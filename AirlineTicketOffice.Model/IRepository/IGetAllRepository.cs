@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AirlineTicketOffice.Model.IRepository
 {
-    public interface IMainRepository<TEntity> where TEntity : class
+    public interface IGetAllRepository<TEntity> where TEntity : class
     {
         IEnumerable<TEntity> GetAll();
 

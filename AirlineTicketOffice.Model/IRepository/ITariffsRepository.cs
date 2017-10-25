@@ -6,7 +6,7 @@ using System.Text;
 
 namespace AirlineTicketOffice.Model.IRepository
 {
-    public interface ITariffsRepository:IMainRepository<TariffModel>
+    public interface ITariffsRepository:IGetAllRepository<TariffModel>
     {
     }
 }

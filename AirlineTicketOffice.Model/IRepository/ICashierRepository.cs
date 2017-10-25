@@ -6,7 +6,7 @@ using System.Text;
 
 namespace AirlineTicketOffice.Model.IRepository
 {
-    public interface ICashierRepository:IMainRepository<CashierModel>, IBaseRepository<CashierModel>
+    public interface ICashierRepository:IGetAllRepository<CashierModel>, IBaseRepository<CashierModel>
     {
     }
 }

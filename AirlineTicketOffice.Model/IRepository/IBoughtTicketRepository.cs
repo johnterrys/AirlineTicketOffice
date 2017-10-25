@@ -6,7 +6,7 @@ using System.Text;
 
 namespace AirlineTicketOffice.Model.IRepository
 {
-    public interface IBoughtTicketRepository:IMainRepository<BoughtTicketModel>
+    public interface IBoughtTicketRepository:IGetAllRepository<BoughtTicketModel>
     {
     }
 }

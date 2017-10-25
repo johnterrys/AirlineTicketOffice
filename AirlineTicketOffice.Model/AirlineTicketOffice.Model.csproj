@@ -59,7 +59,7 @@
     <Compile Include="IRepository\IBoughtTicketRepository.cs" />
     <Compile Include="IRepository\ICashierRepository.cs" />
     <Compile Include="IRepository\IFlightRepository.cs" />
-    <Compile Include="IRepository\IMainRepository.cs" />
+    <Compile Include="IRepository\IGetAllRepository.cs" />
     <Compile Include="IRepository\IPassengerRepository.cs" />
     <Compile Include="IRepository\IPlaceInAircraftRepository.cs" />
     <Compile Include="IRepository\IPlaceInFlightRepository.cs" />

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace AirlineTicketOffice.Model.IRepository
 {
-    public interface IPlaceInAircraftRepository : IMainRepository<PlaceInAircraftModel>
+    public interface IPlaceInAircraftRepository : IGetAllRepository<PlaceInAircraftModel>
     {
         IEnumerable<PlaceInAircraftModel> GetPlacesOnAircraft(int id);
     }
