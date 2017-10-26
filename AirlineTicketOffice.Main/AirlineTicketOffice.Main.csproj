@@ -85,7 +85,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Behaviors\DecimalTextBox.cs" />
     <Compile Include="Services\Dialog\IPdfFileDialogService.cs" />
     <Compile Include="Services\Dialog\IWordFileDialogService.cs" />
     <Compile Include="Services\Dialog\PdfFileDialogService.cs" />
