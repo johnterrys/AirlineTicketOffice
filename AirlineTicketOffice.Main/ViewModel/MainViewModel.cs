@@ -2,17 +2,9 @@ using AirlineTicketOffice.Main.Services.Navigation;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using System.Windows.Input;
-using AirlineTicketOffice.Main.Properties;
-using System.Threading.Tasks;
-using System.Windows.Threading;
-using System;
-using GalaSoft.MvvmLight.Threading;
-using System.Threading;
-using System.Windows;
 using GalaSoft.MvvmLight.Messaging;
-using System.Collections.Generic;
-using AirlineTicketOffice.Model.Models;
 using AirlineTicketOffice.Main.Services.Messenger;
+
 
 namespace AirlineTicketOffice.Main.ViewModel
 {
@@ -39,7 +31,6 @@ namespace AirlineTicketOffice.Main.ViewModel
         public MainViewModel(IMainNavigationService navigationService)
         {
             _navigationService = navigationService;
-
             ReceiveStatusFromFlightVM();
         }
 
@@ -66,23 +57,10 @@ namespace AirlineTicketOffice.Main.ViewModel
 
         #region commands
 
-        private ICommand _getBoughtTicketCommand;
-
-        private ICommand _getAllPassengerCommand;
-
-        private ICommand _getFlightsCommand;
-
-        private ICommand _getTariffsCommand; 
-
-        private ICommand _loadedCommand;
-
-        private ICommand _getNewPassengerCommand;
-
+        /// <summary>
+        /// Navigate to 'NewTicket' view.
+        /// </summary>
         private ICommand _getNewTicketCommand;
-
-        private ICommand _getCashierCommand;
-
-        public ICommand _closingCommand;
 
         public ICommand GetNewTicketCommand
         {
@@ -102,6 +80,11 @@ namespace AirlineTicketOffice.Main.ViewModel
         }
 
 
+        /// <summary>
+        /// Navigate to 'AllPassengers' view.
+        /// </summary>
+        private ICommand _getAllPassengerCommand;
+
         public ICommand GetAllPassengerCommand
         {
             get
@@ -118,6 +101,12 @@ namespace AirlineTicketOffice.Main.ViewModel
             }
             
         }
+
+
+        /// <summary>
+        /// Navigate to 'NewPassenger' view.
+        /// </summary>
+        private ICommand _getNewPassengerCommand;
 
         public ICommand GetNewPassengerCommand
         {
@@ -136,6 +125,11 @@ namespace AirlineTicketOffice.Main.ViewModel
 
         }
 
+        /// <summary>
+        /// Navigate to 'purchased tickets' view.
+        /// </summary>
+        private ICommand _getBoughtTicketCommand;
+
         public ICommand GetBoughtTicketCommand
         {
             get
@@ -151,7 +145,13 @@ namespace AirlineTicketOffice.Main.ViewModel
                 return _getBoughtTicketCommand;
             }
 
-        }      
+        }
+
+
+        /// <summary>
+        /// Navigate to 'Cashiers' view.
+        /// </summary>
+        private ICommand _getFlightsCommand;
 
         public ICommand GetFlightsCommand
         {
@@ -169,7 +169,12 @@ namespace AirlineTicketOffice.Main.ViewModel
             }
 
         }
-        
+
+
+        /// <summary>
+        /// Navigate to 'Tariffs' view.
+        /// </summary>
+        private ICommand _getTariffsCommand;
 
         public ICommand GetTariffsCommand
         {
@@ -187,6 +192,12 @@ namespace AirlineTicketOffice.Main.ViewModel
             }
         }
 
+
+        /// <summary>
+        /// Navigate to 'Cashiers' view.
+        /// </summary>
+        private ICommand _getCashierCommand;
+  
         public ICommand GetCashierCommand
         {
             get
@@ -203,6 +214,12 @@ namespace AirlineTicketOffice.Main.ViewModel
             }
         }
 
+
+        /// <summary>
+        /// Occur when the window is loaded.
+        /// </summary>
+        private ICommand _loadedCommand;
+ 
         public ICommand LoadedCommand
         {
             get
@@ -221,6 +238,12 @@ namespace AirlineTicketOffice.Main.ViewModel
 
         }
 
+
+        /// <summary>
+        /// Occur when the window is closed.
+        /// </summary>
+        public ICommand _closingCommand;
+
         public ICommand ClosingCommand
         {
             get
@@ -229,7 +252,7 @@ namespace AirlineTicketOffice.Main.ViewModel
                 {
                     _closingCommand = new RelayCommand(() =>
                     {
-                        
+                        // some work doing...(I did not invented yet)
                     });
                 }
                 return _closingCommand;
