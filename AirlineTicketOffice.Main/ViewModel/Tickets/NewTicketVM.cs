@@ -137,30 +137,8 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
                 {
                     _fullCostCommand = new RelayCommand(() =>
                     {
-                        if (this.Flight != null && this.Tariff != null)
-                        {
-                            decimal cost = AllTicketsModel.CalculateFullCost(this.Flight, this.Tariff);
 
-                            if (cost == Decimal.MinusOne)
-                            {
-                                this.MessageForUser = "Error occured... Try again, please...";
-                                this.ForegroundForUser = "#ff420e";
-                            }
-                            else
-                            {
-                                this.NewTicket.TotalCost = cost;
-                                this.FullCost = cost;
-                                this.MessageForUser = "Full Cost was Calculated.";
-                                this.ForegroundForUser = "#68a225";
-
-                            }
-                            
-                        }
-                        else
-                        {
-                            this.MessageForUser = "Add Flight And Tariff, please...";
-                            this.ForegroundForUser = "#ff420e";
-                        }
+                        CheckCost();                      
                         
                     });
                 }
@@ -187,7 +165,9 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
 
                         try
                         {
+
                             this.NewTicket.SaleDate = this.SaleDate;
+                            this.NewTicket.TotalCost = this.FullCost;                            
                                                        
                             if (AllTicketsModel.CheckNewTicket(this.NewTicket)
                                 && _ticketRepository.Add(this.NewTicket))
@@ -202,6 +182,12 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
                                 this.MessageForUser = "Inserting Data Is Not Passed.";
                                 this.ForegroundForUser = "#ff420e";
                             }
+                        }
+                        catch (ArithmeticException ex)
+                        {
+                            this.MessageForUser = "Inserting Data Is Not Passed.";
+                            this.ForegroundForUser = "#ff420e";
+                            Debug.WriteLine("'SaveNewTicketCommand' fail..." + ex.Message);
                         }
                         catch (Exception ex)
                         {
@@ -300,6 +286,38 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
             });
 
         }
+
+        /// <summary>
+        /// Check and calculate the cost.
+        /// </summary>
+        private void CheckCost()
+        {
+            if (this.Flight != null && this.Tariff != null)
+            {
+                decimal cost = AllTicketsModel.CalculateFullCost(this.Flight, this.Tariff);
+
+                if (cost == Decimal.MinusOne)
+                {
+                    this.MessageForUser = "Error occured... Try again, please...";
+                    this.ForegroundForUser = "#ff420e";
+                }
+                else
+                {
+                    this.NewTicket.TotalCost = cost;
+                    this.FullCost = cost;
+                    this.MessageForUser = "Full Cost was Calculated.";
+                    this.ForegroundForUser = "#68a225";
+
+                }
+
+            }
+            else
+            {
+                this.MessageForUser = "Add Flight And Tariff, please...";
+                this.ForegroundForUser = "#ff420e";
+            }
+        }
+
 
         #endregion
     }

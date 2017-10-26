@@ -103,6 +103,8 @@ namespace AirlineTicketOffice.Model.Models
 
         public static bool CheckNewTicket(AllTicketsModel ticket)
         {
+            CheckResult(ticket.totalCost);
+
             if (ticket == null
                 || ticket.Rate == null
                 || ticket.Passenger == null
@@ -129,7 +131,7 @@ namespace AirlineTicketOffice.Model.Models
             {
 
                 decimal fullCost = Decimal.Zero;
-
+              
                 if (tariff.TypeOfPlace.ToUpper() == "A")
                 {
                     fullCost = Decimal.Add(Decimal.Multiply(flight.Route.Cost, 0.4m), flight.Route.Cost);
