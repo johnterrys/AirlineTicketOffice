@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{967E75DC-7E6B-4D3C-AF82-D50097CC17A4}</ProjectGuid>
+    <ProjectGuid>{A43A7850-FB7B-4534-AA3A-6589D9CFD9EF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AirlineTicketOffice.Data</RootNamespace>

@@ -52,7 +52,7 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
 
         private ObservableCollection<BoughtTicketModel> _tickets;
 
-        private BoughtTicketModel _ticket;
+        //private BoughtTicketModel _ticket;
 
         private string _dataGridVisibility;
 
@@ -76,11 +76,11 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
             set { Set(() => DataGridVisibility, ref _dataGridVisibility, value); }
         }
 
-        public BoughtTicketModel Ticket
-        {
-            get { return _ticket; }
-            set { Set(() => Ticket, ref _ticket, value); }
-        }
+        //public BoughtTicketModel Ticket
+        //{
+        //    get { return _ticket; }
+        //    set { Set(() => Ticket, ref _ticket, value); }
+        //}
 
         public ObservableCollection<BoughtTicketModel> Tickets
         {
@@ -94,7 +94,7 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
 
         private ICommand _getBoughtTicketCommand;
 
-        private ICommand _sendTicketCommand;
+        
         public ICommand GetBoughtTicketCommand
         {
             get
@@ -115,27 +115,29 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
             set { _getBoughtTicketCommand = value; }
         }
 
-        public ICommand SendTicketCommand
-        {
-            get
-            {
-                if (_sendTicketCommand == null)
-                {
-                    _sendTicketCommand = new RelayCommand<AllTicketsModel>((t) =>
-                    {
-                        if (t != null)
-                        {
-                            Messenger.Default.Send<MessageAllTicket>(new MessageAllTicket()
-                            {
-                                AllTicketMessage = t
-                            });
-                        }
-                    });
-                }
-                return _sendTicketCommand;
-            }
-            set { _sendTicketCommand = value; }
-        }
+        //private ICommand _sendTicketCommand;
+
+        //public ICommand SendTicketCommand
+        //{
+        //    get
+        //    {
+        //        if (_sendTicketCommand == null)
+        //        {
+        //            _sendTicketCommand = new RelayCommand<AllTicketsModel>((t) =>
+        //            {
+        //                if (t != null)
+        //                {
+        //                    Messenger.Default.Send<MessageAllTicket>(new MessageAllTicket()
+        //                    {
+        //                        AllTicketMessage = t
+        //                    });
+        //                }
+        //            });
+        //        }
+        //        return _sendTicketCommand;
+        //    }
+        //    set { _sendTicketCommand = value; }
+        //}
 
         #endregion
 

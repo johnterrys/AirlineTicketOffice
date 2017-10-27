@@ -21,7 +21,7 @@
             </Button>
         </StackPanel>
         <!-- Data View bought tickets. -->
-        <ScrollViewer Grid.Row="1">
+        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Visible">
             <DataGrid Name="dgTicket"  
                       Background="White"
                       SelectionMode="Single"
@@ -32,20 +32,24 @@
                       ItemsSource="{Binding Tickets}"
                       AutoGenerateColumns="False"
                       Margin="0,5,0,5"
-                      ColumnWidth="*"
+                      ColumnWidth="150"
                       RenderTransformOrigin="0.5,0.5" 
                       IsReadOnly="True">
                 <DataGrid.Columns>
                     <DataGridTextColumn  x:Name="FullName" Binding="{Binding FullName}" 
                                         Header="Full Name"/>
+                    <DataGridTextColumn  x:Name="PassportNumber" Binding="{Binding PassportNumber}" 
+                                        Header="Passport Number"/>
                     <DataGridTextColumn  x:Name="FlightNumber" Binding="{Binding FlightNumber}" 
                                         Header="Flight Number"/>
                     <DataGridTextColumn x:Name="TotalCost" Binding="{Binding TotalCost}" 
                                         Header="Total Cost"/>
-                    <DataGridTextColumn  x:Name="RateName" Binding="{Binding RateName}" 
-                                        Header="Rate Name"/>
                     <DataGridTextColumn  x:Name="DateOfDeparture" Binding="{Binding DateOfDeparture, StringFormat={}{0:dd.MM.yyyy}}" 
                                         Header="Date Of Departure"/>
+                    <DataGridTextColumn  x:Name="RateName" Binding="{Binding RateName}" 
+                                        Header="Rate Name"/>
+                    <DataGridTextColumn  x:Name="SaleDate" Binding="{Binding SaleDate, StringFormat={}{0:dd.MM.yyyy}}" 
+                                        Header="Sale Date"/>
                     <DataGridTextColumn  x:Name="DepartureTime" Binding="{Binding DepartureTime}" 
                                         Header="Departure Time"/>
                     <DataGridTextColumn  x:Name="TimeOfArrival" Binding="{Binding TimeOfArrival}" 
@@ -56,8 +60,16 @@
                                         Header="Airport Of Departure"/>
                     <DataGridTextColumn  x:Name="AirportOfArrival" Binding="{Binding AirportOfArrival}" 
                                         Header="Airport Of Arrival"/>
+                    <DataGridTextColumn  x:Name="TravelTime" Binding="{Binding TravelTime}" 
+                                        Header="Travel Time"/>
+                    <DataGridTextColumn  x:Name="Distance" Binding="{Binding Distance}" 
+                                        Header="Distance"/>
                     <DataGridTextColumn  x:Name="TypeOfAircraft" Binding="{Binding TypeOfAircraft}" 
                                         Header="Type Of Aircraft"/>
+                    <DataGridTextColumn  x:Name="CashierFullName" Binding="{Binding CashierFullName}" 
+                                        Header="Cashier FullName"/>
+                    <DataGridTextColumn  x:Name="NumberOfOffices" Binding="{Binding NumberOfOffices}" 
+                                        Header="Number Of Offices"/>
 
                 </DataGrid.Columns>
             </DataGrid>

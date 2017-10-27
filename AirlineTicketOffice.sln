@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirlineTicketOffice.Model",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlaceInFlightChart", "PlaceInFlightChart\PlaceInFlightChart.csproj", "{BB92B6EC-9370-4FBC-AB77-D44220F236BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirlineTicketOffice.Data", "AirlineTicketOffice.Data\AirlineTicketOffice.Data.csproj", "{967E75DC-7E6B-4D3C-AF82-D50097CC17A4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirlineTicketOffice.Data", "AirlineTicketOffice.Data\AirlineTicketOffice.Data.csproj", "{A43A7850-FB7B-4534-AA3A-6589D9CFD9EF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +35,10 @@ Global
 		{BB92B6EC-9370-4FBC-AB77-D44220F236BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB92B6EC-9370-4FBC-AB77-D44220F236BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB92B6EC-9370-4FBC-AB77-D44220F236BD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{967E75DC-7E6B-4D3C-AF82-D50097CC17A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{967E75DC-7E6B-4D3C-AF82-D50097CC17A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{967E75DC-7E6B-4D3C-AF82-D50097CC17A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{967E75DC-7E6B-4D3C-AF82-D50097CC17A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A43A7850-FB7B-4534-AA3A-6589D9CFD9EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A43A7850-FB7B-4534-AA3A-6589D9CFD9EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A43A7850-FB7B-4534-AA3A-6589D9CFD9EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A43A7850-FB7B-4534-AA3A-6589D9CFD9EF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

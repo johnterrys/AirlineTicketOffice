@@ -16,6 +16,14 @@ namespace AirlineTicketOffice.Model.Models
             set { Set(() => FullName, ref fullName, value); }
         }
 
+        private string _passportNumber;
+
+        public string PassportNumber
+        {
+            get { return _passportNumber; }
+            set { Set(() => PassportNumber, ref _passportNumber, value); }
+        }
+
         private string flightNumber;
 
         public string FlightNumber
@@ -30,6 +38,14 @@ namespace AirlineTicketOffice.Model.Models
         {
             get { return totalCost; }
             set { Set(() => TotalCost, ref totalCost, value); }
+        }
+
+        private System.DateTime _saleDate;
+
+        public System.DateTime SaleDate
+        {
+            get { return _saleDate; }
+            set { Set(() => SaleDate, ref _saleDate, value); }
         }
 
         private string rateName;
@@ -88,12 +104,45 @@ namespace AirlineTicketOffice.Model.Models
             set { Set(() => AirportOfArrival, ref airportOfArrival, value); }
         }
 
+        private TimeSpan _travelTime;
+
+        public TimeSpan TravelTime
+        {
+            get { return _travelTime; }
+            set { Set(() => TravelTime, ref _travelTime, value); }
+        }
+
+        private double _distance;
+
+        public double Distance
+        {
+            get { return _distance; }
+            set { Set(() => Distance, ref _distance, value); }
+        }
+        
+
         private string typeOfAircraft;
 
         public string TypeOfAircraft
         {
             get { return typeOfAircraft; }
             set { Set(() => TypeOfAircraft, ref typeOfAircraft, value); }
+        }
+
+        private string _cashierFullName;
+
+        public string CashierFullName
+        {
+            get { return _cashierFullName; }
+            set { Set(() => CashierFullName, ref _cashierFullName, value); }
+        }
+
+        private int _numberOfOffices;
+
+        public int NumberOfOffices
+        {
+            get { return _numberOfOffices; }
+            set { Set(() => NumberOfOffices, ref _numberOfOffices, value); }
         }
     }
 }

@@ -15,48 +15,75 @@ namespace AirlineTicketOffice.Data
 
         [Key]
         [Column(Order = 1)]
+        [StringLength(14)]
+        public string PassportNumber { get; set; }
+
+        [Key]
+        [Column(Order = 2)]
         [StringLength(10)]
         public string FlightNumber { get; set; }
 
         [Key]
-        [Column(Order = 2)]
+        [Column(Order = 3)]
         public decimal TotalCost { get; set; }
 
         [Key]
-        [Column(Order = 3)]
+        [Column(Order = 4, TypeName = "date")]
+        public DateTime SaleDate { get; set; }
+
+        [Key]
+        [Column(Order = 5)]
         [StringLength(50)]
         public string RateName { get; set; }
 
         [Key]
-        [Column(Order = 4, TypeName = "date")]
+        [Column(Order = 6, TypeName = "date")]
         public DateTime DateOfDeparture { get; set; }
 
         [Key]
-        [Column(Order = 5)]
+        [Column(Order = 7)]
         public TimeSpan DepartureTime { get; set; }
 
         [Key]
-        [Column(Order = 6)]
-        public TimeSpan TimeOfArrival { get; set; }
-
-        [Key]
-        [Column(Order = 7)]
-        [StringLength(50)]
-        public string NameRoute { get; set; }
-
-        [Key]
         [Column(Order = 8)]
-        [StringLength(50)]
-        public string AirportOfDeparture { get; set; }
+        public TimeSpan TimeOfArrival { get; set; }
 
         [Key]
         [Column(Order = 9)]
         [StringLength(50)]
-        public string AirportOfArrival { get; set; }
+        public string NameRoute { get; set; }
 
         [Key]
         [Column(Order = 10)]
         [StringLength(50)]
+        public string AirportOfDeparture { get; set; }
+
+        [Key]
+        [Column(Order = 11)]
+        [StringLength(50)]
+        public string AirportOfArrival { get; set; }
+
+        [Key]
+        [Column(Order = 12)]
+        public TimeSpan TravelTime { get; set; }
+
+        [Key]
+        [Column(Order = 13)]
+        public double Distance { get; set; }
+
+        [Key]
+        [Column(Order = 14)]
+        [StringLength(50)]
         public string TypeOfAircraft { get; set; }
+
+        [Key]
+        [Column(Order = 15)]
+        [StringLength(50)]
+        public string CashierFullName { get; set; }
+
+        [Key]
+        [Column(Order = 16)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int NumberOfOffices { get; set; }
     }
 }

@@ -21,8 +21,10 @@ namespace AirlineTicketOffice.Repository.Repositories
                 return new BoughtTicketModel
                 {
                     FullName = b.FullName,
+                    PassportNumber = b.PassportNumber,
                     FlightNumber = b.FlightNumber,
                     TotalCost = b.TotalCost,
+                    SaleDate = b.SaleDate,
                     RateName = b.RateName,
                     DateOfDeparture = b.DateOfDeparture,
                     DepartureTime = b.DepartureTime,
@@ -30,7 +32,11 @@ namespace AirlineTicketOffice.Repository.Repositories
                     NameRoute = b.NameRoute,
                     AirportOfDeparture = b.AirportOfDeparture,
                     AirportOfArrival = b.AirportOfArrival,
-                    TypeOfAircraft = b.TypeOfAircraft
+                    TravelTime = b.TravelTime,
+                    Distance = b.Distance,
+                    TypeOfAircraft = b.TypeOfAircraft,
+                    CashierFullName = b.CashierFullName,
+                    NumberOfOffices = b.NumberOfOffices
                 };
             });
         }

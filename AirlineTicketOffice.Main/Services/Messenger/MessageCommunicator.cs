@@ -17,15 +17,15 @@ namespace AirlineTicketOffice.Main.Services.Messenger
         public PassengerModel SendPassenger { get; set; }
     }
 
-    public class MessageBoughtTicket
-    {
-        public BoughtTicketModel BoughtTicketMessage { get; set; }
-    }
+    //public class MessageBoughtTicket
+    //{
+    //    public BoughtTicketModel TicketInfoMessage { get; set; }
+    //}
 
-    public class MessageAllTicket
-    {
-        public AllTicketsModel AllTicketMessage { get; set; }
-    }
+    //public class MessageAllTicket
+    //{
+    //    public AllTicketsModel AllTicketMessage { get; set; }
+    //}
 
     public class MessageFlight
     {

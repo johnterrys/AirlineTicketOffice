@@ -178,6 +178,10 @@ namespace AirlineTicketOffice.Data
                 .IsUnicode(false);
 
             modelBuilder.Entity<BoughtTickets_ATO>()
+                .Property(e => e.PassportNumber)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<BoughtTickets_ATO>()
                 .Property(e => e.FlightNumber)
                 .IsUnicode(false);
 
@@ -210,7 +214,15 @@ namespace AirlineTicketOffice.Data
                 .IsUnicode(false);
 
             modelBuilder.Entity<BoughtTickets_ATO>()
+                .Property(e => e.TravelTime)
+                .HasPrecision(0);
+
+            modelBuilder.Entity<BoughtTickets_ATO>()
                 .Property(e => e.TypeOfAircraft)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<BoughtTickets_ATO>()
+                .Property(e => e.CashierFullName)
                 .IsUnicode(false);
 
             modelBuilder.Entity<GetTariffs_ATO>()

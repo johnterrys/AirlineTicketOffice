@@ -67,7 +67,7 @@
   <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\AirlineTicketOffice.Data\AirlineTicketOffice.Data.csproj">
-      <Project>{967e75dc-7e6b-4d3c-af82-d50097cc17a4}</Project>
+      <Project>{a43a7850-fb7b-4534-aa3a-6589d9cfd9ef}</Project>
       <Name>AirlineTicketOffice.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\AirlineTicketOffice.Model\AirlineTicketOffice.Model.csproj">
