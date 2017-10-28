@@ -12,7 +12,7 @@ using System.Xml.Linq;
 
 namespace AirlineTicketOffice.Main.Services.Dialog
 {
-    internal class XmlDialogService : IXmlDialogService
+    public class XmlDialogService : IXmlDialogService
     {
         #region ctor
         public XmlDialogService()
@@ -76,8 +76,8 @@ namespace AirlineTicketOffice.Main.Services.Dialog
                             PassportNumber = p.Element("PassportNumber").Value,
                             Sex = p.Element("Sex").Value,
                             FullName = p.Element("FullName").Value,
-                            DateOfBirth = DateTime.Parse((p.Element("DateOfBirth").Value), current),
-                            TermOfPassportDate = DateTime.Parse((p.Element("TermOfPassportDate").Value), current),
+                            DateOfBirth = DateTime.Parse(p.Element("DateOfBirth").Value),
+                            TermOfPassportDate = DateTime.Parse(p.Element("TermOfPassportDate").Value),
                             CountryOfResidence = p.Element("CountryOfResidence").Value,
                             PhoneMobile = p.Element("PhoneMobile").Value,
                             Email = p.Element("Email").Value

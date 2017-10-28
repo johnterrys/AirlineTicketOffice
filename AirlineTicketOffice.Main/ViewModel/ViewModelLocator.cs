@@ -68,7 +68,8 @@ namespace AirlineTicketOffice.Main.ViewModel
             SimpleIoc.Default.Register<IPlaceInAircraftRepository, PlaceInAircraftRepository>();
             SimpleIoc.Default.Register<ITariffsRepository, TariffsRepository>();
             SimpleIoc.Default.Register<IPdfFileDialogService, PdfFileDialogService>();
-            SimpleIoc.Default.Register<IWordFileDialogService, WordFileDialogService>();
+            SimpleIoc.Default.Register<IWordFileDialogService, WordFileDialogService>(); 
+            SimpleIoc.Default.Register<IXmlDialogService, XmlDialogService>();
 
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<NewTicketVM>();

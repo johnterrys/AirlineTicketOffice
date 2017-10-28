@@ -6,7 +6,7 @@ using System.Text;
 
 namespace AirlineTicketOffice.Main.Services.Dialog
 {
-    internal interface IXmlDialogService:IFileDialogService<XmlDialogService>
+    public interface IXmlDialogService:IFileDialogService<XmlDialogService>
     {
         PassengerModel PassengerFromXml { get; }
 

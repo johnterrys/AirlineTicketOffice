@@ -5,7 +5,7 @@ using System.Text;
 
 namespace AirlineTicketOffice.Main.Services.Dialog
 {
-    internal interface IPdfFileDialogService:IFileDialogService<PdfFileDialogService>
+    public interface IPdfFileDialogService:IFileDialogService<PdfFileDialogService>
     {
     }
 }

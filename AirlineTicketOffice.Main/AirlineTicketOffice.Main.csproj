@@ -87,9 +87,11 @@
     </ApplicationDefinition>
     <Compile Include="Services\Dialog\IPdfFileDialogService.cs" />
     <Compile Include="Services\Dialog\IWordFileDialogService.cs" />
+    <Compile Include="Services\Dialog\IXmlDialogService.cs" />
     <Compile Include="Services\Dialog\PdfFileDialogService.cs" />
     <Compile Include="Services\Dialog\IFileDialogService.cs" />
     <Compile Include="Services\Dialog\WordFileDialogService.cs" />
+    <Compile Include="Services\Dialog\XmlDialogService.cs" />
     <Compile Include="Services\Messenger\MessageCommunicator.cs" />
     <Compile Include="Services\Navigation\FrameNavigationService.cs" />
     <Compile Include="Services\Navigation\IMainNavigationService.cs" />
@@ -211,7 +213,6 @@
       <Name>PlaceInFlightChart</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

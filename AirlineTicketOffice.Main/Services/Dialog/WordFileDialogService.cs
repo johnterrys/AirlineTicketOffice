@@ -16,7 +16,7 @@ namespace AirlineTicketOffice.Main.Services.Dialog
     /// and convert to xps file. Return via NavigateViewModel
     /// in TariffsView.
     /// </summary>
-    internal class WordFileDialogService : IWordFileDialogService
+    public class WordFileDialogService : IWordFileDialogService
     {
         #region fields
 
