@@ -6,7 +6,7 @@ using System.Windows.Documents;
 
 namespace AirlineTicketOffice.Main.Services.Dialog
 {
-    public interface IWordFileDialogService:IFileDialogService<WordFileDialogService>
+    internal interface IWordFileDialogService:IFileDialogService<WordFileDialogService>
     {
         IDocumentPaginatorSource Document { get; set; }
     }

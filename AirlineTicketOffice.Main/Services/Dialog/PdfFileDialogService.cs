@@ -8,7 +8,7 @@ using System.Windows;
 
 namespace AirlineTicketOffice.Main.Services.Dialog
 {
-    public class PdfFileDialogService : IPdfFileDialogService
+    internal class PdfFileDialogService : IPdfFileDialogService
     {
         public string FilePath { get; set; }
 
