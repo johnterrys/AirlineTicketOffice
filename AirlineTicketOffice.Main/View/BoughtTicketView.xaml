@@ -21,7 +21,7 @@
             </Button>
         </StackPanel>
         <!-- Data View bought tickets. -->
-        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Visible">
+        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Visible" Margin="5" Background="White">
             <DataGrid Name="dgTicket"  
                       Background="White"
                       SelectionMode="Single"
