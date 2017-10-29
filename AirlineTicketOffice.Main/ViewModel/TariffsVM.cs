@@ -212,7 +212,7 @@ namespace AirlineTicketOffice.Main.ViewModel
 
         private ICommand _openFileWordCommand;
         /// <summary>
-        /// Command open pdf and another file via set
+        /// Command open word file via  DocumentViewer.Document and set
         /// uri in webBrowser.Novigate in TariffsView.
         /// </summary>
         public ICommand OpenFileWordCommand
@@ -228,9 +228,9 @@ namespace AirlineTicketOffice.Main.ViewModel
                         {
                             if (_wordFileDialogService.OpenFileDialog() == true)
                             {
-                                string filePath = _wordFileDialogService.FilePath;
 
                                 Navigate(_wordFileDialogService.Document, "word");
+
                             }
                         }
                         catch (Exception ex)
