@@ -28,26 +28,33 @@
         </Grid.RowDefinitions>
         <!-- Menu. -->
         <Menu Grid.Row="0" Background="#3a3938">
+            <Menu.Resources>
+                <!-- Style For textBlock submenu. -->
+                <Style TargetType="{x:Type TextBlock}" x:Key="tbSubMenuStyle">
+                    <Setter Property="FontSize" Value="14"></Setter>
+                    <Setter Property="Foreground" Value="#64b8bf"></Setter>
+                </Style>
+            </Menu.Resources>
             <!-- Edit menu. -->
             <MenuItem Header="Edit" Foreground="White">
                 <MenuItem Header="Cut" Command="ApplicationCommands.Cut" Foreground="Black">
                     <MenuItem.Icon>
-                        <TextBlock FontFamily="{StaticResource FA}" Text="&#xf0c4;"></TextBlock>
+                        <TextBlock Style="{StaticResource tbSubMenuStyle}" FontFamily="{StaticResource FA}" Text="&#xf0c4;"></TextBlock>
                     </MenuItem.Icon>
                 </MenuItem>
                 <MenuItem Header="Copy" Command="ApplicationCommands.Copy" Foreground="Black">
                     <MenuItem.Icon>
-                        <TextBlock FontFamily="{StaticResource FA}" Text="&#xf0c5;"></TextBlock>
+                        <TextBlock Style="{StaticResource tbSubMenuStyle}" FontFamily="{StaticResource FA}" Text="&#xf0c5;"></TextBlock>
                     </MenuItem.Icon>
                 </MenuItem>
                 <MenuItem Header="Paste" Command="ApplicationCommands.Paste" Foreground="Black">
                     <MenuItem.Icon>
-                        <TextBlock FontFamily="{StaticResource FA}" Text="&#xf0ea;"></TextBlock>
+                        <TextBlock Style="{StaticResource tbSubMenuStyle}" FontFamily="{StaticResource FA}" Text="&#xf0ea;"></TextBlock>
                     </MenuItem.Icon>
                 </MenuItem>
                 <MenuItem Header="Undo" Command="ApplicationCommands.Undo" Foreground="Black">
                     <MenuItem.Icon>
-                        <TextBlock FontFamily="{StaticResource FA}" Text="&#xf0e2;"></TextBlock>
+                        <TextBlock Style="{StaticResource tbSubMenuStyle}" FontFamily="{StaticResource FA}" Text="&#xf0e2;"></TextBlock>
                     </MenuItem.Icon>
                 </MenuItem>
             </MenuItem>
@@ -56,7 +63,7 @@
                 <!-- Purchased ticket. -->
                 <MenuItem Header="Purchased Tickets" Foreground="Black">
                     <MenuItem.Icon>
-                        <TextBlock FontFamily="{StaticResource FA}" Text="&#xf0ca;"></TextBlock>
+                        <TextBlock Style="{StaticResource tbSubMenuStyle}" FontFamily="{StaticResource FA}" Text="&#xf0ca;"></TextBlock>
                     </MenuItem.Icon>
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="Click">
@@ -67,7 +74,7 @@
                 <!-- New Ticket. -->
                 <MenuItem Header="New Ticket" Foreground="Black">
                     <MenuItem.Icon>
-                        <TextBlock FontFamily="{StaticResource FA}" Text="&#xf2c3;"></TextBlock>
+                        <TextBlock Style="{StaticResource tbSubMenuStyle}" FontFamily="{StaticResource FA}" Text="&#xf2c3;"></TextBlock>
                     </MenuItem.Icon>
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="Click">
@@ -78,7 +85,7 @@
                 <!-- All Flights. -->
                 <MenuItem Header="Flights" Foreground="Black">
                     <MenuItem.Icon>
-                        <TextBlock FontFamily="{StaticResource FA}" Text="&#xf0fb;"></TextBlock>
+                        <TextBlock Style="{StaticResource tbSubMenuStyle}" FontFamily="{StaticResource FA}" Text="&#xf0fb;"></TextBlock>
                     </MenuItem.Icon>
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="Click">
@@ -89,7 +96,7 @@
                 <!-- All Passengers. -->
                 <MenuItem Header="All Passengers" Foreground="Black">
                     <MenuItem.Icon>
-                        <TextBlock FontFamily="{StaticResource FA}" Text="&#xf2ba;"></TextBlock>
+                        <TextBlock Style="{StaticResource tbSubMenuStyle}" FontFamily="{StaticResource FA}" Text="&#xf2ba;"></TextBlock>
                     </MenuItem.Icon>
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="Click">
@@ -100,7 +107,7 @@
                 <!-- New Passenger. -->
                 <MenuItem Header="New Passenger" Foreground="Black">
                     <MenuItem.Icon>
-                        <TextBlock FontFamily="{StaticResource FA}" Text="&#xf234;"></TextBlock>
+                        <TextBlock Style="{StaticResource tbSubMenuStyle}" FontFamily="{StaticResource FA}" Text="&#xf234;"></TextBlock>
                     </MenuItem.Icon>
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="Click">
@@ -111,7 +118,7 @@
                 <!-- Tariffs(Rates). -->
                 <MenuItem Header="Tariff" Foreground="Black">
                     <MenuItem.Icon>
-                        <TextBlock FontFamily="{StaticResource FA}" Text="&#xf291;"></TextBlock>
+                        <TextBlock Style="{StaticResource tbSubMenuStyle}" FontFamily="{StaticResource FA}" Text="&#xf291;"></TextBlock>
                     </MenuItem.Icon>
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="Click">
@@ -122,7 +129,7 @@
                 <!-- Cashiers. -->
                 <MenuItem Header="Cashier" Foreground="Black">
                     <MenuItem.Icon>
-                        <TextBlock FontFamily="{StaticResource FA}" Text="&#xf15a;"></TextBlock>
+                        <TextBlock Style="{StaticResource tbSubMenuStyle}" FontFamily="{StaticResource FA}" Text="&#xf15a;"></TextBlock>
                     </MenuItem.Icon>
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="Click">
@@ -135,7 +142,7 @@
             <MenuItem Header="Help" Foreground="White">
                 <MenuItem Header="About" Foreground="Black">
                     <MenuItem.Icon>
-                        <TextBlock FontFamily="{StaticResource FA}" Text="&#xf1f9;"></TextBlock>
+                        <TextBlock Style="{StaticResource tbSubMenuStyle}" FontFamily="{StaticResource FA}" Text="&#xf1f9;"></TextBlock>
                     </MenuItem.Icon>
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="Click">
