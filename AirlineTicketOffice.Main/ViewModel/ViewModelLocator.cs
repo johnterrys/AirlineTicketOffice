@@ -47,6 +47,7 @@ namespace AirlineTicketOffice.Main.ViewModel
 
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
+            // Register navigation service (path to 'user control' by key):
             var navigationService = new FrameNavigationService(); 
             navigationService.Configure("CashierViewKey", new Uri("../View/CashierView.xaml", UriKind.RelativeOrAbsolute));
             navigationService.Configure("NewTicketViewKey", new Uri("../View/NewTicketView.xaml", UriKind.RelativeOrAbsolute));
@@ -59,6 +60,7 @@ namespace AirlineTicketOffice.Main.ViewModel
             //SimpleIoc.Default.Unregister<IMainNavigationService>();
             SimpleIoc.Default.Register<IMainNavigationService>(() => navigationService);
 
+            // Register dialog services and repositories:
             SimpleIoc.Default.Register<ITicketRepository, AllTicketsModelRepository>();
             SimpleIoc.Default.Register<ICashierRepository, CashierRepository>();
             SimpleIoc.Default.Register<IPassengerRepository, PassengerModelRepository>();
@@ -71,6 +73,7 @@ namespace AirlineTicketOffice.Main.ViewModel
             SimpleIoc.Default.Register<IWordFileDialogService, WordFileDialogService>(); 
             SimpleIoc.Default.Register<IXmlDialogService, XmlDialogService>();
 
+            // Register view model:
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<NewTicketVM>();
             SimpleIoc.Default.Register<FlightsVM>();
