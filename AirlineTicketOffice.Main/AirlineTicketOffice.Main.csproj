@@ -85,6 +85,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Services\Dialog\DialogAbout.cs" />
+    <Compile Include="Services\Dialog\IDialogMessage.cs" />
     <Compile Include="Services\Dialog\IPdfFileDialogService.cs" />
     <Compile Include="Services\Dialog\IWordFileDialogService.cs" />
     <Compile Include="Services\Dialog\IXmlDialogService.cs" />

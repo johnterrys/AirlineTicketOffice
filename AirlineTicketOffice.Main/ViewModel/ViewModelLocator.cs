@@ -61,6 +61,7 @@ namespace AirlineTicketOffice.Main.ViewModel
             SimpleIoc.Default.Register<IMainNavigationService>(() => navigationService);
 
             // Register dialog services and repositories:
+            SimpleIoc.Default.Register<IDialogMessage, DialogAbout>();
             SimpleIoc.Default.Register<ITicketRepository, AllTicketsModelRepository>();
             SimpleIoc.Default.Register<ICashierRepository, CashierRepository>();
             SimpleIoc.Default.Register<IPassengerRepository, PassengerModelRepository>();
