@@ -26,7 +26,125 @@
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="0.05*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Menu Grid.Row="0" Background="#3a3938"></Menu>
+        <!-- Menu. -->
+        <Menu Grid.Row="0" Background="#3a3938">
+            <!-- Edit menu. -->
+            <MenuItem Header="Edit" Foreground="White">
+                <MenuItem Header="Cut" Command="ApplicationCommands.Cut" Foreground="Black">
+                    <MenuItem.Icon>
+                        <TextBlock FontFamily="{StaticResource FA}" Text="&#xf0c4;"></TextBlock>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Copy" Command="ApplicationCommands.Copy" Foreground="Black">
+                    <MenuItem.Icon>
+                        <TextBlock FontFamily="{StaticResource FA}" Text="&#xf0c5;"></TextBlock>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Paste" Command="ApplicationCommands.Paste" Foreground="Black">
+                    <MenuItem.Icon>
+                        <TextBlock FontFamily="{StaticResource FA}" Text="&#xf0ea;"></TextBlock>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Undo" Command="ApplicationCommands.Undo" Foreground="Black">
+                    <MenuItem.Icon>
+                        <TextBlock FontFamily="{StaticResource FA}" Text="&#xf0e2;"></TextBlock>
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+            <!-- View menu. -->
+            <MenuItem Header="View" Foreground="White">
+                <!-- Purchased ticket. -->
+                <MenuItem Header="Purchased Tickets" Foreground="Black">
+                    <MenuItem.Icon>
+                        <TextBlock FontFamily="{StaticResource FA}" Text="&#xf0ca;"></TextBlock>
+                    </MenuItem.Icon>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <mvvm:EventToCommand Command="{Binding GetBoughtTicketCommand}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </MenuItem>
+                <!-- New Ticket. -->
+                <MenuItem Header="New Ticket" Foreground="Black">
+                    <MenuItem.Icon>
+                        <TextBlock FontFamily="{StaticResource FA}" Text="&#xf2c3;"></TextBlock>
+                    </MenuItem.Icon>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <mvvm:EventToCommand Command="{Binding GetNewTicketCommand}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </MenuItem>
+                <!-- All Flights. -->
+                <MenuItem Header="Flights" Foreground="Black">
+                    <MenuItem.Icon>
+                        <TextBlock FontFamily="{StaticResource FA}" Text="&#xf0fb;"></TextBlock>
+                    </MenuItem.Icon>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <mvvm:EventToCommand Command="{Binding GetFlightsCommand}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </MenuItem>
+                <!-- All Passengers. -->
+                <MenuItem Header="All Passengers" Foreground="Black">
+                    <MenuItem.Icon>
+                        <TextBlock FontFamily="{StaticResource FA}" Text="&#xf2ba;"></TextBlock>
+                    </MenuItem.Icon>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <mvvm:EventToCommand Command="{Binding GetAllPassengerCommand}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </MenuItem>
+                <!-- New Passenger. -->
+                <MenuItem Header="New Passenger" Foreground="Black">
+                    <MenuItem.Icon>
+                        <TextBlock FontFamily="{StaticResource FA}" Text="&#xf234;"></TextBlock>
+                    </MenuItem.Icon>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <mvvm:EventToCommand Command="{Binding GetNewPassengerCommand}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </MenuItem>
+                <!-- Tariffs(Rates). -->
+                <MenuItem Header="Tariff" Foreground="Black">
+                    <MenuItem.Icon>
+                        <TextBlock FontFamily="{StaticResource FA}" Text="&#xf291;"></TextBlock>
+                    </MenuItem.Icon>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <mvvm:EventToCommand Command="{Binding GetTariffsCommand}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </MenuItem>
+                <!-- Cashiers. -->
+                <MenuItem Header="Cashier" Foreground="Black">
+                    <MenuItem.Icon>
+                        <TextBlock FontFamily="{StaticResource FA}" Text="&#xf15a;"></TextBlock>
+                    </MenuItem.Icon>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <mvvm:EventToCommand Command="{Binding GetCashierCommand}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </MenuItem>
+            </MenuItem>
+            <!-- Help menu. -->
+            <MenuItem Header="Help" Foreground="White">
+                <MenuItem Header="About" Foreground="Black">
+                    <MenuItem.Icon>
+                        <TextBlock FontFamily="{StaticResource FA}" Text="&#xf1f9;"></TextBlock>
+                    </MenuItem.Icon>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <mvvm:EventToCommand Command="{Binding HelpCommand}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </MenuItem>
+            </MenuItem>
+        </Menu>
         <!-- Tickets. -->
         <ToolBar Grid.Row="1" Background="#3a3938">
             <!-- Tickets atart. -->
@@ -61,7 +179,7 @@
             <Separator />
             <!-- Passenger atart. -->
             <ComboBox Margin="10 0 0 0" x:Name="CBoxPassenger" MinWidth="100" HorizontalAlignment="Left">
-                <!-- All Tickets. -->
+                <!-- All Passengers. -->
                 <ComboBoxItem x:Name="cbAllPassenger" Content="All Passenger" Background="White">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="Selected">
@@ -69,7 +187,7 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </ComboBoxItem>
-                <!-- New Tickets. -->
+                <!-- New Passenger. -->
                 <ComboBoxItem x:Name="cbNewPassenger" Content="New Passenger" Background="White">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="Selected">
@@ -81,7 +199,7 @@
             <!-- New passenger button. -->
             <Button  Foreground="White" FontFamily="{StaticResource FA}"
                      Style="{StaticResource ResourceKey=MenuStyle}"
-                     Command="{Binding GetNewPassengerCommand}">&#xf007; New Passenger</Button>
+                     Command="{Binding GetNewPassengerCommand}">&#xf234; New Passenger</Button>
             <!-- Passenger end. -->
             <Separator/>
             <!-- Rates. -->

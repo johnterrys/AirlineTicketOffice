@@ -4,7 +4,10 @@ using GalaSoft.MvvmLight.Command;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Messaging;
 using AirlineTicketOffice.Main.Services.Messenger;
-
+using System.Diagnostics;
+using System;
+using System.Windows;
+using System.Reflection;
 
 namespace AirlineTicketOffice.Main.ViewModel
 {
@@ -77,6 +80,32 @@ namespace AirlineTicketOffice.Main.ViewModel
                 return _getNewTicketCommand;
             }
             
+        }
+
+        /// <summary>
+        /// Navigate to 'NewTicket' view.
+        /// </summary>
+        private ICommand _helpCommand;
+
+        public ICommand HelpCommand
+        {
+            get
+            {
+                if (_helpCommand == null)
+                {
+                    _helpCommand = new RelayCommand(() =>
+                    {
+                        //String appName = Assembly.GetEntryAssembly().GetName().Name.ToString();
+                        //String version = Assembly.GetEntryAssembly().GetName().Version.ToString();
+                        //String FormTitle = String.Format("Program name: {0}\nVersion: {1} ",
+                        //                                 appName,
+                        //                                 version);
+                        //MessageBox.Show(FormTitle, "About program:");
+                    });
+                }
+                return _helpCommand;
+            }
+
         }
 
 
