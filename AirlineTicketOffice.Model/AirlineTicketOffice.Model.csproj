@@ -72,7 +72,6 @@
     <Compile Include="Models\PassengerModel.cs" />
     <Compile Include="Models\PlaceInAircraftModel.cs" />
     <Compile Include="Models\PlaceInFlightModel.cs" />
-    <Compile Include="Models\RateModel.cs" />
     <Compile Include="Models\RouteModel.cs" />
     <Compile Include="Models\TariffModel.cs" />
     <Compile Include="Models\AllTicketsModel.cs" />

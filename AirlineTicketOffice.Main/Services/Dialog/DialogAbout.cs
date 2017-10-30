@@ -57,12 +57,22 @@ namespace AirlineTicketOffice.Main.Services.Dialog
                 return true;
 
             }
+            catch (TypeLoadException ex)
+            {
+                Debug.WriteLine("'DialogAbout' Show() method fail..." + ex.Message);
+                return false;
+            }
+            catch (InvalidOperationException ex)
+            {
+                Debug.WriteLine("'DialogAbout' Show() method fail..." + ex.Message);
+                return false;
+            }
             catch (Exception ex)
             {
                 Debug.WriteLine("'DialogAbout' Show() method fail..." + ex.Message);
                 return false;
             }
-          
+
         }
     }
 }

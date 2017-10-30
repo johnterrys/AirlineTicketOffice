@@ -75,7 +75,7 @@ namespace AirlineTicketOffice.Repository.Repositories
                         {
                             Citizenship = entity.Citizenship,
                             PassportNumber = entity.PassportNumber,
-                            Sex = entity.Sex,
+                            Sex = entity.Sex.ToUpper(),
                             FullName = entity.FullName,
                             DateOfBirth = entity.DateOfBirth,
                             TermOfPassportDate = entity.TermOfPassportDate,

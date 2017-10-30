@@ -39,6 +39,42 @@
                         <Setter Property="Foreground" Value="LightBlue"></Setter>
                         <Setter Property="Width" Value="130"></Setter>
                     </Style>
+                    <!-- ControlTemplate For Error -->
+                    <ControlTemplate x:Key="ValidationFailed">
+                        <StackPanel Orientation="Horizontal">
+                            <Border BorderBrush="Red" BorderThickness="1">
+                                <AdornedElementPlaceholder />
+                            </Border>
+                            <TextBlock Foreground="Red" FontFamily="{StaticResource FA}" 
+                                       Text="  &#xf071;"
+                                       FontSize="16"></TextBlock>
+                        </StackPanel>
+                    </ControlTemplate>
+                    <!-- Style for ToolTip. -->
+                    <Style TargetType="{x:Type ToolTip}">
+                        <Setter Property="OverridesDefaultStyle" Value="True" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type ToolTip}" >
+                                    <TextBox Background="Red" Foreground="White" Width="250" 
+                                             TextWrapping="WrapWithOverflow" FontSize="16" 
+                                             Text="{TemplateBinding ToolTip.Content}" />
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                    <!-- DataError template on TextBox. -->
+                    <Style TargetType="TextBox">
+                        <Style.Triggers>
+                            <Trigger Property="Validation.HasError" Value="True">
+                                <Setter Property="ToolTip"
+                                Value="{Binding RelativeSource={RelativeSource Self},
+                                Path=(Validation.Errors)[0].ErrorContent}" />
+                                <Setter Property="Foreground" Value="Red" />
+                                <Setter Property="Validation.ErrorTemplate" Value="{StaticResource ValidationFailed}"></Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

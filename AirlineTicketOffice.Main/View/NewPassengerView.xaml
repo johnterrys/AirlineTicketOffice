@@ -25,76 +25,143 @@
                     <Label HorizontalAlignment="Center" Background="#3a3938" FontSize="14" Foreground="White"
                             BorderBrush="Black" BorderThickness="0 1 0 1" >Add New Passenger:</Label>
                 </DockPanel>
+                <!-- Citizenship. -->
                 <DockPanel>
-                        <Label Background="Silver" Width="160">Citizenship:</Label>
-                    <TextBox ToolTip="Example: Belarus or German" x:Name="CitizenshipTextBox" 
-                             Text="{Binding Path=Passenger.Citizenship,
-                             UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Height="25">
+                    <Label Background="Silver" Width="160">Citizenship:</Label>
+                        <TextBox  x:Name="CitizenshipTextBox"                              
+                             Height="25" >
+                            <TextBox.Text>
+                                <Binding Path="Passenger.Citizenship" NotifyOnValidationError="True"
+                                        UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
+                                    <Binding.ValidationRules>
+                                        <DataErrorValidationRule />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
                     </TextBox>
                 </DockPanel>
+                <!-- Passport Number. -->
                 <DockPanel>
                     <Label Background="Silver" Width="160">Passport Number:</Label>
-                        <TextBox ToolTip="Example: 5040979Е028РВ8" x:Name="PassportNumberTextBox" 
-                                 Text="{Binding Path=Passenger.PassportNumber,
-                                 UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Height="25">
+                    <TextBox  x:Name="PassportNumberTextBox"                              
+                            Height="25" >
+                        <TextBox.Text>
+                            <Binding Path="Passenger.PassportNumber" NotifyOnValidationError="True"
+                                    UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
+                                <Binding.ValidationRules>
+                                    <DataErrorValidationRule />
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
                     </TextBox>
                 </DockPanel>
+                    <!-- Sex. -->
                 <DockPanel>
-                    <Label Background="Silver" Width="160">Sex:</Label>
-                        <TextBox ToolTip="Example: M or W" x:Name="SexTextBox" 
-                                 Text="{Binding Path=Passenger.Sex,
-                                 UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Height="25">
-                    </TextBox>
-                </DockPanel>
-                    <DockPanel>
-                        <Label Background="Silver" Width="160">Full Name:</Label>
-                        <TextBox x:Name="FullNameTextBox" ToolTip="Example: Ivanov Ivan Ivanovich" Text="{Binding Path=Passenger.FullName,
-                                 UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Height="25">
+                        <Label Background="Silver" Width="160">Sex:</Label>
+                        <TextBox  x:Name="SexTextBox"                              
+                             Height="25" >
+                            <TextBox.Text>
+                                <Binding Path="Passenger.Sex" NotifyOnValidationError="True"
+                                        UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
+                                    <Binding.ValidationRules>
+                                        <DataErrorValidationRule />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
                         </TextBox>
                     </DockPanel>
+                    <!-- Full Name. -->
+                    <DockPanel>
+                        <Label Background="Silver" Width="160">Full Name:</Label>
+                        <TextBox  x:Name="FullNameTextBox"                              
+                             Height="25" >
+                            <TextBox.Text>
+                                <Binding Path="Passenger.FullName" NotifyOnValidationError="True"
+                                        UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
+                                    <Binding.ValidationRules>
+                                        <DataErrorValidationRule />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                    </DockPanel>
+                    <!-- Date Of Birth. -->
                     <DockPanel>
                         <Label Background="Silver" Width="160">Date Of Birth:</Label>
-                        <DatePicker Name="dpDateOfBirth" ToolTip="Select date in calendar, please ->"
-                                        Text="{Binding Path=Passenger.DateOfBirth, StringFormat={}{0:yyyy.MM.dd},
-                                 UpdateSourceTrigger=LostFocus, Mode=TwoWay}"
-                                        FirstDayOfWeek="Monday"
-                                        Language="ru-RU"                                       
-                                        Height="25"/>
+                        <DatePicker Name="dpDateOfBirth"   
+                                    ToolTip="Select date in calendar, please ->"  
+                                    FirstDayOfWeek="Monday"
+                                    Language="ru-RU"                                       
+                                    Height="25">
+                            <DatePicker.Text>
+                                <Binding Path="Passenger.DateOfBirth"
+                                        UpdateSourceTrigger="LostFocus" Mode="TwoWay"
+                                        StringFormat="{}{0:dd.MM.yyyy}">
+                                </Binding>
+                            </DatePicker.Text>
+                        </DatePicker>
                     </DockPanel>
+                    <!-- Term Of Passport Date. -->
                     <DockPanel>
                         <Label Background="Silver" Width="160">Term Of PassportDate:</Label>
                         <DatePicker Name="dpTermOfPassportDate" 
-                                    ToolTip="Select date in calendar, please ->"
-                                    Text="{Binding Path=Passenger.TermOfPassportDate,
-                                    UpdateSourceTrigger=LostFocus, Mode=TwoWay}"
+                                    ToolTip="Select date in calendar, please ->"                                  
                                     FirstDayOfWeek="Monday"
                                     Language="ru-RU"
-                                    Height="25"/>
+                                    Height="25">
+                            <DatePicker.Text>
+                                <Binding Path="Passenger.TermOfPassportDate"
+                                        UpdateSourceTrigger="LostFocus" Mode="TwoWay"
+                                        StringFormat="{}{0:dd.MM.yyyy}">
+                                </Binding>
+                            </DatePicker.Text>
+                        </DatePicker>
                     </DockPanel>
+                    <!-- Country Of Residence. -->
                     <DockPanel>
-                    <Label Background="Silver" Width="160">Country Of Residence:</Label>
-                    <TextBox x:Name="CountryOfResidenceTextBox" 
-                             ToolTip="Example: England or Russia"
-                             Text="{Binding Path=Passenger.CountryOfResidence,
-                             UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Height="25">
-                    </TextBox>
-                </DockPanel>
+                        <Label Background="Silver" Width="160">Country Of Residence:</Label>
+                        <TextBox  x:Name="CountryOfResidenceTextBox"                              
+                             Height="25" >
+                            <TextBox.Text>
+                                <Binding Path="Passenger.CountryOfResidence" NotifyOnValidationError="True"
+                                        UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
+                                    <Binding.ValidationRules>
+                                        <DataErrorValidationRule />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                    </DockPanel>
+                    <!-- Mobile Phone. -->
                 <DockPanel>
-                    <Label Background="Silver" Width="160">Phone Mobile:</Label>
-                    <TextBox x:Name="PhoneMobileTextBox" MinWidth="750"
-                             ToolTip="Example: +37533-566-56-54"
-                             Text="{Binding Path=Passenger.PhoneMobile,
-                             UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Height="25">
-                    </TextBox>
-                </DockPanel>
+                        <Label Background="Silver" Width="160">Mobile Phone:</Label>
+                        <TextBox  x:Name="PhoneMobileTextBox"                              
+                             Height="25" >
+                            <TextBox.Text>
+                                <Binding Path="Passenger.PhoneMobile" NotifyOnValidationError="True"
+                                        UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
+                                    <Binding.ValidationRules>
+                                        <DataErrorValidationRule />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                    </DockPanel>
+                    <!-- Email. -->
                 <DockPanel>
-                    <Label Background="Silver" Width="160">Email:</Label>
-                    <TextBox x:Name="EmailTextBox" MinWidth="750" 
-                             ToolTip="Example: ivanov@gmail.com"
-                             Text="{Binding Path=Passenger.Email,
-                             UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Height="25">
-                    </TextBox>
-                </DockPanel>
+                        <Label Background="Silver" Width="160">Email:</Label>
+                        <TextBox  x:Name="EmailTextBox"                              
+                             Height="25" >
+                            <TextBox.Text>
+                                <Binding Path="Passenger.Email" NotifyOnValidationError="True"
+                                        UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
+                                    <Binding.ValidationRules>
+                                        <DataErrorValidationRule />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                    </DockPanel>
             </StackPanel>
         </StackPanel>
             <!-- Add panel end. -->
