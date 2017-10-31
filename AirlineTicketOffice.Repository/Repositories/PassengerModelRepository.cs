@@ -17,50 +17,87 @@ namespace AirlineTicketOffice.Repository.Repositories
 
         public IEnumerable<PassengerModel> GetAll()
         {
-
-            _context.Database.Log = (s => Console.WriteLine(s));
-
-            return _context.Passengers.ToList().Select((Passenger p) =>
+            try
             {
-                return new PassengerModel
+                _context.Database.Log = (s => Console.WriteLine(s));
+
+                return _context.Passengers.ToList().Select((Passenger p) =>
                 {
-                   PassengerID = p.PassengerID,
-                   Citizenship = p.Citizenship,
-                   PassportNumber = p.PassportNumber,
-                   Sex = p.Sex,
-                   FullName = p.FullName,
-                   DateOfBirth = p.DateOfBirth,
-                   TermOfPassportDate = p.TermOfPassportDate,
-                   CountryOfResidence = p.CountryOfResidence,
-                   PhoneMobile = p.PhoneMobile,
-                   Email = p.Email
-                    
-                };
-            });
+                    return new PassengerModel
+                    {
+                        PassengerID = p.PassengerID,
+                        Citizenship = p.Citizenship,
+                        PassportNumber = p.PassportNumber,
+                        Sex = p.Sex,
+                        FullName = p.FullName,
+                        DateOfBirth = p.DateOfBirth,
+                        TermOfPassportDate = p.TermOfPassportDate,
+                        CountryOfResidence = p.CountryOfResidence,
+                        PhoneMobile = p.PhoneMobile,
+                        Email = p.Email
+
+                    };
+                });
+            }
+            catch (NullReferenceException ex)
+            {
+                Debug.WriteLine("IEnumerable<PassengerModel> GetAll() fail..." + ex.Message);
+                return null;
+            }
+            catch (ArgumentException ex)
+            {
+                Debug.WriteLine("IEnumerable<PassengerModel> GetAll() fail..." + ex.Message);
+                return null;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("IEnumerable<PassengerModel> GetAll() fail..." + ex.Message);
+                return null;
+            }
+          
         }
 
         public IEnumerable<PassengerModel> GetAllForRead()
         {
 
-            _context.Database.Log = (s => Console.WriteLine(s));
-
-            return _context.Passenger_ATO.AsNoTracking().ToList().Select((Passenger_ATO p) =>
+            try
             {
-                return new PassengerModel
-                {
-                    PassengerID = p.PassengerID,
-                    Citizenship = p.Citizenship,
-                    PassportNumber = p.PassportNumber,
-                    Sex = p.Sex,
-                    FullName = p.FullName,
-                    DateOfBirth = p.DateOfBirth,
-                    TermOfPassportDate = p.TermOfPassportDate,
-                    CountryOfResidence = p.CountryOfResidence,
-                    PhoneMobile = p.PhoneMobile,
-                    Email = p.Email
+                _context.Database.Log = (s => Console.WriteLine(s));
 
-                };
-            });
+                return _context.Passenger_ATO.AsNoTracking().ToList().Select((Passenger_ATO p) =>
+                {
+                    return new PassengerModel
+                    {
+                        PassengerID = p.PassengerID,
+                        Citizenship = p.Citizenship,
+                        PassportNumber = p.PassportNumber,
+                        Sex = p.Sex,
+                        FullName = p.FullName,
+                        DateOfBirth = p.DateOfBirth,
+                        TermOfPassportDate = p.TermOfPassportDate,
+                        CountryOfResidence = p.CountryOfResidence,
+                        PhoneMobile = p.PhoneMobile,
+                        Email = p.Email
+
+                    };
+                });
+            }
+            catch (NullReferenceException ex)
+            {
+                Debug.WriteLine("IEnumerable<PassengerModel> GetAllForRead() fail..." + ex.Message);
+                return null;
+            }
+            catch (ArgumentException ex)
+            {
+                Debug.WriteLine("IEnumerable<PassengerModel> GetAllForRead() fail..." + ex.Message);
+                return null;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("IEnumerable<PassengerModel> GetAllForRead() fail..." + ex.Message);
+                return null;
+            }
+          
         }
 
         public bool Add(PassengerModel entity)
@@ -84,15 +121,28 @@ namespace AirlineTicketOffice.Repository.Repositories
                             Email = entity.Email
                         });
 
-                    _context.SaveChanges();
-
-                    return true;
+                    if (Save())
+                    {
+                        return true;
+                    }
                 }
+
+                Debug.WriteLine("Add(PassengerModel entity) fail...");
+                return false;
+            }
+            catch (NullReferenceException ex)
+            {
+                Debug.WriteLine("Add(PassengerModel entity) fail..." + ex.Message);
+                return false;
+            }
+            catch (ArgumentException ex)
+            {
+                Debug.WriteLine("Add(PassengerModel entity) fail..." + ex.Message);
                 return false;
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("'Add(Passenger)' method fail..." + ex.Message);
+                Debug.WriteLine("Add(PassengerModel entity) fail..." + ex.Message);
                 return false;
             }
         }
@@ -125,13 +175,27 @@ namespace AirlineTicketOffice.Repository.Repositories
                    
                     _context.Entry(entity).State = EntityState.Modified;
 
-                    Save();
+                    if (Save())
+                    {                      
+                        return true;
+                    }
 
-                    return true;
+                    Debug.WriteLine("Update(PassengerModel p) fail...");
+                    return false;
+                }
+                catch (NullReferenceException ex)
+                {
+                    Debug.WriteLine("Update(PassengerModel p) fail..." + ex.Message);
+                    return false;
+                }
+                catch (ArgumentException ex)
+                {
+                    Debug.WriteLine("Update(PassengerModel p) fail..." + ex.Message);
+                    return false;
                 }
                 catch (Exception ex)
                 {
-                    Debug.WriteLine("'Update(PassengerModel p)' method fail..." + ex.Message);
+                    Debug.WriteLine("Update(PassengerModel p) fail..." + ex.Message);
                     return false;
                 }
 

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using AirlineTicketOffice.Model.Models;
+using System.Diagnostics;
 
 namespace AirlineTicketOffice.Repository.Repositories
 {
@@ -19,34 +20,70 @@ namespace AirlineTicketOffice.Repository.Repositories
 
         public IEnumerable<PlaceInAircraftModel> GetAll()
         {
-
-            _context.Database.Log = (s => Console.WriteLine(s));
-
-            return _context.PlaceInAircrafts.AsNoTracking().ToArray().Select((PlaceInAircraft p) =>
+            try
             {
-                return new PlaceInAircraftModel
+                _context.Database.Log = (s => Console.WriteLine(s));
+
+                return _context.PlaceInAircrafts.AsNoTracking().ToArray().Select((PlaceInAircraft p) =>
                 {
-                    TypePlace = p.TypePlace,
-                    AircraftID = p.AircraftID,
-                    Amount = p.Amount
-                };
-            });
+                    return new PlaceInAircraftModel
+                    {
+                        TypePlace = p.TypePlace,
+                        AircraftID = p.AircraftID,
+                        Amount = p.Amount
+                    };
+                });
+            }
+            catch (NullReferenceException ex)
+            {
+                Debug.WriteLine("IEnumerable<PlaceInAircraftModel> GetAll() fail..." + ex.Message);
+                return null;
+            }
+            catch (ArgumentException ex)
+            {
+                Debug.WriteLine("IEnumerable<PlaceInAircraftModel> GetAll() fail..." + ex.Message);
+                return null;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("IEnumerable<PlaceInAircraftModel> GetAll() fail..." + ex.Message);
+                return null;
+            }
+            
         }
 
         public IEnumerable<PlaceInAircraftModel> GetPlacesOnAircraft(int id)
         {
-
-            _context.Database.Log = (s => Console.WriteLine(s));
-
-            return _context.PlaceInAircrafts.AsNoTracking().Where(p => p.AircraftID == id).ToArray().Select((PlaceInAircraft p) =>
+            try
             {
-                return new PlaceInAircraftModel
+                _context.Database.Log = (s => Console.WriteLine(s));
+
+                return _context.PlaceInAircrafts.AsNoTracking().Where(p => p.AircraftID == id).ToArray().Select((PlaceInAircraft p) =>
                 {
-                    TypePlace = p.TypePlace,
-                    AircraftID = p.AircraftID,
-                    Amount = p.Amount
-                };
-            });
+                    return new PlaceInAircraftModel
+                    {
+                        TypePlace = p.TypePlace,
+                        AircraftID = p.AircraftID,
+                        Amount = p.Amount
+                    };
+                });
+            }
+            catch (NullReferenceException ex)
+            {
+                Debug.WriteLine("GetPlacesOnAircraft(int id) fail..." + ex.Message);
+                return null;
+            }
+            catch (ArgumentException ex)
+            {
+                Debug.WriteLine("GetPlacesOnAircraft(int id) fail..." + ex.Message);
+                return null;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("GetPlacesOnAircraft(int id) fail..." + ex.Message);
+                return null;
+            }
+           
         }
     }
 }

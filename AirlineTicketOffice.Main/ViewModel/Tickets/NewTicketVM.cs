@@ -189,13 +189,13 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
                         {
 
                             this.NewTicket.SaleDate = this.SaleDate;
-                            this.NewTicket.TotalCost = this.FullCost;                            
-                                                       
+                            this.NewTicket.TotalCost = this.FullCost;
+
                             if (AllTicketsModel.CheckNewTicket(this.NewTicket)
                                 && _ticketRepository.Add(this.NewTicket))
                             {
 
-                                RaisePropertyChanged("NewTicket");                             
+                                RaisePropertyChanged("NewTicket");
                                 this.MessageForUser = "Inserting of data has passed successfully..";
                                 this.ForegroundForUser = "#68a225";
                             }
