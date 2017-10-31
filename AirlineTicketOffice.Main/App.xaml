@@ -50,6 +50,14 @@
                                        FontSize="16"></TextBlock>
                         </StackPanel>
                     </ControlTemplate>
+                    <!-- ControlTemplate For Error New Ticket. -->
+                    <ControlTemplate x:Key="ValidationFailedTicket">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Foreground="Red" FontFamily="{StaticResource FA}" 
+                                       Text="  &#xf071;"
+                                       FontSize="16"></TextBlock>
+                        </StackPanel>
+                    </ControlTemplate>
                     <!-- Style for ToolTip. -->
                     <Style TargetType="{x:Type ToolTip}">
                         <Setter Property="OverridesDefaultStyle" Value="True" />

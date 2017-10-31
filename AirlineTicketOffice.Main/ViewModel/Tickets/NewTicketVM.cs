@@ -15,10 +15,11 @@ using AirlineTicketOffice.Main.Services.Messenger;
 using AirlineTicketOffice.Main.Services.Navigation;
 using System.Threading.Tasks;
 using System.Windows;
+using System.ComponentModel;
 
 namespace AirlineTicketOffice.Main.ViewModel.Tickets
 {
-    public sealed class NewTicketVM:ViewModelBase
+    public sealed class NewTicketVM:ViewModelBase, IDataErrorInfo
     {
         #region constructor
         public NewTicketVM(ITicketRepository ticketRepository)
@@ -127,6 +128,9 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
 
         #region commands 
 
+        /// <summary>
+        /// Calculate full cost of the new ticket.
+        /// </summary>
         private ICommand _fullCostCommand;
 
         public ICommand FullCostCommand
@@ -137,9 +141,27 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
                 {
                     _fullCostCommand = new RelayCommand(() =>
                     {
+                        decimal res = CheckCost();
 
-                        CheckCost();                      
-                        
+                        if (res == Decimal.MinusOne)
+                        {
+                            this.MessageForUser = "Error occured... Try again, please...";
+                            this.ForegroundForUser = "#ff420e";
+                        }
+                        if (res == Decimal.MinValue)
+                        {
+                            this.MessageForUser = "Add Flight And Tariff, please...";
+                            this.ForegroundForUser = "#ff420e";
+                        }
+                        else
+                        {
+                            this.NewTicket.TotalCost = res;
+                            this.FullCost = res;
+                            this.MessageForUser = "Full Cost was Calculated.";
+                            this.ForegroundForUser = "#68a225";
+                           
+                        }
+
                     });
                 }
                 return _fullCostCommand;
@@ -201,8 +223,66 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
                 return _saveNewTicketCommand;
             }
             set { _saveNewTicketCommand = value; }
-        }     
+        }
 
+        #endregion
+
+        #region implementation IDataErrorInfo
+        public string Error
+        {
+            get
+            {
+                return null;
+            }
+        }
+       
+        /// <summary>
+        /// Implementation dataRrrorInfo.
+        /// </summary>
+        public string this[string columnName]
+        {
+            get
+            {
+
+                switch (columnName)
+                {
+                    case "Flight":
+                        if (this.Flight == null || this.Flight.FlightID == 0)
+                            return "You must select the 'Flight' for the new ticket";
+                        break;
+                    case "Passenger":
+                        if (this.Passenger == null || this.Passenger.PassengerID == 0)
+                            return "You must select the 'Passenger' for the new ticket";
+                        break;
+                    case "Cashier":
+                        if (this.Cashier == null || this.Cashier.CashierID == 0)
+                            return "You must select the 'Cashier' for the new ticket";
+                        break;
+                    case "Tariff":
+                        if (this.Tariff == null || this.Tariff.RateID == 0)
+                            return "You must select the 'Cashier' for the new ticket";
+                        break;
+                    case "SaleDate":
+                        if (CheckFaultDate(this.SaleDate))
+                            return "Error date!";
+                        break;
+                    case "FullCost":
+                        if (CheckCost() == Decimal.MinValue)
+                            return "You must add 'Flight' and 'Tariff'";
+                        if (this.FullCost <= Decimal.Zero)
+                            return "You must calculate 'Flight' and 'Tariff'";
+                        if (CheckCost() == Decimal.MinusOne)
+                            return "Error occured... Try again, please...";
+                        break;
+                    default:
+                        throw new ArgumentException(
+                        "Unrecognized property: " + columnName); 
+                }
+
+
+                return string.Empty;
+            }
+        }
         #endregion
 
         #region methods      
@@ -290,7 +370,7 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
         /// <summary>
         /// Check and calculate the cost.
         /// </summary>
-        private void CheckCost()
+        private decimal CheckCost()
         {
             if (this.Flight != null && this.Tariff != null)
             {
@@ -298,27 +378,34 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
 
                 if (cost == Decimal.MinusOne)
                 {
-                    this.MessageForUser = "Error occured... Try again, please...";
-                    this.ForegroundForUser = "#ff420e";
+                    return Decimal.MinusOne;                  
                 }
                 else
                 {
-                    this.NewTicket.TotalCost = cost;
-                    this.FullCost = cost;
-                    this.MessageForUser = "Full Cost was Calculated.";
-                    this.ForegroundForUser = "#68a225";
-
+                    return cost;                   
                 }
 
             }
             else
             {
-                this.MessageForUser = "Add Flight And Tariff, please...";
-                this.ForegroundForUser = "#ff420e";
+                return Decimal.MinValue;
             }
         }
 
+        /// <summary>
+        /// Check date.
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns></returns>
+        private bool CheckFaultDate(DateTime date)
+        {          
+            if (date == DateTime.MinValue)
+            {
+                return true;
+            }           
 
+            return false;
+        }
         #endregion
     }
 }

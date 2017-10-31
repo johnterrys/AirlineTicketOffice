@@ -13,6 +13,22 @@
             <Setter Property="Margin" Value="0 8 0 10"></Setter>
             <Setter Property="Foreground" Value="White"></Setter>
         </Style>
+        <!-- DataError template on TextBox New Ticket. -->
+        <Style TargetType="TextBox" x:Key="FailTicket">
+            <Setter Property="IsReadOnly" Value="True"></Setter>
+            <Setter Property="Foreground" Value="Transparent"></Setter>
+            <Setter Property="Background" Value="Transparent"></Setter>
+            <Setter Property="BorderThickness" Value="0"></Setter>
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="True">
+                    <Setter Property="Width" Value="35"></Setter>
+                    <Setter Property="ToolTip"
+                                Value="{Binding RelativeSource={RelativeSource Self},
+                                Path=(Validation.Errors)[0].ErrorContent}"/>
+                    <Setter Property="Validation.ErrorTemplate" Value="{StaticResource ValidationFailedTicket}"></Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
     </UserControl.Resources>
     <!-- Data template textblock => Flight. -->   
     <Grid>
@@ -41,6 +57,16 @@
                         </Grid.RowDefinitions>
                         <StackPanel Grid.Row="0" Margin="5" Background="White">
                             <TextBlock FontSize="24" Text="Flight:" HorizontalAlignment="Center"></TextBlock>
+                            <TextBox Style="{StaticResource FailTicket}">
+                                <TextBox.Text>
+                                    <Binding Path="Flight" NotifyOnValidationError="True"
+                                        UpdateSourceTrigger="PropertyChanged" Mode="OneWay">
+                                        <Binding.ValidationRules>
+                                            <DataErrorValidationRule />
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </TextBox.Text>
+                            </TextBox>
                         </StackPanel>
                         <Border Margin="5" Grid.Row="1" >
                             <StackPanel Orientation="Vertical">
@@ -117,7 +143,18 @@
                             <RowDefinition Height="*"></RowDefinition>
                         </Grid.RowDefinitions>
                         <StackPanel Grid.Row="0" Margin="5" Background="White">
-                            <TextBlock FontSize="24" Text="Passenger:" HorizontalAlignment="Center"></TextBlock>
+                            <TextBlock FontSize="24" Text="Passenger:" HorizontalAlignment="Center">
+                            </TextBlock>
+                            <TextBox Style="{StaticResource FailTicket}">
+                                <TextBox.Text>
+                                    <Binding Path="Passenger" NotifyOnValidationError="True"
+                                        UpdateSourceTrigger="PropertyChanged" Mode="OneWay">
+                                        <Binding.ValidationRules>
+                                            <DataErrorValidationRule />
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </TextBox.Text>
+                            </TextBox>
                         </StackPanel>
                         <Border Margin="5" Grid.Row="1" >
                             <StackPanel Orientation="Vertical">
@@ -179,6 +216,16 @@
                         </Grid.RowDefinitions>
                         <StackPanel Grid.Row="0" Margin="5" Background="White">
                             <TextBlock FontSize="24" Text="Cashier:" HorizontalAlignment="Center"></TextBlock>
+                            <TextBox Style="{StaticResource FailTicket}">
+                                <TextBox.Text>
+                                    <Binding Path="Cashier" NotifyOnValidationError="True"
+                                        UpdateSourceTrigger="PropertyChanged" Mode="OneWay">
+                                        <Binding.ValidationRules>
+                                            <DataErrorValidationRule />
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </TextBox.Text>
+                            </TextBox>
                         </StackPanel>
                         <Border Margin="5" Grid.Row="1" >
                             <StackPanel Orientation="Vertical">
@@ -201,6 +248,16 @@
                         </Grid.RowDefinitions>
                         <StackPanel Grid.Row="0" Margin="5" Background="White">
                             <TextBlock FontSize="24" Text="Tariff:" HorizontalAlignment="Center"></TextBlock>
+                            <TextBox Style="{StaticResource FailTicket}">
+                                <TextBox.Text>
+                                    <Binding Path="Tariff" NotifyOnValidationError="True"
+                                        UpdateSourceTrigger="PropertyChanged" Mode="OneWay">
+                                        <Binding.ValidationRules>
+                                            <DataErrorValidationRule />
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </TextBox.Text>
+                            </TextBox>
                         </StackPanel>
                         <Border Margin="5" Grid.Row="1" >
                             <StackPanel Orientation="Vertical">
@@ -247,6 +304,16 @@
                         </Grid.RowDefinitions>
                         <StackPanel Grid.Row="0" Margin="5" Background="White">
                             <TextBlock FontSize="24" Text="Sale Date:" HorizontalAlignment="Center"></TextBlock>
+                            <TextBox Visibility="Hidden">
+                                <TextBox.Text>
+                                    <Binding Path="SaleDate" NotifyOnValidationError="True"
+                                        UpdateSourceTrigger="PropertyChanged" Mode="OneWay">
+                                        <Binding.ValidationRules>
+                                            <DataErrorValidationRule />
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </TextBox.Text>
+                            </TextBox>
                         </StackPanel>
                         <Border Margin="5" Grid.Row="1" >
                             <StackPanel Orientation="Vertical">
@@ -281,14 +348,31 @@
                         </Grid.RowDefinitions>
                         <StackPanel Grid.Row="0" Margin="5" Background="White">
                             <TextBlock FontSize="24" Text="Full Cost:" HorizontalAlignment="Center"></TextBlock>
+                            <TextBox Style="{StaticResource FailTicket}" Visibility="Hidden">
+                                <TextBox.Text>
+                                    <Binding Path="FullCost" NotifyOnValidationError="True"
+                                        UpdateSourceTrigger="PropertyChanged" Mode="OneWay">
+                                        <Binding.ValidationRules>
+                                            <DataErrorValidationRule />
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </TextBox.Text>
+                            </TextBox>
                         </StackPanel>
                         <Border Margin="5" Grid.Row="1" >
                             <StackPanel Orientation="Vertical">
                                 <TextBlock HorizontalAlignment="Center"
                                            Foreground="LightBlue" 
                                            TextWrapping="Wrap" Text="Enter Full Cost:"/>
-                                <TextBox xml:lang="fr-FR" Margin="10" MaxLength="13" Text="{Binding FullCost, StringFormat={}{0:C},
-                                    Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                <TextBox xml:lang="fr-FR" Margin="10" MaxLength="13" IsReadOnly="True">
+                                    <TextBox.Text>
+                                        <Binding Path="FullCost" StringFormat="{}{0:C}" NotifyOnValidationError="True"
+                                        UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
+                                            <Binding.ValidationRules>
+                                                <DataErrorValidationRule />
+                                            </Binding.ValidationRules>
+                                        </Binding>
+                                    </TextBox.Text>
                                 </TextBox>
                                 <Button Content="Calculate" Margin="5" MinWidth="100" HorizontalAlignment="Center" 
                                         Background="#171717"
