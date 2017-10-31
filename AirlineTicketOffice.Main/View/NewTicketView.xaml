@@ -252,14 +252,21 @@
                             <StackPanel Orientation="Vertical">
                                 <TextBlock HorizontalAlignment="Center"
                                            Foreground="LightBlue"
-                                           TextWrapping="Wrap" Text="Select Sale Date:"/>
+                                           TextWrapping="Wrap" Text="Sale Date:"/>
                                 <DatePicker Name="dpTermOfPassportDate"                                            
                                             Margin="10"
+                                            IsEnabled="False"
+                                            DisplayDateStart=""
                                             Text="{Binding Path=SaleDate,
                                             UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                             FirstDayOfWeek="Monday"
                                             Language="ru-Ru"
                                             Height="25" >
+                                    <DatePicker.Resources>
+                                        <Style TargetType="DatePickerTextBox">
+                                            <Setter Property="IsReadOnly" Value="True"/>
+                                        </Style>
+                                    </DatePicker.Resources>
                                 </DatePicker>
                             </StackPanel>
                         </Border>
