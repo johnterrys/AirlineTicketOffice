@@ -59,7 +59,7 @@ namespace AirlineTicketOffice.Model.Models
                     case "FullName":
                         if (CheckBlankLine(this.FullName))
                             return "Please enter a Full Name";
-                        if (this.FullName.Length < 2 || this.FullName.Length > 50)
+                        if (this.FullName.Length < 3 || this.FullName.Length > 50)
                             return "You must specify the name of the country (Example: Finland)";
                         break;                              
                     default:
@@ -74,17 +74,12 @@ namespace AirlineTicketOffice.Model.Models
 
         private bool CheckOfficeNumber()
         {
-            Regex reg = new Regex(@"^\d{10}$");
-
+          
             if (this.numberOfOffices < 0 
                 || this.numberOfOffices > Int32.MaxValue)
             {
                 return false;
-            }
-            if (reg.IsMatch(this.numberOfOffices.ToString()))
-            {
-                return false;
-            }
+            }          
 
             return true;
         }
