@@ -29,8 +29,6 @@ namespace AirlineTicketOffice.Main.ViewModel.Passengers
             _repository = repository;
             _navigationService = navigationService;
 
-            this.Passenger = new PassengerModel();
-
             this.ButtonLoadVisible = "Hidden";
 
             Task.Factory.StartNew(() =>
@@ -312,13 +310,11 @@ namespace AirlineTicketOffice.Main.ViewModel.Passengers
         /// it will be displayed on the other view.
         /// </summary>
         void ReceivePassenger()
-        {
-            if (this.Passenger != null)
-            {
-                Messenger.Default.Register<MessageSendPassenger>(this, (p) => {
-                    this.Passenger = p.SendPassenger;
-                });
-            }
+        {           
+            Messenger.Default.Register<MessageSendPassenger>(this, (p) => {
+                this.Passenger = p.SendPassenger;
+            });
+            
         }
 
         #endregion
