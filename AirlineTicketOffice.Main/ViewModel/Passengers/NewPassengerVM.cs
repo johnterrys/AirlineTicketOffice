@@ -93,8 +93,6 @@ namespace AirlineTicketOffice.Main.ViewModel.Passengers
                         try
                         {
                             this.Passenger = new PassengerModel();
-                            this.Passenger.DateOfBirth = DateTime.MinValue;
-                            this.Passenger.TermOfPassportDate = DateTime.MinValue;
 
                             this.MessageForUser = "New Passenger is Created.";
                             this.ForegroundForUser = "#68a225";
