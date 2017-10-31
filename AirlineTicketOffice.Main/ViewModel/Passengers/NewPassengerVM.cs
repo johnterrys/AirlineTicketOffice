@@ -94,7 +94,7 @@ namespace AirlineTicketOffice.Main.ViewModel.Passengers
                         {
                             this.Passenger = new PassengerModel();
 
-                            this.MessageForUser = "New Passenger is Created.";
+                            this.MessageForUser = "Blank For New Passenger is Created.";
                             this.ForegroundForUser = "#68a225";
 
                         }

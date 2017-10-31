@@ -172,19 +172,21 @@
             </Grid>
         <!-- Button for change passwenger.. -->
         <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal" Background="#3a3938">
-            <Button Content="Save Data" Margin="5" MinWidth="100" HorizontalAlignment="Left" Foreground="YellowGreen" 
+            <Button Content="Save Data" Margin="5" MinWidth="100" HorizontalAlignment="Left" Foreground="White" 
                     Background="#171717"
                  Command="{Binding SaveNewPassengerCommand}" CommandParameter="{Binding Passenger}">
             </Button>
-            <Button Content="Open Data Xml" Margin="5" MinWidth="100" HorizontalAlignment="Center" Foreground="White" 
-                    Background="#171717"
+            <Button Margin="5" MinWidth="100" Content="Open Xml &#xf1c3;"
+                    HorizontalAlignment="Center" Foreground="White" FontSize="18"
+                    Background="LightBlue" FontFamily="{StaticResource FA}"
                  Command="{Binding OpenXmlPassengerCommand}">
             </Button>
-            <Button Content="Save Data To Xml" Margin="5" MinWidth="100" HorizontalAlignment="Right" Foreground="White" 
-                    Background="#171717"
+            <Button MinWidth="100" Content="Save Xml &#xf1c3;" FontSize="18" HorizontalAlignment="Right"
+                    Foreground="White" Background="LightBlue" Margin="5"
+                    FontFamily="{StaticResource FA}"
                  Command="{Binding SaveXmlPassengerCommand}" CommandParameter="{Binding Passenger}">
             </Button>
-            <Button Content="Blank &#xf234;" Margin="5" FontFamily="{StaticResource FA}" 
+            <Button Content="Blank &#xf234;" Margin="5" MinWidth="100" FontFamily="{StaticResource FA}" 
                     HorizontalAlignment="Right" Foreground="White" FontSize="24" 
                     Background="YellowGreen"
                  Command="{Binding NewPassengerCommand}">

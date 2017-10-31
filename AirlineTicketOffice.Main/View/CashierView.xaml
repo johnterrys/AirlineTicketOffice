@@ -66,13 +66,15 @@
                 </StackPanel>
                 <!-- Button for Change cashier.. -->
                 <StackPanel Grid.Row="1" Background="#3a3938">
-                    <Button Content="Save Data" Margin="5" MinWidth="100" HorizontalAlignment="Center" Foreground="White" Background="#171717"
+                    <Button Content="Save Data" Margin="5" MinWidth="100" HorizontalAlignment="Center" Foreground="White" 
+                            Background="#171717"
                  Command="{Binding SaveCashierChangeCommand}" CommandParameter="{Binding Cashier}">
                     </Button>
                 </StackPanel>
                 <!-- Button for Add Cashier. -->
                 <StackPanel Grid.Row="2" Background="#3a3938">
-                    <Button Content="Add Cashier" Margin="5" MinWidth="100" HorizontalAlignment="Center" Foreground="#68a225" Background="#171717"
+                    <Button Content="Add Cashier" Margin="5" MinWidth="100" HorizontalAlignment="Center" Foreground="White"
+                            Background="YellowGreen" FontSize="14"
                  Command="{Binding AddCashierCommand}" CommandParameter="{Binding Cashier}">
                     </Button>
                 </StackPanel>

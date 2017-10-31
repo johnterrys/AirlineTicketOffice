@@ -58,12 +58,13 @@
         <!-- Buttons tariffs. -->
         <StackPanel Grid.Row="1" Orientation="Horizontal" Background="#3a3938">
             <!-- open file. -->
-            <Button Content="Open Pdf Document" Margin="5" Foreground="White" Background="#171717"
-                    Visibility="{Binding ButtonPdfFileVisible}"
+            <Button Content="Open &#xf1c1;" Margin="5" Foreground="White" Background="#e51616"
+                    Visibility="{Binding ButtonPdfFileVisible}" FontSize="20" FontFamily="{StaticResource FA}"
                  Command="{Binding OpenFilePdfCommand}">              
                 </Button>
             <!-- open file. -->
-            <Button Content="Open Word Document" Margin="5" Foreground="White" Background="#171717"
+            <Button Content="Open &#xf1c2;" Margin="5" Foreground="White" FontSize="20" 
+                    Background="#597a9b" FontFamily="{StaticResource FA}"
                     Visibility="{Binding ButtonWordFileVisible}"
                  Command="{Binding OpenFileWordCommand}">
             </Button>

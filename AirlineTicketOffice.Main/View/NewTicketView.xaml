@@ -374,15 +374,9 @@
                                         </Binding>
                                     </TextBox.Text>
                                 </TextBox>
-                                <Button Content="Calculate" Margin="5" MinWidth="100" HorizontalAlignment="Center" 
-                                        Background="#171717"
+                                <Button Content="Calculate &#xf2b5;" Margin="5" MinWidth="100" HorizontalAlignment="Center" 
+                                        Background="LightBlue" FontFamily="{StaticResource FA}" FontSize="20" Foreground="White"
                                         Command="{Binding FullCostCommand}">
-                                    <Button.Foreground>
-                                        <LinearGradientBrush>
-                                            <GradientStop Color="GreenYellow" Offset="0.0" />
-                                            <GradientStop Color="LightBlue" Offset="1" />
-                                        </LinearGradientBrush>
-                                    </Button.Foreground>
                                 </Button>
                                 <TextBlock  Margin="10" Height="50" TextWrapping="Wrap" xml:lang="fr-FR"
                                             TextAlignment="Center" Foreground="LightBlue"
@@ -399,7 +393,8 @@
         <!-- End New Ticket Field. -->
         <!-- Button for save new ticket. -->
         <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Background="#3a3938">
-            <Button Content="Save Data" Margin="5" MinWidth="100" HorizontalAlignment="Center" Foreground="GreenYellow" 
+            <Button Content="Save Data" Margin="5" MinWidth="100" HorizontalAlignment="Center"
+                    Foreground="White" 
                     Background="#171717"
                     Command="{Binding SaveNewTicketCommand}">
             </Button>
