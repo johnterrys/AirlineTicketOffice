@@ -89,14 +89,16 @@
                     <DockPanel>
                         <Label Background="Silver" Width="160">Date Of Birth:</Label>
                         <DatePicker Name="dpDateOfBirth"   
-                                    ToolTip="Select date in calendar, please ->"  
                                     FirstDayOfWeek="Monday"
                                     Language="ru-RU"                                       
                                     Height="25">
                             <DatePicker.Text>
-                                <Binding Path="Passenger.DateOfBirth"
+                                <Binding Path="Passenger.DateOfBirth" NotifyOnValidationError="True"
                                         UpdateSourceTrigger="LostFocus" Mode="TwoWay"
                                         StringFormat="{}{0:dd.MM.yyyy}">
+                                    <Binding.ValidationRules>
+                                        <DataErrorValidationRule />
+                                    </Binding.ValidationRules>
                                 </Binding>
                             </DatePicker.Text>
                         </DatePicker>
@@ -104,15 +106,17 @@
                     <!-- Term Of Passport Date. -->
                     <DockPanel>
                         <Label Background="Silver" Width="160">Term Of PassportDate:</Label>
-                        <DatePicker Name="dpTermOfPassportDate" 
-                                    ToolTip="Select date in calendar, please ->"                                  
+                        <DatePicker Name="dpTermOfPassportDate"                               
                                     FirstDayOfWeek="Monday"
                                     Language="ru-RU"
                                     Height="25">
                             <DatePicker.Text>
-                                <Binding Path="Passenger.TermOfPassportDate"
+                                <Binding Path="Passenger.TermOfPassportDate" NotifyOnValidationError="True"
                                         UpdateSourceTrigger="LostFocus" Mode="TwoWay"
                                         StringFormat="{}{0:dd.MM.yyyy}">
+                                    <Binding.ValidationRules>
+                                        <DataErrorValidationRule />
+                                    </Binding.ValidationRules>
                                 </Binding>
                             </DatePicker.Text>
                         </DatePicker>
@@ -179,6 +183,11 @@
             <Button Content="Save Data To Xml" Margin="5" MinWidth="100" HorizontalAlignment="Right" Foreground="White" 
                     Background="#171717"
                  Command="{Binding SaveXmlPassengerCommand}" CommandParameter="{Binding Passenger}">
+            </Button>
+            <Button Content="Blank &#xf234;" Margin="5" FontFamily="{StaticResource FA}" 
+                    HorizontalAlignment="Right" Foreground="White" FontSize="24" 
+                    Background="YellowGreen"
+                 Command="{Binding NewPassengerCommand}">
             </Button>
         </StackPanel>
         <!-- Just field. -->

@@ -27,12 +27,9 @@ namespace AirlineTicketOffice.Main.ViewModel.Passengers
         {
             _repository = repository;
             _xmlDialogService = xmlDialogService;
-
-            this.Passenger = new PassengerModel();
-
           
             this.ForegroundForUser = "#f2f2f2";
-            this.MessageForUser = "Please, Enter A Data...";
+            this.MessageForUser = "At First Create 'Blank' For New Passenger";
 
  
         }
@@ -80,6 +77,43 @@ namespace AirlineTicketOffice.Main.ViewModel.Passengers
         #region commands      
 
         /// <summary>
+        /// Create new passenger in UI.
+        /// </summary>
+        private ICommand _NewPassengerCommand;
+
+        public ICommand NewPassengerCommand
+        {
+            get
+            {
+                if (_NewPassengerCommand == null)
+                {
+                    _NewPassengerCommand = new RelayCommand<PassengerModel>((p) =>
+                    {
+
+                        try
+                        {
+                            this.Passenger = new PassengerModel();
+                            this.Passenger.DateOfBirth = DateTime.MinValue;
+                            this.Passenger.TermOfPassportDate = DateTime.MinValue;
+
+                            this.MessageForUser = "New Passenger is Created.";
+                            this.ForegroundForUser = "#68a225";
+
+                        }
+                        catch (Exception ex)
+                        {
+                            this.MessageForUser = "New Passenger is NOT Created.";
+                            this.ForegroundForUser = "#ff420e";
+                            Debug.WriteLine("'SaveNewPassengerCommand' method fail..." + ex.Message);
+                        }
+
+                    });
+                }
+                return _NewPassengerCommand;
+            }
+        }
+
+        /// <summary>
         /// Create new passenger in db via repository.
         /// </summary>
         private ICommand _saveNewPassengerCommand;
@@ -95,10 +129,16 @@ namespace AirlineTicketOffice.Main.ViewModel.Passengers
 
                         try
                         {
+                            if (this.Passenger == null)
+                            {
+                                this.ForegroundForUser = "#f2f2f2";
+                                this.MessageForUser = "Please, Enter A Data...";
+                                return;
+                            }
+ 
                             if (_repository.Add(p))
                             {
                                 RaisePropertyChanged("Passenger");
-                                this.Passenger = new PassengerModel();
                                 this.MessageForUser = "Inserting of data has passed successfully..";
                                 this.ForegroundForUser = "#68a225";
                             }

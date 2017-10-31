@@ -96,7 +96,7 @@
                 <!-- All Passengers. -->
                 <MenuItem Header="All Passengers" Foreground="Black">
                     <MenuItem.Icon>
-                        <TextBlock Style="{StaticResource tbSubMenuStyle}" FontFamily="{StaticResource FA}" Text="&#xf2ba;"></TextBlock>
+                        <TextBlock Style="{StaticResource tbSubMenuStyle}" FontFamily="{StaticResource FA}" Text="&#xf0c0;"></TextBlock>
                     </MenuItem.Icon>
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="Click">

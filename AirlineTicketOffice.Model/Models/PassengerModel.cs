@@ -8,6 +8,10 @@ using System.Text.RegularExpressions;
 
 namespace AirlineTicketOffice.Model.Models
 {
+
+    /// <summary>
+    /// Passenger model.
+    /// </summary>
     public class PassengerModel : ObservableObject, IDataErrorInfo
     {
         private int passengerID;
@@ -92,7 +96,7 @@ namespace AirlineTicketOffice.Model.Models
 
 
         /// <summary>
-        /// Implementation dataRrrorInfo.
+        /// Not Implemented.
         /// </summary>
         public string Error
         {
@@ -106,29 +110,48 @@ namespace AirlineTicketOffice.Model.Models
         {
             get
             {
+               
                 switch (columnName)
                 {
                     case "Citizenship":
-                        if (CheckString(this.FullName) == false || this.Citizenship.Length < 3)
+                        if (CheckBlankLine(this.Citizenship))
+                            return "Please enter a Citizenship";
+                        if (this.Citizenship.Length < 2 || this.Citizenship.Length > 100)
                             return "You must specify the name of the country (Example: Finland)";
                         break;
                     case "PassportNumber":
-                        if (CheckString(this.FullName) == false || CheckPassportRegex() == false)
+                        if (CheckBlankLine(this.PassportNumber))
+                            return "Please enter a Passport Number";
+                        if (CheckPassportRegex() == false)
                             return "You must specify the passport number of the citizen (Example: 5040979Е028РВ8)";
                         break;
                     case "Sex":
-                        if (CheckString(this.Sex) == false || CheckGender() == false)
+                        if (CheckBlankLine(this.Sex))
+                            return "Please enter a Sex";
+                        if (CheckGender() == false)
                             return "You must specify the sex of the citizen (Example: M or W)";
                         break;
                     case "FullName":
-                        if (CheckString(this.FullName) == false || this.FullName.Length < 3)
+                        if (CheckBlankLine(this.FullName))
+                            return "Please enter a Full Name";
+                        if (this.FullName.Length < 3)
                             return "You must specify the Full Name of the citizen (Example: Ivanov Ivan Ivanovich)";
-                        break;                 
+                        break;
+                    case "DateOfBirth":
+                        if (CheckFaultDate(this.DateOfBirth))
+                            return "You must select the date Of birth of the citizen";
+                        break;
+                    case "TermOfPassportDate":
+                        if (CheckFaultDate(this.TermOfPassportDate))
+                            return "You must select the end of the period of validity of the passport";
+                        break;
                     case "CountryOfResidence":
-                        if (CheckString(this.FullName) == false || this.CountryOfResidence.Length < 3)
+                        if (CheckBlankLine(this.CountryOfResidence))
+                            return "Please enter a Country Of Residence";
+                        if (this.CountryOfResidence.Length < 2)
                             return "You must specify the name of the country (Example: England)";
                         break;
-                    case "PhoneMobile":
+                    case "PhoneMobile":                      
                         if (CheckPhone() == false)
                             return "You must specify the mobile phone of the citizen (Example: 37533-566-56-54)";
                         break;
@@ -146,8 +169,29 @@ namespace AirlineTicketOffice.Model.Models
             }
         }
 
-       
+
         #region methods
+
+        /// <summary>
+        /// Check date.
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns></returns>
+        private bool CheckFaultDate(DateTime date)
+        {
+            DateTime minDate = new DateTime(1800, 1, 1);
+
+            if (date == DateTime.MinValue)
+            {
+                return true;
+            }
+            if (date < minDate)
+            {
+                return true;
+            }
+
+            return false;
+        }
 
         /// <summary>
         /// Check passport number.
@@ -184,14 +228,14 @@ namespace AirlineTicketOffice.Model.Models
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        private bool CheckString(string value)
+        private bool CheckBlankLine(string value)
         {
             if (string.IsNullOrWhiteSpace(value)
                 || string.IsNullOrEmpty(value))
             {
-                return false;
+                return true;
             }
-            return true;
+            return false;
         }
 
         /// <summary>
@@ -200,7 +244,7 @@ namespace AirlineTicketOffice.Model.Models
         /// <returns></returns>
         private bool CheckPhone()
         {
-            if (CheckString(this.PhoneMobile) == true
+            if (CheckBlankLine(this.PhoneMobile) == false
                 && this.phoneMobile.Length > 16)
             {
                 return false;
@@ -216,7 +260,7 @@ namespace AirlineTicketOffice.Model.Models
         private bool CheckEmail()
         {
 
-            if (CheckString(this.Email) == true
+            if (CheckBlankLine(this.Email) == false
                 && this.Email.Length > 50)
             {
                 return false;
