@@ -116,7 +116,7 @@ namespace AirlineTicketOffice.Model.Models
                     case "Citizenship":
                         if (CheckBlankLine(this.Citizenship))
                             return "Please enter a Citizenship";
-                        if (this.Citizenship.Length < 2 || this.Citizenship.Length > 100)
+                        if (this.Citizenship.Length < 2 || this.Citizenship.Length > 50)
                             return "You must specify the name of the country (Example: Finland)";
                         break;
                     case "PassportNumber":
@@ -134,7 +134,7 @@ namespace AirlineTicketOffice.Model.Models
                     case "FullName":
                         if (CheckBlankLine(this.FullName))
                             return "Please enter a Full Name";
-                        if (this.FullName.Length < 3)
+                        if (this.FullName.Length < 3 || this.Citizenship.Length > 100)
                             return "You must specify the Full Name of the citizen (Example: Ivanov Ivan Ivanovich)";
                         break;
                     case "DateOfBirth":
@@ -148,7 +148,7 @@ namespace AirlineTicketOffice.Model.Models
                     case "CountryOfResidence":
                         if (CheckBlankLine(this.CountryOfResidence))
                             return "Please enter a Country Of Residence";
-                        if (this.CountryOfResidence.Length < 2)
+                        if (this.CountryOfResidence.Length < 2 || this.Citizenship.Length > 50)
                             return "You must specify the name of the country (Example: England)";
                         break;
                     case "PhoneMobile":                      
