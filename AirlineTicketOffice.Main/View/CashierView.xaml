@@ -50,16 +50,34 @@
                                  UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
                             </TextBox>
                         </StackPanel>
+                       <!--  -->
                         <DockPanel>
                             <Label Background="Silver" Width="130">Office Number:</Label>
-                            <TextBox x:Name="CitizenshipTextBox" Text="{Binding Path=Cashier.NumberOfOffices,
-                                 UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Height="25">
+                            <TextBox  x:Name="NumberOfOfficesTextBox"                              
+                             Height="25" >
+                                <TextBox.Text>
+                                    <Binding Path="Cashier.NumberOfOffices" NotifyOnValidationError="True"
+                                        UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
+                                        <Binding.ValidationRules>
+                                            <DataErrorValidationRule />
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </TextBox.Text>
                             </TextBox>
                         </DockPanel>
+                        <!-- FuulName. -->
                         <DockPanel>
                             <Label Background="Silver" Width="130">Full Name:</Label>
-                            <TextBox x:Name="PassportNumberTextBox"  MinWidth="350" Text="{Binding Path=Cashier.FullName,
-                                 UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Height="25">
+                            <TextBox  x:Name="PassportNumberTextBox"                              
+                             Height="25" >
+                                <TextBox.Text>
+                                    <Binding Path="Cashier.FullName" NotifyOnValidationError="True"
+                                        UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
+                                        <Binding.ValidationRules>
+                                            <DataErrorValidationRule />
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </TextBox.Text>
                             </TextBox>
                         </DockPanel>
                     </StackPanel>
