@@ -260,7 +260,7 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
                         break;
                     case "Tariff":
                         if (this.Tariff == null || this.Tariff.RateID == 0)
-                            return "You must select the 'Cashier' for the new ticket";
+                            return "You must select the 'Tariff' for the new ticket";
                         break;
                     case "SaleDate":
                         if (CheckFaultDate(this.SaleDate))
