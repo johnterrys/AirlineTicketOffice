@@ -9,6 +9,8 @@ using System;
 using System.Windows;
 using System.Reflection;
 using AirlineTicketOffice.Main.Services.Dialog;
+using AirlineTicketOffice.Model.IRepository;
+using System.Threading.Tasks;
 
 namespace AirlineTicketOffice.Main.ViewModel
 {
@@ -33,10 +35,13 @@ namespace AirlineTicketOffice.Main.ViewModel
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
         public MainViewModel(IMainNavigationService navigationService,
-                             IDialogMessage dialogeMessage)
+                             IDialogMessage dialogeMessage,
+                             ITicketRepository ticketRepository)
         {
+            this.ForegroundForUser = "#ffffff";
             _navigationService = navigationService;
             _dialogMessage = dialogeMessage;
+            _ticketRepository = ticketRepository;
 
             ReceiveStatusFromFlightVM();
         }
@@ -47,20 +52,33 @@ namespace AirlineTicketOffice.Main.ViewModel
 
         private readonly IMainNavigationService _navigationService;
 
+        private bool connect = true;
+
         private readonly IDialogMessage _dialogMessage;
+
+        private readonly ITicketRepository _ticketRepository;
 
         private string _statusWindow;
 
+        private object locker = new object();
+
+        private string _ForegroundForUser;
 
         #endregion
 
-        #region properties
+        #region properties      
 
         public string StatusWindow
         {
             get { return _statusWindow; }
             set { Set(() => StatusWindow, ref _statusWindow, value); }
         }
+
+        public string ForegroundForUser
+        {
+            get { return _ForegroundForUser; }
+            set { Set(() => ForegroundForUser, ref _ForegroundForUser, value); }
+        }       
 
         #endregion
 
@@ -80,7 +98,7 @@ namespace AirlineTicketOffice.Main.ViewModel
                     _getNewTicketCommand = new RelayCommand(() =>
                     {
                         _navigationService.NavigateTo("NewTicketViewKey");
-                        this.StatusWindow = "New Ticket Window";
+                        if (this.connect) this.StatusWindow = "New Ticket Window";
                     });
                 }
                 return _getNewTicketCommand;
@@ -89,7 +107,7 @@ namespace AirlineTicketOffice.Main.ViewModel
         }
 
         /// <summary>
-        /// Navigate to 'NewTicket' view.
+        /// Open message box 'about program'.
         /// </summary>
         private ICommand _helpCommand;
 
@@ -103,7 +121,7 @@ namespace AirlineTicketOffice.Main.ViewModel
                     {
                         if (_dialogMessage.Show() == false)
                         {
-                            this.StatusWindow = "Error Dialog About.";
+                            if (this.connect) this.StatusWindow = "Error Dialog About.";
                         }
                         
                     });
@@ -128,7 +146,7 @@ namespace AirlineTicketOffice.Main.ViewModel
                     _getAllPassengerCommand = new RelayCommand(() =>
                     {
                         _navigationService.NavigateTo("AllPassengerViewKey");
-                        this.StatusWindow = "All Passengers Window";
+                        if (this.connect) this.StatusWindow = "All Passengers Window";
                     });
                 }
                 return _getAllPassengerCommand;
@@ -151,7 +169,7 @@ namespace AirlineTicketOffice.Main.ViewModel
                     _getNewPassengerCommand = new RelayCommand(() =>
                     {
                         _navigationService.NavigateTo("NewPassengerViewKey");
-                        this.StatusWindow = "New Passenger Window";
+                        if (this.connect) this.StatusWindow = "New Passenger Window";
                     });
                 }
                 return _getNewPassengerCommand;
@@ -173,7 +191,7 @@ namespace AirlineTicketOffice.Main.ViewModel
                     _getBoughtTicketCommand = new RelayCommand(() =>
                     {
                         _navigationService.NavigateTo("BoughtTicketViewKey");
-                        this.StatusWindow = "Purchased Tickets Window";
+                        if (this.connect) this.StatusWindow = "Purchased Tickets Window";
                     });
                 }
                 return _getBoughtTicketCommand;
@@ -183,7 +201,7 @@ namespace AirlineTicketOffice.Main.ViewModel
 
 
         /// <summary>
-        /// Navigate to 'Cashiers' view.
+        /// Navigate to 'flights' view.
         /// </summary>
         private ICommand _getFlightsCommand;
 
@@ -196,7 +214,7 @@ namespace AirlineTicketOffice.Main.ViewModel
                     _getFlightsCommand = new RelayCommand(() =>
                     {
                         _navigationService.NavigateTo("FlightsViewKey");
-                        this.StatusWindow = "Flights Window";
+                        if (this.connect) this.StatusWindow = "Flights Window";
                     });
                 }
                 return _getFlightsCommand;
@@ -219,7 +237,7 @@ namespace AirlineTicketOffice.Main.ViewModel
                     _getTariffsCommand = new RelayCommand(() =>
                     {
                         _navigationService.NavigateTo("TariffsViewKey");
-                        this.StatusWindow = "Tariffs Window";
+                        if (this.connect) this.StatusWindow = "Tariffs Window";
                     });
                 }
                 return _getTariffsCommand;
@@ -241,7 +259,7 @@ namespace AirlineTicketOffice.Main.ViewModel
                     _getCashierCommand = new RelayCommand(() =>
                     {
                         _navigationService.NavigateTo("CashierViewKey");
-                        this.StatusWindow = "Cashiers Window";
+                        if (this.connect) this.StatusWindow = "Cashiers Window";
                     });
                 }
                 return _getCashierCommand;
@@ -310,7 +328,9 @@ namespace AirlineTicketOffice.Main.ViewModel
                 System.Threading.Thread.CurrentThread.CurrentCulture;
 
             _navigationService.NavigateTo("NewTicketViewKey");
-            this.StatusWindow = "New Ticket Window";
+            if (this.connect) this.StatusWindow = "New Ticket Window";
+
+            CheckConnectionDB();
         }
 
         /// <summary>
@@ -319,9 +339,35 @@ namespace AirlineTicketOffice.Main.ViewModel
         private void ReceiveStatusFromFlightVM()
         {                      
             Messenger.Default.Register<MessageStatus>(this, (f) => {
-                this.StatusWindow = f.MessageStatusFromFlight;
+                if(this.connect) this.StatusWindow = f.MessageStatusFromFlight;
             });
 
+        }
+
+        /// <summary>
+        /// Check existing database.
+        /// </summary>
+        private void CheckConnectionDB()
+        {
+            Task.Factory.StartNew(() =>
+            {
+                lock (locker)
+                {
+                    if (!_ticketRepository.CheckConnection())
+                    {
+
+                        Application.Current.Dispatcher.Invoke(
+                                new Action(() =>
+                                {
+                                    this.ForegroundForUser = "#ff420e";
+                                    this.StatusWindow = "CAN NOT CONNECT TO DATABASE.";
+                                    this.connect = false;
+                                }));
+                    }                 
+
+                }
+
+            });
         }
 
         #endregion

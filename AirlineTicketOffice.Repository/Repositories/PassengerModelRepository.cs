@@ -13,8 +13,11 @@ namespace AirlineTicketOffice.Repository.Repositories
 {
     public sealed class PassengerModelRepository : BaseModelRepository<Passenger>, IPassengerRepository
     {
-      
 
+        /// <summary>
+        /// Get all passenger from db into passengerModel.
+        /// </summary>
+        /// <returns>IEnumerable<PassengerModel></returns>
         public IEnumerable<PassengerModel> GetAll()
         {
             try
@@ -100,31 +103,34 @@ namespace AirlineTicketOffice.Repository.Repositories
           
         }
 
+        /// <summary>
+        /// Add passenger into db.
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
         public bool Add(PassengerModel entity)
         {
 
             try
             {
-                if (entity != null)
-                {
+                if (entity == null) return false;
 
-                    _context.Passengers.Add(new Passenger
-                        {
-                            Citizenship = entity.Citizenship,
-                            PassportNumber = entity.PassportNumber,
-                            Sex = entity.Sex.ToUpper(),
-                            FullName = entity.FullName,
-                            DateOfBirth = entity.DateOfBirth,
-                            TermOfPassportDate = entity.TermOfPassportDate,
-                            CountryOfResidence = entity.CountryOfResidence,
-                            PhoneMobile = entity.PhoneMobile,
-                            Email = entity.Email
-                        });
-
-                    if (Save())
+                _context.Passengers.Add(new Passenger
                     {
-                        return true;
-                    }
+                        Citizenship = entity.Citizenship,
+                        PassportNumber = entity.PassportNumber,
+                        Sex = entity.Sex.ToUpper(),
+                        FullName = entity.FullName,
+                        DateOfBirth = entity.DateOfBirth,
+                        TermOfPassportDate = entity.TermOfPassportDate,
+                        CountryOfResidence = entity.CountryOfResidence,
+                        PhoneMobile = entity.PhoneMobile,
+                        Email = entity.Email
+                    });
+
+                if (Save())
+                {
+                    return true;
                 }
 
                 Debug.WriteLine("Add(PassengerModel entity) fail...");
@@ -154,53 +160,50 @@ namespace AirlineTicketOffice.Repository.Repositories
 
         public bool Update(PassengerModel p)
         {
-            if (p != null && p.PassengerID > 0)
+            
+            try
             {
-                try
-                {
-                    var entity = _context.Passengers.Where(pas => pas.PassengerID == p.PassengerID).FirstOrDefault();
+                if (p == null || p.PassengerID <= 0) return false;
+                
+                var entity = _context.Passengers.Where(pas => pas.PassengerID == p.PassengerID).FirstOrDefault();
+                  
+                entity.Citizenship = p.Citizenship;
+                entity.PassportNumber = p.PassportNumber;
+                entity.Sex = p.Sex;
+                entity.FullName = p.FullName;
+                entity.DateOfBirth = p.DateOfBirth;
+                entity.TermOfPassportDate = p.TermOfPassportDate;
+                entity.CountryOfResidence = p.CountryOfResidence;
+                entity.PhoneMobile = p.PhoneMobile;
+                entity.Email = p.Email;
+                    
+                _context.Entry(entity).State = EntityState.Modified;
 
-                    if (entity != null)
-                    {
-                        entity.Citizenship = p.Citizenship;
-                        entity.PassportNumber = p.PassportNumber;
-                        entity.Sex = p.Sex;
-                        entity.FullName = p.FullName;
-                        entity.DateOfBirth = p.DateOfBirth;
-                        entity.TermOfPassportDate = p.TermOfPassportDate;
-                        entity.CountryOfResidence = p.CountryOfResidence;
-                        entity.PhoneMobile = p.PhoneMobile;
-                        entity.Email = p.Email;
-                    }
-                   
-                    _context.Entry(entity).State = EntityState.Modified;
-
-                    if (Save())
-                    {                      
-                        return true;
-                    }
-
-                    Debug.WriteLine("Update(PassengerModel p) fail...");
-                    return false;
-                }
-                catch (NullReferenceException ex)
+                if (Save())
                 {
-                    Debug.WriteLine("Update(PassengerModel p) fail..." + ex.Message);
-                    return false;
+                    return true;
                 }
-                catch (ArgumentException ex)
-                {
-                    Debug.WriteLine("Update(PassengerModel p) fail..." + ex.Message);
-                    return false;
-                }
-                catch (Exception ex)
-                {
-                    Debug.WriteLine("Update(PassengerModel p) fail..." + ex.Message);
-                    return false;
-                }
-
+                
+                Debug.WriteLine("Update(PassengerModel p) fail...");
+                return false;
             }
-            return false;
+            catch (NullReferenceException ex)
+            {
+                Debug.WriteLine("Update(PassengerModel p) fail..." + ex.Message);
+                return false;
+            }
+            catch (ArgumentException ex)
+            {
+                Debug.WriteLine("Update(PassengerModel p) fail..." + ex.Message);
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Update(PassengerModel p) fail..." + ex.Message);
+                return false;
+            }            
         }
+
+
     }
 }

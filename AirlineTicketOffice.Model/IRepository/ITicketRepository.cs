@@ -9,5 +9,6 @@ namespace AirlineTicketOffice.Model.IRepository
 {
     public interface ITicketRepository : IBaseOperationRepository<AllTicketsModel>, IGetAllRepository<AllTicketsModel>
     {
+        bool CheckConnection();
     }
 }

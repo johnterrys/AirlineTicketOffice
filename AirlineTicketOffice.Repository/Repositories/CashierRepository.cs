@@ -27,8 +27,8 @@ namespace AirlineTicketOffice.Repository.Repositories
 
                     _context.Cashiers.Add(new Cashier
                     {
-                       NumberOfOffices = entity.NumberOfOffices,
-                       FullName = entity.FullName
+                        NumberOfOffices = entity.NumberOfOffices,
+                        FullName = entity.FullName
                     });
 
                     if (Save())
@@ -89,7 +89,7 @@ namespace AirlineTicketOffice.Repository.Repositories
                 Debug.WriteLine("Add(CashierModel entity) fail..." + ex.Message);
                 return null;
             }
-           
+
         }
 
         public bool Remove(CashierModel entity)
@@ -99,10 +99,12 @@ namespace AirlineTicketOffice.Repository.Repositories
 
         public bool Update(CashierModel c)
         {
-            if (c != null && c.CashierID > 0)
+
+            try
             {
-                try
+                if (c != null && c.CashierID > 0)
                 {
+
                     var entity = _context.Cashiers.Where(cas => cas.CashierID == c.CashierID).FirstOrDefault();
 
                     if (entity != null)
@@ -117,30 +119,29 @@ namespace AirlineTicketOffice.Repository.Repositories
                     {
                         return true;
                     }
+                }
 
-                    Debug.WriteLine("Update(CashierModel c) fail...");
-                    return false;
-                }
-                catch (NullReferenceException ex)
-                {
-                    Debug.WriteLine("Update(CashierModel c) fail..." + ex.Message);
-                    return false;
-                }
-                catch (ArgumentException ex)
-                {
-                    Debug.WriteLine("Update(CashierModel c) fail..." + ex.Message);
-                    return false;
-                }
-                catch (Exception ex)
-                {
-                    Debug.WriteLine("Update(CashierModel c) fail..." + ex.Message);
-                    return false;
-                }
+                Debug.WriteLine("Update(CashierModel c) fail...");
+                return false;
 
             }
-            return false;
+            catch (NullReferenceException ex)
+            {
+                Debug.WriteLine("Update(CashierModel c) fail..." + ex.Message);
+                return false;
+            }
+            catch (ArgumentException ex)
+            {
+                Debug.WriteLine("Update(CashierModel c) fail..." + ex.Message);
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Update(CashierModel c) fail..." + ex.Message);
+                return false;
+            }
+
         }
+
     }
-
-
 }

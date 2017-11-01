@@ -24,6 +24,16 @@ namespace AirlineTicketOffice.Repository.Repositories
         {
         }
 
+        public bool CheckConnection()
+        {
+            if (CheckExistDB())
+            {
+                return true;
+            }
+
+            return false;
+        }
+
         /// <summary>
         /// Add 'ticket' to the db.
         /// </summary>
@@ -34,25 +44,23 @@ namespace AirlineTicketOffice.Repository.Repositories
            
             try
             {
-                if (entity != null)
+                if (entity == null) return false;              
+
+                _context.Tickets.Add(new Ticket
                 {
+                    TicketID = entity.TicketID,
+                    FlightID = entity.FlightID,
+                    PassengerID = entity.PassengerID,
+                    CashierID = entity.CashierID,
+                    RateID = entity.RateID,
+                    SaleDate = entity.SaleDate,
+                    TotalCost = entity.TotalCost
+                });
 
-                    _context.Tickets.Add(new Ticket
-                    {
-                        TicketID = entity.TicketID,
-                        FlightID = entity.FlightID,
-                        PassengerID = entity.PassengerID,
-                        CashierID = entity.CashierID,
-                        RateID = entity.RateID,
-                        SaleDate = entity.SaleDate,
-                        TotalCost = entity.TotalCost
-                    });
-
-                    if (Save())
-                    {                       
-                        return true;
-                    }
-                }
+                if (Save())
+                {                       
+                    return true;
+                }               
 
                 Debug.WriteLine("Add(AllTicketsModel entity) fail...");
                 return false;

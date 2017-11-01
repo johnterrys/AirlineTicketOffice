@@ -227,7 +227,8 @@
         <!-- Status bar. -->
         <StatusBar Grid.Row="3" Background="#3a3938">
             <StatusBarItem>
-                <TextBlock MinWidth="100" Foreground="White" Text="{Binding StatusWindow}"></TextBlock>
+                <TextBlock MinWidth="100" Foreground="{Binding ForegroundForUser}" 
+                           Text="{Binding StatusWindow}"></TextBlock>
             </StatusBarItem>
             <StatusBarItem HorizontalAlignment="Right">
                 <ResizeGrip />

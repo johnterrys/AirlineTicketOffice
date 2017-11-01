@@ -13,7 +13,6 @@ namespace AirlineTicketOffice.Repository.Repositories
 {
     public class BaseModelRepository<TEntity> where TEntity : class
     {
-        int res;
 
         protected readonly AirlineTicketOfficeEntities _context;
 
@@ -21,6 +20,22 @@ namespace AirlineTicketOffice.Repository.Repositories
         {
             this._context = new AirlineTicketOfficeEntities();
 
+        }
+
+        /// <summary>
+        /// Check connection with db.
+        /// </summary>
+        /// <returns></returns>
+        protected bool CheckExistDB()
+        {
+           
+            if (_context.Database.Exists())
+            {
+                return true;
+            }
+
+            return false;               
+            
         }
 
         /// <summary>
