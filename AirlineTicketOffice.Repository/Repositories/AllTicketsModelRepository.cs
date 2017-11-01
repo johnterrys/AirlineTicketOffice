@@ -23,7 +23,11 @@ namespace AirlineTicketOffice.Repository.Repositories
             : base()
         {
         }
-
+        
+        /// <summary>
+        /// Check existing database.
+        /// </summary>
+        /// <returns></returns>
         public bool CheckConnection()
         {
             if (CheckExistDB())

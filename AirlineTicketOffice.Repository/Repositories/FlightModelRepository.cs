@@ -21,6 +21,10 @@ namespace AirlineTicketOffice.Repository.Repositories
         {
         }
 
+        /// <summary>
+        /// Get all 'flights' from db into 'FlightModel'.
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<FlightModel> GetAll()
         {
             try

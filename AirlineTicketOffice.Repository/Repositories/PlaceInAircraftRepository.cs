@@ -18,6 +18,10 @@ namespace AirlineTicketOffice.Repository.Repositories
         {
         }
 
+        /// <summary>
+        /// Get All places in Aircraft.
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<PlaceInAircraftModel> GetAll()
         {
             try
@@ -52,6 +56,11 @@ namespace AirlineTicketOffice.Repository.Repositories
             
         }
 
+        /// <summary>
+        /// Get Places In specific Aircraft.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public IEnumerable<PlaceInAircraftModel> GetPlacesOnAircraft(int id)
         {
             try

@@ -13,6 +13,11 @@ namespace AirlineTicketOffice.Repository.Repositories
 {
     public sealed class BoughtTicketRepository : BaseModelRepository<Ticket>, IBoughtTicketRepository
     {
+
+        /// <summary>
+        /// Get all BoughtTickets_ATO from db.
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<BoughtTicketModel> GetAll()
         {
             try

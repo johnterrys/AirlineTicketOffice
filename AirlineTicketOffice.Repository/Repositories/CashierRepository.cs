@@ -22,21 +22,18 @@ namespace AirlineTicketOffice.Repository.Repositories
 
             try
             {
-                if (entity != null)
+                if (entity == null) return false;
+                
+                _context.Cashiers.Add(new Cashier
                 {
+                    NumberOfOffices = entity.NumberOfOffices,
+                    FullName = entity.FullName
+                });
 
-                    _context.Cashiers.Add(new Cashier
-                    {
-                        NumberOfOffices = entity.NumberOfOffices,
-                        FullName = entity.FullName
-                    });
-
-                    if (Save())
-                    {
-                        return true;
-                    }
-
-                }
+                if (Save())
+                {
+                    return true;
+                }                
 
                 Debug.WriteLine("Update(CashierModel c) fail...");
                 return false;
@@ -102,25 +99,23 @@ namespace AirlineTicketOffice.Repository.Repositories
 
             try
             {
-                if (c != null && c.CashierID > 0)
+                if (c == null || c.CashierID <= 0) return false;
+                
+                var entity = _context.Cashiers.Where(cas => cas.CashierID == c.CashierID).FirstOrDefault();
+
+                if (entity != null)
                 {
-
-                    var entity = _context.Cashiers.Where(cas => cas.CashierID == c.CashierID).FirstOrDefault();
-
-                    if (entity != null)
-                    {
-                        entity.FullName = c.FullName;
-                        entity.NumberOfOffices = c.NumberOfOffices;
-                    }
-
-                    _context.Entry(entity).State = EntityState.Modified;
-
-                    if (Save())
-                    {
-                        return true;
-                    }
+                    entity.FullName = c.FullName;
+                    entity.NumberOfOffices = c.NumberOfOffices;
                 }
 
+                _context.Entry(entity).State = EntityState.Modified;
+
+                if (Save())
+                {
+                    return true;
+                }
+                
                 Debug.WriteLine("Update(CashierModel c) fail...");
                 return false;
 

@@ -11,6 +11,10 @@ namespace AirlineTicketOffice.Repository.Repositories
 {
     public sealed class TariffsRepository : BaseModelRepository<GetTariffs_ATO>, ITariffsRepository
     {
+        /// <summary>
+        /// Get all 'GetTariffs_ATO' in db.(rate via view)
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<TariffModel> GetAll()
         {
             try

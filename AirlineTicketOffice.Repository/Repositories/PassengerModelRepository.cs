@@ -158,6 +158,11 @@ namespace AirlineTicketOffice.Repository.Repositories
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Update 'Passenger' in db.
+        /// </summary>
+        /// <param name="p"></param>
+        /// <returns></returns>
         public bool Update(PassengerModel p)
         {
             
