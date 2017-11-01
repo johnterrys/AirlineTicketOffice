@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="AirlineTicketOffice.Model.Models.AircraftModel" Collapsed="true">
+    <Position X="3.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAABAAgAAAAIAAAACAABAAAAAAAAAAAAQAAAAEAAA=</HashCode>
+      <FileName>Models\AircraftModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AirlineTicketOffice.Model.Models.AllTicketsModel" Collapsed="true">
+    <Position X="5.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QQEBBEAAQAAJEAABCAACAQAAAAAAAAAEAACoAAERqQA=</HashCode>
+      <FileName>Models\AllTicketsModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AirlineTicketOffice.Model.Models.BoughtTicketModel" Collapsed="true">
+    <Position X="7.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAgFAEAACAEIIFCBCKKRQAACgIAABAAAAIAAEBIKQ=</HashCode>
+      <FileName>Models\BoughtTicketModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AirlineTicketOffice.Model.Models.CashierModel" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAQYAACECIAAAACAAAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>Models\CashierModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="AirlineTicketOffice.Model.Models.FlightModel" Collapsed="true">
+    <Position X="3.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAEBAAghAAAAIIEAEAKAABAACAAAAAEAAAIAAAAACQ=</HashCode>
+      <FileName>Models\FlightModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AirlineTicketOffice.Model.Models.PassengerModel" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>FAEAAAQAACAARYAgDASgIAAAAAIQAAACAIEAgACBAKA=</HashCode>
+      <FileName>Models\PassengerModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="AirlineTicketOffice.Model.Models.PlaceInAircraftModel" Collapsed="true">
+    <Position X="7.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAgAABAIAAAAAAAACAAAAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\PlaceInAircraftModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AirlineTicketOffice.Model.Models.PlaceInFlightModel" Collapsed="true">
+    <Position X="9" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAEAAAABAAAAAAAAAACAAAAAgAAEAAAAAAAAAAA=</HashCode>
+      <FileName>Models\PlaceInFlightModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AirlineTicketOffice.Model.Models.RouteModel" Collapsed="true">
+    <Position X="12.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAABAAAEAAAABAAKBAAAGgYAABAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\RouteModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AirlineTicketOffice.Model.Models.TariffModel" Collapsed="true">
+    <Position X="12.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAEAAAAAAAAQQAAAgEAhAAAAAQEAAAIAgAAiAA=</HashCode>
+      <FileName>Models\TariffModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="AirlineTicketOffice.Model.IRepository.IBaseOperationRepository&lt;TEntity&gt;" Collapsed="true">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IRepository\IBaseOperationRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="AirlineTicketOffice.Model.IRepository.IBoughtTicketRepository" Collapsed="true">
+    <Position X="3.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IRepository\IBoughtTicketRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="AirlineTicketOffice.Model.IRepository.ICashierRepository" Collapsed="true">
+    <Position X="2.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IRepository\ICashierRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="AirlineTicketOffice.Model.IRepository.IFlightRepository" Collapsed="true">
+    <Position X="12.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IRepository\IFlightRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="AirlineTicketOffice.Model.IRepository.IGetAllRepository&lt;TEntity&gt;" Collapsed="true">
+    <Position X="5.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>IRepository\IGetAllRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="AirlineTicketOffice.Model.IRepository.IPassengerRepository" Collapsed="true">
+    <Position X="5.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IRepository\IPassengerRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="AirlineTicketOffice.Model.IRepository.IPlaceInAircraftRepository" Collapsed="true">
+    <Position X="5.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IRepository\IPlaceInAircraftRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="AirlineTicketOffice.Model.IRepository.IPlaceInFlightRepository" Collapsed="true">
+    <Position X="10" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IRepository\IPlaceInFlightRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="AirlineTicketOffice.Model.IRepository.ITariffsRepository" Collapsed="true">
+    <Position X="14.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IRepository\ITariffsRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="AirlineTicketOffice.Model.IRepository.ITicketRepository" Collapsed="true">
+    <Position X="8.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>IRepository\ITicketRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
