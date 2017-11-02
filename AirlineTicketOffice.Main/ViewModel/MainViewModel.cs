@@ -88,6 +88,30 @@ namespace AirlineTicketOffice.Main.ViewModel
         /// <summary>
         /// Close Main window.
         /// </summary>
+        private ICommand _minimizeWindow;
+
+        public ICommand MinimizeWindow
+        {
+            get
+            {
+                if (_minimizeWindow == null)
+                {
+                    _minimizeWindow = new RelayCommand(() =>
+                    {
+                        if (Application.Current.MainWindow.WindowState != WindowState.Minimized)
+                        {
+                            Application.Current.MainWindow.WindowState = WindowState.Minimized;
+                        }
+                    });
+                }
+
+                return _minimizeWindow;
+            }
+        }
+
+        /// <summary>
+        /// Close Main window.
+        /// </summary>
         private ICommand _closeWindow;
 
         public ICommand CloseWindow
