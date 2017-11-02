@@ -2,101 +2,97 @@
              StartupUri="View/MainWindow.xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" d1p1:Ignorable="d" xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006">
     <Application.Resources>
         <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary>
-                    <!-- mvvm light locator. -->
-                    <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="False" xmlns:vm="clr-namespace:AirlineTicketOffice.Main.ViewModel" />
-                    <!-- fonts awesome. -->
-                    <FontFamily x:Key="FA">/Fonts/fontawesome-webfont.ttf#FontAwesome</FontFamily>
-                    <!-- button style menu. -->
-                    <Style TargetType="{x:Type Button}" x:Key="MenuStyle">
-                        <Setter Property="Margin" Value="5 0 5 0"></Setter>
-                        <Setter Property="FontFamily" Value="Arial"></Setter>
-                    </Style>
-                    <Style TargetType="{x:Type TextBlock}" x:Key="LoadingStyleTB">
-                        <Setter Property="TextAlignment" Value="Center"></Setter>
-                        <Setter Property="VerticalAlignment" Value="Center"></Setter>
-                        <Setter Property="Text" Value="Loading..."></Setter>
-                        <Setter Property="FontSize" Value="16"></Setter>
-                        <Setter Property="Foreground" Value="White"></Setter>
-                        <Style.Triggers>
-                            <EventTrigger RoutedEvent="Loaded">
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <DoubleAnimation Duration="0:0:1"
+            <!-- mvvm light locator. -->
+            <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="False" xmlns:vm="clr-namespace:AirlineTicketOffice.Main.ViewModel" />
+            <!-- fonts awesome. -->
+            <FontFamily x:Key="FA">/Fonts/fontawesome-webfont.ttf#FontAwesome</FontFamily>
+            <!-- button style menu. -->
+            <Style TargetType="{x:Type Button}" x:Key="MenuStyle">
+                <Setter Property="Margin" Value="5 0 5 0"></Setter>
+                <Setter Property="FontFamily" Value="Arial"></Setter>
+            </Style>
+            <Style TargetType="{x:Type TextBlock}" x:Key="LoadingStyleTB">
+                <Setter Property="TextAlignment" Value="Center"></Setter>
+                <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                <Setter Property="Text" Value="Loading..."></Setter>
+                <Setter Property="FontSize" Value="16"></Setter>
+                <Setter Property="Foreground" Value="White"></Setter>
+                <Style.Triggers>
+                    <EventTrigger RoutedEvent="Loaded">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Duration="0:0:1"
                                              Storyboard.TargetProperty="FontSize"
                                              To="24"
                                              RepeatBehavior="Forever">
-                                        </DoubleAnimation>
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </EventTrigger>
-                        </Style.Triggers>
-                    </Style>
-                    <!-- Style For label new ticket view. -->
-                    <Style TargetType="{x:Type Label}" x:Key="LabelStyleFlight">
-                        <Setter Property="Margin" Value="5 3 5 0"></Setter>
-                        <Setter Property="Foreground" Value="LightBlue"></Setter>
-                        <Setter Property="Width" Value="130"></Setter>
-                    </Style>
-                    <!-- ControlTemplate For Error -->
-                    <ControlTemplate x:Key="ValidationFailed">
-                        <StackPanel Orientation="Horizontal">
-                            <Border BorderBrush="Red" BorderThickness="1">
-                                <AdornedElementPlaceholder />
-                            </Border>
-                            <TextBlock Foreground="Red" FontFamily="{StaticResource FA}" 
+                                </DoubleAnimation>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Style.Triggers>
+            </Style>
+            <!-- Style For label new ticket view. -->
+            <Style TargetType="{x:Type Label}" x:Key="LabelStyleFlight">
+                <Setter Property="Margin" Value="5 3 5 0"></Setter>
+                <Setter Property="Foreground" Value="LightBlue"></Setter>
+                <Setter Property="Width" Value="130"></Setter>
+            </Style>
+            <!-- ControlTemplate For Error -->
+            <ControlTemplate x:Key="ValidationFailed">
+                <StackPanel Orientation="Horizontal">
+                    <Border BorderBrush="Red" BorderThickness="1">
+                        <AdornedElementPlaceholder />
+                    </Border>
+                    <TextBlock Foreground="Red" FontFamily="{StaticResource FA}" 
                                        Text="  &#xf071;"
                                        FontSize="16"></TextBlock>
-                        </StackPanel>
-                    </ControlTemplate>
-                    <!-- ControlTemplate For Error New Ticket. -->
-                    <ControlTemplate x:Key="ValidationFailedTicket">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Foreground="Red" FontFamily="{StaticResource FA}" 
+                </StackPanel>
+            </ControlTemplate>
+            <!-- ControlTemplate For Error New Ticket. -->
+            <ControlTemplate x:Key="ValidationFailedTicket">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Foreground="Red" FontFamily="{StaticResource FA}" 
                                        Text="  &#xf071;"
                                        FontSize="16"></TextBlock>
-                        </StackPanel>
-                    </ControlTemplate>
-                    <!-- Style for ToolTip. -->
-                    <Style TargetType="{x:Type ToolTip}">
-                        <Setter Property="OverridesDefaultStyle" Value="True" />
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate TargetType="{x:Type ToolTip}" >
-                                    <TextBox Background="Red" Foreground="White" Width="250" 
+                </StackPanel>
+            </ControlTemplate>
+            <!-- Style for ToolTip. -->
+            <Style TargetType="{x:Type ToolTip}">
+                <Setter Property="OverridesDefaultStyle" Value="True" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type ToolTip}" >
+                            <TextBox Background="Red" Foreground="White" Width="250" 
                                              TextWrapping="WrapWithOverflow" FontSize="16" 
                                              Text="{TemplateBinding ToolTip.Content}" />
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
-                    <!-- DataError template on TextBox. -->
-                    <Style TargetType="TextBox">
-                        <Style.Triggers>
-                            <Trigger Property="Validation.HasError" Value="True">
-                                <Setter Property="ToolTip"
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <!-- DataError template on TextBox. -->
+            <Style TargetType="TextBox">
+                <Style.Triggers>
+                    <Trigger Property="Validation.HasError" Value="True">
+                        <Setter Property="ToolTip"
                                 Value="{Binding RelativeSource={RelativeSource Self},
                                 Path=(Validation.Errors).CurrentItem.ErrorContent}" />
-                                <Setter Property="Foreground" Value="Red" />
-                                <Setter Property="Validation.ErrorTemplate" Value="{StaticResource ValidationFailed}"></Setter>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                    <!-- DataError template on DataPicker TextBox. -->
-                    <Style TargetType="DatePicker">
-                        <Style.Triggers>
-                            <Trigger Property="Validation.HasError" Value="True">
-                                <Setter Property="ToolTip"
+                        <Setter Property="Foreground" Value="Red" />
+                        <Setter Property="Validation.ErrorTemplate" Value="{StaticResource ValidationFailed}"></Setter>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+            <!-- DataError template on DataPicker TextBox. -->
+            <Style TargetType="DatePicker">
+                <Style.Triggers>
+                    <Trigger Property="Validation.HasError" Value="True">
+                        <Setter Property="ToolTip"
                                 Value="{Binding RelativeSource={RelativeSource Self},
                                 Path=(Validation.Errors).CurrentItem.ErrorContent}" />
-                                <Setter Property="Foreground" Value="Red" />
-                                <Setter Property="Validation.ErrorTemplate" Value="{StaticResource ValidationFailed}"></Setter>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </ResourceDictionary>
-            </ResourceDictionary.MergedDictionaries>
+                        <Setter Property="Foreground" Value="Red" />
+                        <Setter Property="Validation.ErrorTemplate" Value="{StaticResource ValidationFailed}"></Setter>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
