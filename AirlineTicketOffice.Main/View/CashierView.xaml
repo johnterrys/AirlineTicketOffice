@@ -22,14 +22,15 @@
         <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" Background="#3a3938">
             <!-- Load Cashiers from db. -->
             <Button Content="Refresh Data" Margin="5" Foreground="White" Background="#171717"
-                    Visibility="{Binding ButtonLoadVisible}"
-                 Command="{Binding GetAllCashierCommand}">
+                    Visibility="{Binding ButtonVisible, Converter={StaticResource booleanToVisibilityConverter}}"
+                    Command="{Binding GetAllCashierCommand}">
             </Button>
         </StackPanel>
         <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" Background="#3a3938">
             <!-- Send Cashier To New Ticket -->         
-            <Button Background="#171717" Margin="5" Foreground="LightBlue" Visibility="{Binding ButtonLoadVisible}" 
-                        Content="Add Cashier For New Ticket" Command="{Binding SendCashierToTicketCommand}"></Button>
+            <Button Background="#171717" Margin="5" Foreground="LightBlue" 
+                    Visibility="{Binding ButtonVisible, Converter={StaticResource booleanToVisibilityConverter}}" 
+                    Content="Add Cashier For New Ticket" Command="{Binding SendCashierToTicketCommand}"></Button>
         </StackPanel>
         <!-- Change data passengers start. -->
         <Border BorderBrush="Black" BorderThickness="0.5" CornerRadius="3"
@@ -142,7 +143,8 @@
 
         <!-- Dummy-panel for loading. -->
         <DockPanel Background="#abbfd4"
-                   Visibility="{Binding DataGridVisibility}"
+                   Visibility="{Binding DataGridVisibility, 
+                   Converter={StaticResource booleanToVisibilityConverter}}"
                    Grid.Row="1" Grid.Column="1">
             <TextBlock Style="{StaticResource LoadingStyleTB}"></TextBlock>
         </DockPanel>

@@ -150,7 +150,7 @@
         <!-- Edditional Data End. -->
         <!-- Dummy-panel for loading. -->
         <DockPanel Background="#abbfd4"
-                   Visibility="{Binding DataGridVisibility}"
+                   Visibility="{Binding DataGridVisibility, Converter={StaticResource booleanToVisibilityConverter}}"
                    Grid.Row="0">
             <TextBlock Style="{StaticResource LoadingStyleTB}"></TextBlock>
         </DockPanel>

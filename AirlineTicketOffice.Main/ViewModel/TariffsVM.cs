@@ -31,14 +31,15 @@ namespace AirlineTicketOffice.Main.ViewModel
                          IMainNavigationService navigationService)
         {
 
+            this.DataGridVisibility = true;
+
             _tariffsRepository = tariffRepository;
             _pdfFileDialogService = pdfFileDialogService;
             _wordFileDialogService = wordFileDialogService;
             _navigationService = navigationService;
 
-            this.ButtonWordFileVisible = "Hidden";
-            this.ButtonLoadVisible = "Hidden";
-            this.ButtonPdfFileVisible = "Hidden";
+            this.ButtonVisible = false;
+           
             this.Tariff = new TariffModel();
 
 
@@ -52,10 +53,8 @@ namespace AirlineTicketOffice.Main.ViewModel
                 Application.Current.Dispatcher.Invoke(
                       new Action(() =>
                       {
-                          this.DataGridVisibility = "Collapsed";
-                          this.ButtonWordFileVisible = "Visible";
-                          this.ButtonPdfFileVisible = "Visible";
-                          this.ButtonLoadVisible = "Visible";
+                          this.DataGridVisibility = false;
+                          this.ButtonVisible = true;                         
 
                       }));
 
@@ -82,13 +81,9 @@ namespace AirlineTicketOffice.Main.ViewModel
 
         private TariffModel _tariff;
 
-        private string _dataGridVisibility;
+        private bool _dataGridVisibility;
 
-        private string _ButtonLoadVisible;
-
-        private string _ButtonWordFileVisible;
-
-        private string _ButtonPdfFileVisible;
+        private bool _ButtonVisible;
 
 
         #endregion
@@ -101,30 +96,17 @@ namespace AirlineTicketOffice.Main.ViewModel
             set { Set(() => Tariff, ref _tariff, value); }
         }
 
-        public string DataGridVisibility
+        public bool DataGridVisibility
         {
             get { return _dataGridVisibility; }
             set { Set(() => DataGridVisibility, ref _dataGridVisibility, value); }
         }
 
-        public string ButtonPdfFileVisible
+        public bool ButtonVisible
         {
-            get { return _ButtonPdfFileVisible; }
-            set { Set(() => ButtonPdfFileVisible, ref _ButtonPdfFileVisible, value); }
-        }
-
-        public string ButtonWordFileVisible
-        {
-            get { return _ButtonWordFileVisible; }
-            set { Set(() => ButtonWordFileVisible, ref _ButtonWordFileVisible, value); }
-        }
-
-        public string ButtonLoadVisible
-        {
-            get { return _ButtonLoadVisible; }
-            set { Set(() => ButtonLoadVisible, ref _ButtonLoadVisible, value); }
-        }
-
+            get { return _ButtonVisible; }
+            set { Set(() => ButtonVisible, ref _ButtonVisible, value); }
+        }   
 
         public ObservableCollection<TariffModel> Tariffs
         {

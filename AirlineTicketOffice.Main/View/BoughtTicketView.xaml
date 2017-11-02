@@ -16,7 +16,7 @@
         <StackPanel Grid.Row="0" Orientation="Horizontal" Background="#3a3938">
             <!-- load rates from db. -->
             <Button Content="Refresh Data" Margin="5" Foreground="White" Background="#171717"
-                    Visibility="{Binding ButtonLoadVisible}"
+                    Visibility="{Binding ButtonVisible, Converter={StaticResource booleanToVisibilityConverter}}"
                  Command="{Binding GetBoughtTicketCommand}">
             </Button>
         </StackPanel>
@@ -76,7 +76,8 @@
         </ScrollViewer>
         <!-- Dummy-panel for loading. -->
         <DockPanel Background="#abbfd4"
-                   Visibility="{Binding DataGridVisibility}"
+                   Visibility="{Binding DataGridVisibility, 
+                   Converter={StaticResource booleanToVisibilityConverter}}"
                    Grid.Row="1">
             <TextBlock Style="{StaticResource LoadingStyleTB}"></TextBlock>
         </DockPanel>

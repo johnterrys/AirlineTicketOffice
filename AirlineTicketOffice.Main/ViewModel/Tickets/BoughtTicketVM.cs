@@ -23,9 +23,11 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
         #region constructor
         public BoughtTicketVM(IBoughtTicketRepository repository)
         {
-            _repository = repository;
 
-            this.ButtonLoadVisible = "Hidden";
+            this.ButtonVisible = false;
+            this.DataGridVisibility = true;
+
+            _repository = repository;          
 
             Task.Factory.StartNew(() =>
             {
@@ -37,8 +39,8 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
                 Application.Current.Dispatcher.Invoke(
                       new Action(() =>
                       {
-                          this.DataGridVisibility = "Collapsed";
-                          this.ButtonLoadVisible = "Visible";
+                          this.DataGridVisibility = false;
+                          this.ButtonVisible = true;
                       }));
             });
 
@@ -52,11 +54,9 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
 
         private ObservableCollection<BoughtTicketModel> _tickets;
 
-        //private BoughtTicketModel _ticket;
+        private bool _dataGridVisibility;
 
-        private string _dataGridVisibility;
-
-        private string _ButtonLoadVisible;
+        private bool _ButtonVisible;
 
         object locker = new object(); 
 
@@ -64,23 +64,17 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
 
         #region properties
 
-        public string ButtonLoadVisible
+        public bool ButtonVisible
         {
-            get { return _ButtonLoadVisible; }
-            set { Set(() => ButtonLoadVisible, ref _ButtonLoadVisible, value); }
+            get { return _ButtonVisible; }
+            set { Set(() => ButtonVisible, ref _ButtonVisible, value); }
         }
 
-        public string DataGridVisibility
+        public bool DataGridVisibility
         {
             get { return _dataGridVisibility; }
             set { Set(() => DataGridVisibility, ref _dataGridVisibility, value); }
-        }
-
-        //public BoughtTicketModel Ticket
-        //{
-        //    get { return _ticket; }
-        //    set { Set(() => Ticket, ref _ticket, value); }
-        //}
+        }      
 
         public ObservableCollection<BoughtTicketModel> Tickets
         {
@@ -113,31 +107,7 @@ namespace AirlineTicketOffice.Main.ViewModel.Tickets
                 return _getBoughtTicketCommand;
             }
             set { _getBoughtTicketCommand = value; }
-        }
-
-        //private ICommand _sendTicketCommand;
-
-        //public ICommand SendTicketCommand
-        //{
-        //    get
-        //    {
-        //        if (_sendTicketCommand == null)
-        //        {
-        //            _sendTicketCommand = new RelayCommand<AllTicketsModel>((t) =>
-        //            {
-        //                if (t != null)
-        //                {
-        //                    Messenger.Default.Send<MessageAllTicket>(new MessageAllTicket()
-        //                    {
-        //                        AllTicketMessage = t
-        //                    });
-        //                }
-        //            });
-        //        }
-        //        return _sendTicketCommand;
-        //    }
-        //    set { _sendTicketCommand = value; }
-        //}
+        }        
 
         #endregion
 

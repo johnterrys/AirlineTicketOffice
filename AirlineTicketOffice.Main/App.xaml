@@ -93,6 +93,8 @@
                     </Trigger>
                 </Style.Triggers>
             </Style>
+            <!-- Converter visability. -->
+            <BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>

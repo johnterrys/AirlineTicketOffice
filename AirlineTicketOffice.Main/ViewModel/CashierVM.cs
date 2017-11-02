@@ -24,12 +24,14 @@ namespace AirlineTicketOffice.Main.ViewModel
         public CashierVM(ICashierRepository repository,
                          IMainNavigationService navigationService)
         {
+
+            this.DataGridVisibility = true;
+            this.ButtonVisible = false;
+
             _repository = repository;
             _navigationService = navigationService;
 
             this.Cashier = new CashierModel();
-
-            this.ButtonLoadVisible = "Hidden";
 
             Task.Factory.StartNew(() =>
             {
@@ -41,8 +43,8 @@ namespace AirlineTicketOffice.Main.ViewModel
                 Application.Current.Dispatcher.Invoke(
                       new Action(() =>
                       {
-                          this.DataGridVisibility = "Collapsed";
-                          this.ButtonLoadVisible = "Visible";
+                          this.DataGridVisibility = false;
+                          this.ButtonVisible = true;
                           this.ForegroundForUser = "#f2f2f2";
                           this.MessageForUser = "Please, Enter A Data...";
 
@@ -63,9 +65,9 @@ namespace AirlineTicketOffice.Main.ViewModel
 
         private CashierModel _Cashier;
 
-        private string _dataGridVisibility;
+        private bool _dataGridVisibility;
 
-        private string _ButtonLoadVisible;
+        private bool _ButtonVisible;
 
         private string _ForegroundForUser;
 
@@ -97,13 +99,13 @@ namespace AirlineTicketOffice.Main.ViewModel
 
         }
 
-        public string ButtonLoadVisible
+        public bool ButtonVisible
         {
-            get { return _ButtonLoadVisible; }
-            set { Set(() => ButtonLoadVisible, ref _ButtonLoadVisible, value); }
+            get { return _ButtonVisible; }
+            set { Set(() => ButtonVisible, ref _ButtonVisible, value); }
         }
 
-        public string DataGridVisibility
+        public bool DataGridVisibility
         {
             get { return _dataGridVisibility; }
             set { Set(() => DataGridVisibility, ref _dataGridVisibility, value); }

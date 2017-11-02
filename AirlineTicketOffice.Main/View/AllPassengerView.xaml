@@ -23,18 +23,20 @@
         <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" Background="#3a3938">
             <!-- Load Passengers from db. -->
             <Button Content="Refresh Data" Margin="5" Foreground="White" Background="#171717"
-                    Visibility="{Binding ButtonLoadVisible}"
+                    Visibility="{Binding ButtonVisible, Converter={StaticResource booleanToVisibilityConverter}}"
                  Command="{Binding GetAllPassengerCommand}">
             </Button>
         </StackPanel>
         <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" Background="#3a3938">
             <!-- Search Passenger from db. -->
-            <TextBlock Margin="5 10 5 0"  Visibility="{Binding ButtonLoadVisible}" 
+            <TextBlock Margin="5 10 5 0"  Visibility="{Binding ButtonVisible,
+                       Converter={StaticResource booleanToVisibilityConverter}}" 
                        Foreground="LightBlue"
                        TextWrapping="Wrap" Text="Enter Passport Of Number:"/>
-            <TextBox Margin="5 5 10 5"  Visibility="{Binding ButtonLoadVisible}" 
-                 TextWrapping="Wrap"  Text="{Binding PassportNumber, UpdateSourceTrigger=PropertyChanged}"
-                 MinWidth="200">
+            <TextBox Margin="5 5 10 5"  
+                     Visibility="{Binding ButtonVisible, Converter={StaticResource booleanToVisibilityConverter}}" 
+                     TextWrapping="Wrap"  Text="{Binding PassportNumber, UpdateSourceTrigger=PropertyChanged}"
+                     MinWidth="200">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="TextChanged">
                         <mvvm:EventToCommand 
@@ -42,8 +44,9 @@
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </TextBox>
-            <Button Background="#171717" Margin="5" Foreground="LightBlue" Visibility="{Binding ButtonLoadVisible}" 
-                        Content="Add Passenger For New Ticket" Command="{Binding SendPassengerToTicketCommand}"></Button>
+            <Button Background="#171717" Margin="5" Foreground="LightBlue"
+                    Visibility="{Binding ButtonVisible, Converter={StaticResource booleanToVisibilityConverter}}" 
+                    Content="Add Passenger For New Ticket" Command="{Binding SendPassengerToTicketCommand}"></Button>
         </StackPanel>
         <!-- Change data passengers start. -->
         <Border BorderBrush="Black" BorderThickness="0.5" CornerRadius="3"
@@ -274,7 +277,8 @@
         
         <!-- Dummy-panel for loading. -->
         <DockPanel Background="#abbfd4"
-                   Visibility="{Binding DataGridVisibility}"
+                   Visibility="{Binding DataGridVisibility, 
+                   Converter={StaticResource booleanToVisibilityConverter}}"
                    Grid.Row="1" Grid.Column="1">
             <TextBlock Style="{StaticResource LoadingStyleTB}"></TextBlock>
         </DockPanel>

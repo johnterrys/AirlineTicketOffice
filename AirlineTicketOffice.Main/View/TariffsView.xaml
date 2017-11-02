@@ -59,23 +59,25 @@
         <StackPanel Grid.Row="1" Orientation="Horizontal" Background="#3a3938">
             <!-- open file. -->
             <Button Content="Open &#xf1c1;" Margin="5" Foreground="White" Background="#e51616"
-                    Visibility="{Binding ButtonPdfFileVisible}" FontSize="20" FontFamily="{StaticResource FA}"
+                    Visibility="{Binding ButtonVisible, Converter={StaticResource booleanToVisibilityConverter}}"
+                    FontSize="20" FontFamily="{StaticResource FA}"
                  Command="{Binding OpenFilePdfCommand}">              
                 </Button>
             <!-- open file. -->
             <Button Content="Open &#xf1c2;" Margin="5" Foreground="White" FontSize="20" 
                     Background="#597a9b" FontFamily="{StaticResource FA}"
-                    Visibility="{Binding ButtonWordFileVisible}"
+                    Visibility="{Binding ButtonVisible, Converter={StaticResource booleanToVisibilityConverter}}"
                  Command="{Binding OpenFileWordCommand}">
             </Button>
             <!-- load rates from db. -->
             <Button Content="Refrash Tariffs Data" Margin="5" Foreground="White" Background="#171717"
-                    Visibility="{Binding ButtonLoadVisible}"
+                     Visibility="{Binding ButtonVisible, Converter={StaticResource booleanToVisibilityConverter}}"
                  Command="{Binding GetAllTariffsCommand}">
             </Button>
             <!-- Send Rate To New Ticket -->
-            <Button Background="#171717" Margin="5" Foreground="LightBlue" Visibility="{Binding ButtonLoadVisible}" 
-                        Content="Add Tariff For New Ticket" Command="{Binding SendTariffToTicketCommand}"></Button>
+            <Button Background="#171717" Margin="5" Foreground="LightBlue"  
+                    Visibility="{Binding ButtonVisible, Converter={StaticResource booleanToVisibilityConverter}}"
+                    Content="Add Tariff For New Ticket" Command="{Binding SendTariffToTicketCommand}"></Button>
         </StackPanel>
         <!-- View files(pdf, word, etc). -->
         <Grid x:Name="GridForWebBrowser" Grid.Row="2" Margin="5">
@@ -86,12 +88,10 @@
                 </LinearGradientBrush>
             </Grid.Background>
             <TextBlock Margin="5" Text="Load File Please..."></TextBlock>
-            <!--<WebBrowser Grid.Row="0" x:Name="WebBrowser"></WebBrowser>  move to trash?-->
-            <!--<DocumentViewer Name="documentViewer" VerticalAlignment="Top"/>-->
         </Grid>
         <!-- Dummy-panel for loading. -->
         <DockPanel Background="#abbfd4"
-                   Visibility="{Binding DataGridVisibility}"
+                   Visibility="{Binding DataGridVisibility, Converter={StaticResource booleanToVisibilityConverter}}"
                    Grid.Row="0">
             <TextBlock Style="{StaticResource LoadingStyleTB}"></TextBlock>
         </DockPanel>

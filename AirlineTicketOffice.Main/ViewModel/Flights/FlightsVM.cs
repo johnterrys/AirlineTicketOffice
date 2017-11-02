@@ -31,6 +31,7 @@ namespace AirlineTicketOffice.Main.ViewModel.Flights
                          IMainNavigationService navigationService,
                          IPlaceInAircraftRepository placeAirRepository)
         {
+            this.DataGridVisibility = true;
 
             _flightRepository = flightRepository;
             _placeFlightRepository = placeFlightRepository;
@@ -41,21 +42,15 @@ namespace AirlineTicketOffice.Main.ViewModel.Flights
 
             this.DateSearch = DateTime.Now;
 
+            this.PlaceInFlight = null;
+
+            this.PlaceInAircraft = null;
+
             Task.Factory.StartNew(() =>
             {
-                GetAllFlightLock();
 
-                this.PlaceInFlight = null;
-
-                this.PlaceInAircraft = null;
-
-                Application.Current.Dispatcher.Invoke(
-                      new Action(() =>
-                      {
-                          this.DataGridVisibility = "Collapsed";
-
-                      }));
-                
+                GetAllFlightLock();           
+                                
             });
 
             ReceiveFlight();
@@ -89,7 +84,7 @@ namespace AirlineTicketOffice.Main.ViewModel.Flights
 
         private FlightModel _flight;
 
-        private string _dataGridVisibility;
+        private bool _dataGridVisibility;
 
         private string _MessageForUser;
 
@@ -177,7 +172,7 @@ namespace AirlineTicketOffice.Main.ViewModel.Flights
             set { Set(() => ForegroundForUser, ref _ForegroundForUser, value); }
         }
 
-        public string DataGridVisibility
+        public bool DataGridVisibility
         {
             get { return _dataGridVisibility; }
             set { Set(() => DataGridVisibility, ref _dataGridVisibility, value); }
@@ -495,7 +490,7 @@ namespace AirlineTicketOffice.Main.ViewModel.Flights
                     {
                         this.ForegroundForUser = "#68a225";
                         this.MessageForUser = "Data Load Success.";
-
+                        this.DataGridVisibility = false;
                     }));
                    
                 }
@@ -506,7 +501,7 @@ namespace AirlineTicketOffice.Main.ViewModel.Flights
                     Application.Current.Dispatcher.Invoke(
                      new Action(() =>
                      {
-                         this.DataGridVisibility = "Collapsed";
+                         this.DataGridVisibility = false;
                          this.ForegroundForUser = "#ff420e";
                          this.MessageForUser = "Data Not Load. Click'Refrash Data' to Load Data again.";
                         
