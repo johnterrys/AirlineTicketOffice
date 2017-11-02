@@ -3,7 +3,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <!-- mvvm light locator. -->
-            <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="False" xmlns:vm="clr-namespace:AirlineTicketOffice.Main.ViewModel" />
+            <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True" xmlns:vm="clr-namespace:AirlineTicketOffice.Main.ViewModel" />
             <!-- fonts awesome. -->
             <FontFamily x:Key="FA">/Fonts/fontawesome-webfont.ttf#FontAwesome</FontFamily>
             <!-- button style menu. -->
@@ -62,8 +62,8 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type ToolTip}" >
-                            <TextBox Background="Red" Foreground="White" Width="250" 
-                                             TextWrapping="WrapWithOverflow" FontSize="16" 
+                            <TextBox Background="Red" Foreground="White" FontSize="16"
+                                             TextWrapping="WrapWithOverflow"  
                                              Text="{TemplateBinding ToolTip.Content}" />
                         </ControlTemplate>
                     </Setter.Value>

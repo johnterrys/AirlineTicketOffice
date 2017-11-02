@@ -78,11 +78,36 @@ namespace AirlineTicketOffice.Main.ViewModel
         {
             get { return _ForegroundForUser; }
             set { Set(() => ForegroundForUser, ref _ForegroundForUser, value); }
-        }       
+        }
 
         #endregion
 
         #region commands
+
+
+        /// <summary>
+        /// Close Main window.
+        /// </summary>
+        private ICommand _closeWindow;
+
+        public ICommand CloseWindow
+        {
+            get
+            {
+                if (_closeWindow == null)
+                {
+                    _closeWindow = new RelayCommand(() =>
+                    {
+                        if (Application.Current.MainWindow != null)
+                        {
+                            Application.Current.MainWindow.Close();
+                        }
+                    });
+                }
+
+                return _closeWindow;
+            }
+        }
 
         /// <summary>
         /// Navigate to 'NewTicket' view.

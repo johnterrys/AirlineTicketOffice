@@ -6,10 +6,9 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:mvvm="http://www.galasoft.ch/mvvmlight"
         xmlns:local="clr-namespace:AirlineTicketOffice.Main"
-        mc:Ignorable="d" Icon="../MainIcon.ico"
-        Title="Airline Ticket Office"
-        MinHeight="768" MinWidth="1280"
-        WindowState="Maximized"
+        mc:Ignorable="d" ResizeMode="NoResize" 
+        x:Name="window" AllowsTransparency="True" 
+        WindowState="Maximized" WindowStyle="None"
         DataContext="{Binding Source={StaticResource Locator}, Path=Main}">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
@@ -19,15 +18,26 @@
             <i:InvokeCommandAction Command="{Binding ClosingCommand}"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
+    <Border BorderBrush="#3a3938" BorderThickness="2">
     <Grid Background="#3a3938">
         <Grid.RowDefinitions>
+            <RowDefinition Height="25"></RowDefinition>
             <RowDefinition Height="0.05*"></RowDefinition>
             <RowDefinition Height="0.05*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="0.05*"></RowDefinition>
         </Grid.RowDefinitions>
+        <!-- Close window menu and logo. -->
+        <DockPanel Background="#3a3938" Grid.Row="0">
+            <TextBlock FontFamily="{StaticResource FA}" Margin="3 7 3 0"  Foreground="LightBlue" Text="&#xf1d9;"></TextBlock>
+            <TextBlock Margin="4" Text="AIRLINE TICKET OFFICE" Foreground="White"></TextBlock>
+            <Button HorizontalAlignment="Right" ToolTip="Close" 
+                    Command="{Binding CloseWindow}" BorderBrush="White" BorderThickness="1"
+                    FontFamily="{StaticResource FA}" Content="&#xf00d;" Foreground="White"
+                    Background="Red" Width="20" FontSize="16"></Button>
+        </DockPanel>
         <!-- Menu. -->
-        <Menu Grid.Row="0" Background="#3a3938">
+        <Menu Grid.Row="1" Background="#3a3938">
             <Menu.Resources>
                 <!-- Style For textBlock submenu. -->
                 <Style TargetType="{x:Type TextBlock}" x:Key="tbSubMenuStyle">
@@ -153,7 +163,7 @@
             </MenuItem>
         </Menu>
         <!-- Tickets. -->
-        <ToolBar Grid.Row="1" Background="#3a3938">
+        <ToolBar Grid.Row="2" Background="#3a3938">
             <!-- Tickets atart. -->
             <ComboBox x:Name="CBox" MinWidth="100" HorizontalAlignment="Left">
                 <!-- Bought Tickets. -->
@@ -221,11 +231,11 @@
             <Separator />
         </ToolBar>
         <!-- Main frame. -->
-        <Frame Grid.Row="2" x:Name="MainFrame" NavigationUIVisibility="Hidden" 
+        <Frame Grid.Row="3" x:Name="MainFrame" NavigationUIVisibility="Hidden" 
                JournalOwnership="UsesParentJournal" Background="#abbfd4">
         </Frame>
         <!-- Status bar. -->
-        <StatusBar Grid.Row="3" Background="#3a3938">
+        <StatusBar Grid.Row="4" Background="#3a3938">
             <StatusBarItem>
                 <TextBlock MinWidth="100" Foreground="{Binding ForegroundForUser}" 
                            Text="{Binding StatusWindow}"></TextBlock>
@@ -235,4 +245,5 @@
             </StatusBarItem>
         </StatusBar>
     </Grid>
+    </Border>
 </Window>
