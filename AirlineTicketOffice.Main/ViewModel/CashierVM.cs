@@ -273,8 +273,7 @@ namespace AirlineTicketOffice.Main.ViewModel
                     {
                         if (this.Cashier != null)
                         {
-                            _navigationService.NavigateTo("NewTicketViewKey", "New Ticket Window");
-
+                           
                             Messenger.Default.Send<MessageCashierToNewTicket>(new MessageCashierToNewTicket()
                             {
                                 SendCashierFromCashierVM = this.Cashier
@@ -285,6 +284,7 @@ namespace AirlineTicketOffice.Main.ViewModel
                                 MessageStatusFromFlight = "New Ticket Window"
                             });
 
+                            _navigationService.NavigateTo("NewTicketViewKey", "New Ticket Window");
                         }
 
                     });

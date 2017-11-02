@@ -260,8 +260,7 @@ namespace AirlineTicketOffice.Main.ViewModel
                     _sendTariffToTicketCommand = new RelayCommand(() =>
                     {
                         if (this.Tariff != null)
-                        {
-                            _navigationService.NavigateTo("NewTicketViewKey", "New Ticket Window");
+                        {                           
 
                             Messenger.Default.Send<MessageTariffToNewTicket>(new MessageTariffToNewTicket()
                             {
@@ -273,6 +272,7 @@ namespace AirlineTicketOffice.Main.ViewModel
                                 MessageStatusFromFlight = "New Ticket Window"
                             });
 
+                            _navigationService.NavigateTo("NewTicketViewKey", "New Ticket Window");
                         }
 
                     });

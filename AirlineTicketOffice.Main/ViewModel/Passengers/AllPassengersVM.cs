@@ -277,8 +277,7 @@ namespace AirlineTicketOffice.Main.ViewModel.Passengers
                     _sendPassengerToTicketCommand = new RelayCommand(() =>
                     {
                         if (this.Passenger != null)
-                        {
-                            _navigationService.NavigateTo("NewTicketViewKey", "New Ticket Window");
+                        {                           
 
                             Messenger.Default.Send<MessagePassengerToNewTicket>(new MessagePassengerToNewTicket()
                             {
@@ -289,6 +288,8 @@ namespace AirlineTicketOffice.Main.ViewModel.Passengers
                             {
                                 MessageStatusFromFlight = "New Ticket Window"
                             });
+
+                            _navigationService.NavigateTo("NewTicketViewKey", "New Ticket Window");
 
                         }
 
