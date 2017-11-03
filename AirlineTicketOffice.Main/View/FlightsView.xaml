@@ -138,7 +138,7 @@
                        FontSize="24"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"></TextBlock>
-            <!-- My user control - 'PlaceChartControl'. -->
+            <!-- User control - 'PlaceChartControl'. -->
             <Grid Grid.Row="1">
                 <lib:PlaceChartControl EconomFreeRect="{Binding EconomFreeRect, Converter={StaticResource nullRectConverter}}" 
                                        EconomBusyRect="{Binding EconomBusyRect, Converter={StaticResource nullRectConverter}}"
