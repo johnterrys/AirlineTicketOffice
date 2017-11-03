@@ -45,7 +45,8 @@ namespace AirlineTicketOffice.Repository.Repositories
         /// <returns></returns>
         public bool Add(AllTicketsModel entity)
         {
-           
+            _methodName = "Add(AllTicketsModel entity) fail...";
+
             try
             {
                 if (entity == null) return false;              
@@ -64,24 +65,24 @@ namespace AirlineTicketOffice.Repository.Repositories
                 if (Save())
                 {                       
                     return true;
-                }               
+                }
 
-                Debug.WriteLine("Add(AllTicketsModel entity) fail...");
+                DebugWrite(_methodName, String.Empty);
                 return false;
             }
             catch (NullReferenceException ex)
             {
-                Debug.WriteLine("Add(AllTicketsModel entity) fail..." + ex.Message);
+                DebugWrite(_methodName, ex.Message);
                 return false;
             }
             catch (ArgumentException ex)
             {
-                Debug.WriteLine("Add(AllTicketsModel entity) fail..." + ex.Message);
+                DebugWrite(_methodName, ex.Message);
                 return false;
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("Add(AllTicketsModel entity) fail..." + ex.Message);
+                DebugWrite(_methodName, ex.Message);
                 return false;
             }
 
@@ -93,6 +94,8 @@ namespace AirlineTicketOffice.Repository.Repositories
         /// <returns></returns>
         public IEnumerable<AllTicketsModel> GetAll()
         {
+            _methodName = "IEnumerable<AllTicketsModel> GetAll() fail...";
+
             try
             {
                 _context.Database.Log = (s => Console.WriteLine(s));
@@ -120,17 +123,17 @@ namespace AirlineTicketOffice.Repository.Repositories
             }
             catch (NullReferenceException ex)
             {
-                Debug.WriteLine("IEnumerable<AllTicketsModel> GetAll() fail..." + ex.Message);
+                DebugWrite(_methodName, ex.Message);
                 return null;
             }
             catch (ArgumentException ex)
             {
-                Debug.WriteLine("IEnumerable<AllTicketsModel> GetAll() fail..." + ex.Message);
+                DebugWrite(_methodName, ex.Message);
                 return null;
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("IEnumerable<AllTicketsModel> GetAll() fail..." + ex.Message);
+                DebugWrite(_methodName, ex.Message);
                 return null;
             }
           

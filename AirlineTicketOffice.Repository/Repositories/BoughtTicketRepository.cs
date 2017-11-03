@@ -20,6 +20,8 @@ namespace AirlineTicketOffice.Repository.Repositories
         /// <returns></returns>
         public IEnumerable<BoughtTicketModel> GetAll()
         {
+            _methodName = "IEnumerable<BoughtTicketModel> GetAll() fail...";
+
             try
             {
                 _context.Database.Log = (s => Console.WriteLine(s));
@@ -50,17 +52,17 @@ namespace AirlineTicketOffice.Repository.Repositories
             }
             catch (NullReferenceException ex)
             {
-                Debug.WriteLine("IEnumerable<BoughtTicketModel> GetAll() fail..." + ex.Message);
+                DebugWrite(_methodName, ex.Message);
                 return null;
             }
             catch (ArgumentException ex)
             {
-                Debug.WriteLine("IEnumerable<BoughtTicketModel> GetAll() fail..." + ex.Message);
+                DebugWrite(_methodName, ex.Message);
                 return null;
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("IEnumerable<BoughtTicketModel> GetAll() fail..." + ex.Message);
+                DebugWrite(_methodName, ex.Message);
                 return null;
             }
           
