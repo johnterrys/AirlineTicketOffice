@@ -2,6 +2,9 @@
 using GalaSoft.MvvmLight.Messaging;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -28,13 +31,14 @@ namespace AirlineTicketOffice.Main.View
             NavigationSetup();
         }
 
+        /// <summary>
+        /// TEMPORARY DIRTY HACK!!!!!!!!
+        /// </summary>
         private void NavigationSetup()
         {
             Messenger.Default.Register<NavigateArgs>(this, (x) =>
             {
                 DocumentViewer dw = null;
-
-                WebBrowser wb = null;
 
                 if (x.Token == "word")
                 {
@@ -47,14 +51,28 @@ namespace AirlineTicketOffice.Main.View
                     dw.Document = x.Document;
                 }
                 if (x.Token == "pdf")
-                {                
-                    GridForWebBrowser.Children.Clear();
+                {
+                    if (File.Exists(x.Url));
+                    {
+                        try
+                        {
+                            Process.Start(x.Url);
+                        }                       
+                        catch (Win32Exception ex)
+                        {
+                            Debug.WriteLine(ex.Message);
+                        }
+                        catch (ObjectDisposedException ex)
+                        {
+                            Debug.WriteLine(ex.Message);
+                        }
+                        catch (FileNotFoundException ex)
+                        {
+                            Debug.WriteLine(ex.Message);
+                        }
 
-                    wb = new WebBrowser();
+                    }
 
-                    GridForWebBrowser.Children.Add(wb);
-
-                    wb.Navigate(new Uri(x.Url, UriKind.Absolute));
                 }               
 
             });
