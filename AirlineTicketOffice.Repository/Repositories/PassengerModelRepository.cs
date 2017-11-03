@@ -20,6 +20,8 @@ namespace AirlineTicketOffice.Repository.Repositories
         /// <returns>IEnumerable<PassengerModel></returns>
         public IEnumerable<PassengerModel> GetAll()
         {
+            _methodName = "IEnumerable<PassengerModel> GetAll() fail...";
+
             try
             {
                 _context.Database.Log = (s => Console.WriteLine(s));
@@ -44,17 +46,17 @@ namespace AirlineTicketOffice.Repository.Repositories
             }
             catch (NullReferenceException ex)
             {
-                Debug.WriteLine("IEnumerable<PassengerModel> GetAll() fail..." + ex.Message);
+                DebugWrite(_methodName, ex.Message);
                 return null;
             }
             catch (ArgumentException ex)
             {
-                Debug.WriteLine("IEnumerable<PassengerModel> GetAll() fail..." + ex.Message);
+                DebugWrite(_methodName, ex.Message);
                 return null;
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("IEnumerable<PassengerModel> GetAll() fail..." + ex.Message);
+                DebugWrite(_methodName, ex.Message);
                 return null;
             }
           
@@ -62,6 +64,7 @@ namespace AirlineTicketOffice.Repository.Repositories
 
         public IEnumerable<PassengerModel> GetAllForRead()
         {
+            _methodName = "IEnumerable<PassengerModel> GetAllForRead() fail...";
 
             try
             {
@@ -87,17 +90,17 @@ namespace AirlineTicketOffice.Repository.Repositories
             }
             catch (NullReferenceException ex)
             {
-                Debug.WriteLine("IEnumerable<PassengerModel> GetAllForRead() fail..." + ex.Message);
+                DebugWrite(_methodName, ex.Message);
                 return null;
             }
             catch (ArgumentException ex)
             {
-                Debug.WriteLine("IEnumerable<PassengerModel> GetAllForRead() fail..." + ex.Message);
+                DebugWrite(_methodName, ex.Message);
                 return null;
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("IEnumerable<PassengerModel> GetAllForRead() fail..." + ex.Message);
+                DebugWrite(_methodName, ex.Message);
                 return null;
             }
           
@@ -110,6 +113,8 @@ namespace AirlineTicketOffice.Repository.Repositories
         /// <returns></returns>
         public bool Add(PassengerModel entity)
         {
+
+            _methodName = "Add(PassengerModel entity) fail...";
 
             try
             {
@@ -133,22 +138,22 @@ namespace AirlineTicketOffice.Repository.Repositories
                     return true;
                 }
 
-                Debug.WriteLine("Add(PassengerModel entity) fail...");
+                DebugWrite(_methodName, String.Empty);
                 return false;
             }
             catch (NullReferenceException ex)
             {
-                Debug.WriteLine("Add(PassengerModel entity) fail..." + ex.Message);
+                DebugWrite(_methodName, ex.Message);
                 return false;
             }
             catch (ArgumentException ex)
             {
-                Debug.WriteLine("Add(PassengerModel entity) fail..." + ex.Message);
+                DebugWrite(_methodName, ex.Message);
                 return false;
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("Add(PassengerModel entity) fail..." + ex.Message);
+                DebugWrite(_methodName, ex.Message);
                 return false;
             }
         }
@@ -165,7 +170,8 @@ namespace AirlineTicketOffice.Repository.Repositories
         /// <returns></returns>
         public bool Update(PassengerModel p)
         {
-            
+            _methodName = "Update(PassengerModel p) fail...";
+
             try
             {
                 if (p == null || p.PassengerID <= 0) return false;
@@ -188,23 +194,23 @@ namespace AirlineTicketOffice.Repository.Repositories
                 {
                     return true;
                 }
-                
-                Debug.WriteLine("Update(PassengerModel p) fail...");
+
+                DebugWrite(_methodName, String.Empty);
                 return false;
             }
             catch (NullReferenceException ex)
             {
-                Debug.WriteLine("Update(PassengerModel p) fail..." + ex.Message);
+                DebugWrite(_methodName, ex.Message);
                 return false;
             }
             catch (ArgumentException ex)
             {
-                Debug.WriteLine("Update(PassengerModel p) fail..." + ex.Message);
+                DebugWrite(_methodName, ex.Message);
                 return false;
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("Update(PassengerModel p) fail..." + ex.Message);
+                DebugWrite(_methodName, ex.Message);
                 return false;
             }            
         }

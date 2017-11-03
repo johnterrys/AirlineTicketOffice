@@ -27,6 +27,8 @@ namespace AirlineTicketOffice.Repository.Repositories
         /// <returns></returns>
         public IEnumerable<FlightModel> GetAll()
         {
+            _methodName = "IEnumerable<FlightModel> GetAll fail...";
+
             try
             {
 
@@ -65,17 +67,17 @@ namespace AirlineTicketOffice.Repository.Repositories
             }
             catch (NullReferenceException ex)
             {
-                Debug.WriteLine("IEnumerable<FlightModel> GetAll fail..." + ex.Message);
+                DebugWrite(_methodName, ex.Message);
                 return null;
             }
             catch (ArgumentException ex)
             {
-                Debug.WriteLine("IEnumerable<FlightModel> GetAll fail..." + ex.Message);
+                DebugWrite(_methodName, ex.Message);
                 return null;
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("IEnumerable<FlightModel> GetAll fail..." + ex.Message);
+                DebugWrite(_methodName, ex.Message);
                 return null;
             }
           

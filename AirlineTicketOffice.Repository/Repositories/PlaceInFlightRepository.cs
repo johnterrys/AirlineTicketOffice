@@ -24,6 +24,8 @@ namespace AirlineTicketOffice.Repository.Repositories
         /// <returns></returns>
         public IEnumerable<PlaceInFlightModel> GetAll()
         {
+            _methodName = "IEnumerable<PlaceInFlightModel> GetAll() fail...";
+
             try
             {
                 _context.Database.Log = (s => Console.WriteLine(s));
@@ -40,17 +42,17 @@ namespace AirlineTicketOffice.Repository.Repositories
             }
             catch (NullReferenceException ex)
             {
-                Debug.WriteLine("IEnumerable<PlaceInFlightModel> GetAll() fail..." + ex.Message);
+                DebugWrite(_methodName, ex.Message);
                 return null;
             }
             catch (ArgumentException ex)
             {
-                Debug.WriteLine("IEnumerable<PlaceInFlightModel> GetAll() fail..." + ex.Message);
+                DebugWrite(_methodName, ex.Message);
                 return null;
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("IEnumerable<PlaceInFlightModel> GetAll() fail..." + ex.Message);
+                DebugWrite(_methodName, ex.Message);
                 return null;
             }
            
@@ -63,6 +65,8 @@ namespace AirlineTicketOffice.Repository.Repositories
         /// <returns></returns>
         public IEnumerable<PlaceInFlightModel> GetPlacesOnFlight(int id)
         {
+            _methodName = "GetPlacesOnFlight(int id) fail...";
+
             try
             {
                 _context.Database.Log = (s => Console.WriteLine(s));
@@ -79,17 +83,17 @@ namespace AirlineTicketOffice.Repository.Repositories
             }
             catch (NullReferenceException ex)
             {
-                Debug.WriteLine("GetPlacesOnFlight(int id) fail..." + ex.Message);
+                DebugWrite(_methodName, ex.Message);
                 return null;
             }
             catch (ArgumentException ex)
             {
-                Debug.WriteLine("GetPlacesOnFlight(int id) fail..." + ex.Message);
+                DebugWrite(_methodName, ex.Message);
                 return null;
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("GetPlacesOnFlight(int id) fail..." + ex.Message);
+                DebugWrite(_methodName, ex.Message);
                 return null;
             }
           

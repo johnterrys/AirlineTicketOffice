@@ -14,12 +14,14 @@ namespace AirlineTicketOffice.Repository.Repositories
     public class BaseModelRepository<TEntity> where TEntity : class
     {
 
+        protected string _methodName;
+
         protected readonly AirlineTicketOfficeEntities _context;
 
         protected BaseModelRepository()
         {
             this._context = new AirlineTicketOfficeEntities();
-
+ 
         }
 
         /// <summary>
@@ -45,7 +47,8 @@ namespace AirlineTicketOffice.Repository.Repositories
         /// <returns></returns>
         protected bool Save()
         {
-            
+            _methodName = "'Save()' method fail...";
+
             try
             {
                 if (_context.SaveChanges() == 0)
@@ -57,35 +60,44 @@ namespace AirlineTicketOffice.Repository.Repositories
             }
             catch (DbUpdateException ex)
             {
-                Debug.WriteLine("'Save()' method fail..." + ex.Message);
+                DebugWrite(_methodName, ex.Message);            
                 return false;
             }
             catch (DbEntityValidationException ex)
             {
-                Debug.WriteLine("'Save()' method fail..." + ex.Message);
+                DebugWrite(_methodName, ex.Message);
                 return false;
             }
             catch (NotSupportedException ex)
             {
-                Debug.WriteLine("'Save()' method fail..." + ex.Message);
+                DebugWrite(_methodName, ex.Message);
                 return false;
             }
             catch (ObjectDisposedException ex)
             {
-                Debug.WriteLine("'Save()' method fail..." + ex.Message);
+                DebugWrite(_methodName, ex.Message);
                 return false;
             }
             catch (InvalidOperationException ex)
             {
-                Debug.WriteLine("'Save()' method fail..." + ex.Message);
+                DebugWrite(_methodName, ex.Message);
                 return false;
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("'Save()' method fail..." + ex.Message);
+                DebugWrite(_methodName, ex.Message);
                 return false;
             }
            
+        }
+
+        /// <summary>
+        /// Write in console fail data.
+        /// </summary>
+        /// <param name="message"></param>
+        protected void DebugWrite(string methodName, string message)
+        {
+            Debug.WriteLine(methodName + message);
         }
 
         /// <summary>
@@ -94,6 +106,8 @@ namespace AirlineTicketOffice.Repository.Repositories
         /// </summary>
         protected void RefreshAll()
         {
+            _methodName = "'RefreshAll()' method fail...";
+
             try
             {
                 foreach (var entity in _context.ChangeTracker.Entries())
@@ -103,7 +117,7 @@ namespace AirlineTicketOffice.Repository.Repositories
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("'RefreshAll()' method fail..." + ex.Message);
+                DebugWrite(_methodName, ex.Message);
             }
         }
 
