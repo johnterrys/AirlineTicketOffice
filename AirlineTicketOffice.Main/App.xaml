@@ -99,6 +99,8 @@
             <BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter" />
             <!-- Converter 'foreground'. -->
             <conv:NullBrushConverter x:Key="nullBrushConverter"></conv:NullBrushConverter>
+            <!-- Converter Rect. -->
+            <conv:NullRectConverter x:Key="nullRectConverter"></conv:NullRectConverter>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

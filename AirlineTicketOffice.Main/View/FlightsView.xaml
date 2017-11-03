@@ -140,9 +140,11 @@
                        VerticalAlignment="Center"></TextBlock>
             <!-- My user control - 'PlaceChartControl'. -->
             <Grid Grid.Row="1">
-                <lib:PlaceChartControl EconomFreeRect="{Binding EconomFreeRect}" EconomBusyRect="{Binding EconomBusyRect}"
+                <lib:PlaceChartControl EconomFreeRect="{Binding EconomFreeRect, Converter={StaticResource nullRectConverter}}" 
+                                       EconomBusyRect="{Binding EconomBusyRect, Converter={StaticResource nullRectConverter}}"
                                        EconomyPlaceFree="{Binding EconomyPlaceFree}" EconomyPlaceBusy="{Binding EconomyPlaceBusy}"
-                                       BusinessFreeRect="{Binding BusinessFreeRect}" BusinessBusyRect="{Binding BusinessBusyRect}"
+                                       BusinessFreeRect="{Binding BusinessFreeRect, Converter={StaticResource nullRectConverter}}" 
+                                       BusinessBusyRect="{Binding BusinessBusyRect, Converter={StaticResource nullRectConverter}}"
                                        BusinessPlaceFree="{Binding BusinessPlaceFree}" BusinessPlaceBusy="{Binding BusinessPlaceBusy}">
                 </lib:PlaceChartControl>
             </Grid>

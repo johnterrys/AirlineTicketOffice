@@ -52,7 +52,7 @@ namespace AirlineTicketOffice.Main.View
                 }
                 if (x.Token == "pdf")
                 {
-                    if (File.Exists(x.Url));
+                    if (File.Exists(x.Url))
                     {
                         try
                         {
