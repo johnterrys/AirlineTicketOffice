@@ -219,7 +219,7 @@
                 <Grid Grid.Row="2" Margin="5" Background="#3a3938">
                     <TextBlock Text="{Binding MessageForUser}"
                     TextWrapping="Wrap"
-                    Foreground="{Binding ForegroundForUser}"
+                    Foreground="{Binding ForegroundForUser, Converter={StaticResource nullBrushConverter}}"
                     FontSize="16"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"></TextBlock>

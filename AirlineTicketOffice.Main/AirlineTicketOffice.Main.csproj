@@ -85,6 +85,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converters\NullBrushConverter.cs" />
     <Compile Include="Services\Dialog\DialogAbout.cs" />
     <Compile Include="Services\Dialog\IDialogMessage.cs" />
     <Compile Include="Services\Dialog\IPdfFileDialogService.cs" />

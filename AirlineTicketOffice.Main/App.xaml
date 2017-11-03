@@ -1,5 +1,7 @@
 ﻿<Application x:Class="AirlineTicketOffice.Main.App" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="clr-namespace:AirlineTicketOffice.Main"
-             StartupUri="View/MainWindow.xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" d1p1:Ignorable="d" xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006">
+             StartupUri="View/MainWindow.xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" d1p1:Ignorable="d"
+             xmlns:conv="clr-namespace:AirlineTicketOffice.Main.Converters"
+             xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006">
     <Application.Resources>
         <ResourceDictionary>
             <!-- mvvm light locator. -->
@@ -95,6 +97,8 @@
             </Style>
             <!-- Converter visability. -->
             <BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter" />
+            <!-- Converter 'foreground'. -->
+            <conv:NullBrushConverter x:Key="nullBrushConverter"></conv:NullBrushConverter>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
