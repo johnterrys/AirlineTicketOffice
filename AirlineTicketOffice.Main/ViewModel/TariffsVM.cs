@@ -18,11 +18,10 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using WPFNavigation.ViewModel;
 
 namespace AirlineTicketOffice.Main.ViewModel
 {
-    public class TariffsVM:NavigateViewModel
+    public class TariffsVM:ViewModelBase
     {
         #region constructor
         public TariffsVM(ITariffsRepository tariffRepository,
@@ -173,9 +172,7 @@ namespace AirlineTicketOffice.Main.ViewModel
                         {
                             if (_pdfFileDialogService.OpenFileDialog() == true)
                             {
-                                string absUri = _pdfFileDialogService.FilePath;
-
-                                Navigate(absUri, "pdf");
+                                _pdfFileDialogService.ShowMessage("Could Not Open Pdf File...");
                             }
                         }
                         catch (Exception ex)
@@ -210,9 +207,7 @@ namespace AirlineTicketOffice.Main.ViewModel
                         {
                             if (_wordFileDialogService.OpenFileDialog() == true)
                             {
-
-                                Navigate(_wordFileDialogService.Document, "word");
-
+                                _wordFileDialogService.ShowMessage("Could Not Open Word File...");
                             }
                         }
                         catch (Exception ex)

@@ -27,55 +27,7 @@ namespace AirlineTicketOffice.Main.View
         public TariffsView()
         {
             InitializeComponent();
-
-            NavigationSetup();
         }
 
-        /// <summary>
-        /// TEMPORARY DIRTY HACK!!!!!!!!
-        /// </summary>
-        private void NavigationSetup()
-        {
-            Messenger.Default.Register<NavigateArgs>(this, (x) =>
-            {
-                DocumentViewer dw = null;
-
-                if (x.Token == "word")
-                {
-                    GridForWebBrowser.Children.Clear();
-
-                    dw = new DocumentViewer();
-
-                    GridForWebBrowser.Children.Add(dw);
-
-                    dw.Document = x.Document;
-                }
-                if (x.Token == "pdf")
-                {
-                    if (File.Exists(x.Url))
-                    {
-                        try
-                        {
-                            Process.Start(x.Url);
-                        }                       
-                        catch (Win32Exception ex)
-                        {
-                            Debug.WriteLine(ex.Message);
-                        }
-                        catch (ObjectDisposedException ex)
-                        {
-                            Debug.WriteLine(ex.Message);
-                        }
-                        catch (FileNotFoundException ex)
-                        {
-                            Debug.WriteLine(ex.Message);
-                        }
-
-                    }
-
-                }               
-
-            });
-        }
     }
 }

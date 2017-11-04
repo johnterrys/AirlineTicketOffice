@@ -10,7 +10,22 @@ namespace AirlineTicketOffice.Main.Services.Dialog
 {
     public class PdfFileDialogService : IPdfFileDialogService
     {
+        #region ctor
+
+        public PdfFileDialogService(INewProcessGo newProcess)
+        {
+            _newProcess = newProcess;
+        }
+
+        #endregion
+
+
+        #region prop and fields
+
+        private readonly INewProcessGo _newProcess;
         public string FilePath { get; set; }
+
+        #endregion
 
         public bool OpenFileDialog()
         {
@@ -28,9 +43,14 @@ namespace AirlineTicketOffice.Main.Services.Dialog
 
             if (dlg.ShowDialog() == true && dlg.FileName.Length > 0)
             {
-                FilePath = (dlg.FileName);
+                /// <summary>
+                /// start New Process: open pdf document if exist.
+                /// </summary>  
+                if (_newProcess.startNewProcess(dlg.FileName))
+                {
+                    return true;
+                }
 
-                return true;
             }
             return false;
         }

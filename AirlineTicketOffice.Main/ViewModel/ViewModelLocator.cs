@@ -73,6 +73,7 @@ namespace AirlineTicketOffice.Main.ViewModel
             SimpleIoc.Default.Register<IPdfFileDialogService, PdfFileDialogService>();
             SimpleIoc.Default.Register<IWordFileDialogService, WordFileDialogService>(); 
             SimpleIoc.Default.Register<IXmlDialogService, XmlDialogService>();
+            SimpleIoc.Default.Register<INewProcessGo, NewProcessGo>();
 
             // Register view model:
             SimpleIoc.Default.Register<MainViewModel>();

@@ -18,20 +18,27 @@ namespace AirlineTicketOffice.Main.Services.Dialog
     /// </summary>
     public class WordFileDialogService : IWordFileDialogService
     {
+        #region ctor
+
+        public WordFileDialogService(INewProcessGo newProcess)
+        {
+            _newProcess = newProcess;
+        }
+
+        #endregion
+
         #region fields
 
         public string FilePath { get; set; }
-        public IDocumentPaginatorSource Document { get; set; }
+
+        private readonly INewProcessGo _newProcess;
 
         #endregion
 
         #region methods
 
         /// <summary>
-        /// Open word file in any files directory
-        /// and convert to xps file. Return via NavigateViewModel</summary>
-        /// in TariffsView.
-        /// <returns>
+        /// Open word file in new process.
         /// true(if ok) or false...
         /// </returns>
         public bool OpenFileDialog()
@@ -50,16 +57,14 @@ namespace AirlineTicketOffice.Main.Services.Dialog
 
             if (dlg.ShowDialog() == true && dlg.FileName.Length > 0)
             {
-                FilePath = (dlg.FileName);
-
-                string newXPSDocumentName = String.Concat(Path.GetDirectoryName(dlg.FileName), "\\",
-                           Path.GetFileNameWithoutExtension(dlg.FileName), ".xps");
-
-                // Set DocumentViewer.Document to XPS document
-                this.Document =
-                    ConvertWordDocToXPSDoc(dlg.FileName, newXPSDocumentName, dlg.FileName).GetFixedDocumentSequence();
-
-                return true;
+                /// <summary>
+                /// start New Process: open word document if exist.
+                /// </summary>  
+                if (_newProcess.startNewProcess(dlg.FileName))
+                {
+                    return true;
+                }
+               
             }
             return false;
         }
@@ -71,65 +76,7 @@ namespace AirlineTicketOffice.Main.Services.Dialog
         public void ShowMessage(string message)
         {
             MessageBox.Show(message);
-        }
-
-        /// <summary>
-        /// This method takes a Word document full path and new XPS document full path and name
-        /// and returns the new XpsDocument
-        /// </summary>
-        /// <param name="wordDocName"></param>
-        /// <param name="xpsDocName"></param>
-        /// <returns></returns>
-        private XpsDocument ConvertWordDocToXPSDoc(string wordDocName, string xpsDocName, string dlgPath)
-        {
-            // Create a WordApplication and add Document to it
-            Microsoft.Office.Interop.Word.Application wordApplication = 
-                                            new Microsoft.Office.Interop.Word.Application();
-
-            wordApplication.Documents.Add(wordDocName);
-
-
-            Document doc = wordApplication.ActiveDocument;
-           
-            try
-            {
-                object fileName = xpsDocName;
-                object SaveFormat = WdSaveFormat.wdFormatXPS;
-                object oMissing = System.Reflection.Missing.Value;
-                object AllowSubstitutions = true;
-                object isVisible = true;
-
-                // check file existing:
-                DirectoryInfo dir = new DirectoryInfo(Path.GetDirectoryName(dlgPath));
-
-                FileInfo[] xpsFiles = dir.GetFiles("*.xps", SearchOption.TopDirectoryOnly);
-
-                foreach (var f in xpsFiles)
-                {
-                    if (f.FullName == xpsDocName)
-                    {
-                        break;
-                    }
-                    else
-                    {
-                        doc.SaveAs(ref fileName, ref SaveFormat, ref oMissing,
-                  ref oMissing, ref oMissing, ref oMissing, ref oMissing, ref oMissing,
-                  ref oMissing, ref oMissing, ref oMissing, ref isVisible, ref oMissing,
-                  ref AllowSubstitutions, ref oMissing, ref oMissing);
-                    }
-                }
-
-                wordApplication.Quit();
-
-                XpsDocument xpsDoc = new XpsDocument(xpsDocName, FileAccess.Read);
-                return xpsDoc;
-            }
-            catch (Exception exp)
-            {
-                MessageBox.Show(exp.Message);
-            }
-            return null;
-        }
+        }    
 
         #endregion
     }
