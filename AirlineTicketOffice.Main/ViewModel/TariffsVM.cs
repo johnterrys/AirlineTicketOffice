@@ -1,4 +1,5 @@
-﻿using AirlineTicketOffice.Main.Services.Dialog;
+﻿using AirlineTicketOffice.Main.Properties;
+using AirlineTicketOffice.Main.Services.Dialog;
 using AirlineTicketOffice.Main.Services.Messenger;
 using AirlineTicketOffice.Main.Services.Navigation;
 using AirlineTicketOffice.Model.IRepository;
@@ -7,18 +8,16 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
+
+
+/// <summary>
+/// View model for 'TarrifsView.xaml'.
+/// </summary>
 namespace AirlineTicketOffice.Main.ViewModel
 {
     public class TariffsVM:ViewModelBase
@@ -249,7 +248,7 @@ namespace AirlineTicketOffice.Main.ViewModel
                                 MessageStatusFromFlight = "New Ticket Window"
                             });
 
-                            _navigationService.NavigateTo("NewTicketViewKey", "New Ticket Window");
+                            _navigationService.NavigateTo(Resources.NewTicketViewKey, "New Ticket Window");
                         }
 
                     });

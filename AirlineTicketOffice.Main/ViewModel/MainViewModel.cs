@@ -4,13 +4,12 @@ using GalaSoft.MvvmLight.Command;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Messaging;
 using AirlineTicketOffice.Main.Services.Messenger;
-using System.Diagnostics;
 using System;
 using System.Windows;
-using System.Reflection;
 using AirlineTicketOffice.Main.Services.Dialog;
 using AirlineTicketOffice.Model.IRepository;
 using System.Threading.Tasks;
+using AirlineTicketOffice.Main.Properties;
 
 namespace AirlineTicketOffice.Main.ViewModel
 {
@@ -146,7 +145,7 @@ namespace AirlineTicketOffice.Main.ViewModel
                 {
                     _getNewTicketCommand = new RelayCommand(() =>
                     {
-                        _navigationService.NavigateTo("NewTicketViewKey");
+                        _navigationService.NavigateTo(Resources.NewTicketViewKey);
                         if (this.connect) this.StatusWindow = "New Ticket Window";
                     });
                 }
@@ -194,7 +193,7 @@ namespace AirlineTicketOffice.Main.ViewModel
                 {
                     _getAllPassengerCommand = new RelayCommand(() =>
                     {
-                        _navigationService.NavigateTo("AllPassengerViewKey");
+                        _navigationService.NavigateTo(Resources.AllPassengerViewKey);
                         if (this.connect) this.StatusWindow = "All Passengers Window";
                     });
                 }
@@ -217,7 +216,7 @@ namespace AirlineTicketOffice.Main.ViewModel
                 {
                     _getNewPassengerCommand = new RelayCommand(() =>
                     {
-                        _navigationService.NavigateTo("NewPassengerViewKey");
+                        _navigationService.NavigateTo(Resources.NewPassengerViewKey);
                         if (this.connect) this.StatusWindow = "New Passenger Window";
                     });
                 }
@@ -239,7 +238,7 @@ namespace AirlineTicketOffice.Main.ViewModel
                 {
                     _getBoughtTicketCommand = new RelayCommand(() =>
                     {
-                        _navigationService.NavigateTo("BoughtTicketViewKey");
+                        _navigationService.NavigateTo(Resources.BoughtTicketViewKey);
                         if (this.connect) this.StatusWindow = "Purchased Tickets Window";
                     });
                 }
@@ -262,7 +261,7 @@ namespace AirlineTicketOffice.Main.ViewModel
                 {
                     _getFlightsCommand = new RelayCommand(() =>
                     {
-                        _navigationService.NavigateTo("FlightsViewKey");
+                        _navigationService.NavigateTo(Resources.FlightsViewKey);
                         if (this.connect) this.StatusWindow = "Flights Window";
                     });
                 }
@@ -285,7 +284,7 @@ namespace AirlineTicketOffice.Main.ViewModel
                 {
                     _getTariffsCommand = new RelayCommand(() =>
                     {
-                        _navigationService.NavigateTo("TariffsViewKey");
+                        _navigationService.NavigateTo(Resources.TariffsViewKey);
                         if (this.connect) this.StatusWindow = "Tariffs Window";
                     });
                 }
@@ -307,7 +306,7 @@ namespace AirlineTicketOffice.Main.ViewModel
                 {
                     _getCashierCommand = new RelayCommand(() =>
                     {
-                        _navigationService.NavigateTo("CashierViewKey");
+                        _navigationService.NavigateTo(Resources.CashierViewKey);
                         if (this.connect) this.StatusWindow = "Cashiers Window";
                     });
                 }
@@ -376,7 +375,7 @@ namespace AirlineTicketOffice.Main.ViewModel
             System.Threading.Thread.CurrentThread.CurrentUICulture = 
                 System.Threading.Thread.CurrentThread.CurrentCulture;
 
-            _navigationService.NavigateTo("NewTicketViewKey");
+            _navigationService.NavigateTo(Resources.NewTicketViewKey);
             if (this.connect) this.StatusWindow = "New Ticket Window";
 
             CheckConnectionDB();

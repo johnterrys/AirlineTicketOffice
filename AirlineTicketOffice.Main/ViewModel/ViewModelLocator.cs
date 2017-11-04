@@ -17,15 +17,10 @@ using AirlineTicketOffice.Main.ViewModel.Flights;
 using AirlineTicketOffice.Main.ViewModel.Tickets;
 using AirlineTicketOffice.Model.IRepository;
 using AirlineTicketOffice.Repository.Repositories;
-using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
-using GalaSoft.MvvmLight.Views;
 using Microsoft.Practices.ServiceLocation;
 using AirlineTicketOffice.Main.Properties;
 using System;
-using GalaSoft.MvvmLight.Threading;
-using AirlineTicketOffice.Main.Services;
-using System.ComponentModel;
 using AirlineTicketOffice.Main.Services.Dialog;
 using AirlineTicketOffice.Main.ViewModel.Passengers;
 
@@ -46,21 +41,19 @@ namespace AirlineTicketOffice.Main.ViewModel
             SimpleIoc.Default.Reset();
 
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
-
+            
             // Register navigation service (path to 'user control' by key):
             var navigationService = new FrameNavigationService(); 
-            navigationService.Configure("CashierViewKey", new Uri("../View/CashierView.xaml", UriKind.RelativeOrAbsolute));
-            navigationService.Configure("NewTicketViewKey", new Uri("../View/NewTicketView.xaml", UriKind.RelativeOrAbsolute));
-            navigationService.Configure("FlightsViewKey", new Uri("../View/FlightsView.xaml", UriKind.RelativeOrAbsolute));
-            navigationService.Configure("TariffsViewKey", new Uri("../View/TariffsView.xaml", UriKind.RelativeOrAbsolute));
-            navigationService.Configure("BoughtTicketViewKey", new Uri("../View/BoughtTicketView.xaml", UriKind.RelativeOrAbsolute));
-            navigationService.Configure("AllPassengerViewKey", new Uri("../View/AllPassengerView.xaml", UriKind.RelativeOrAbsolute));
-            navigationService.Configure("NewPassengerViewKey", new Uri("../View/NewPassengerView.xaml", UriKind.RelativeOrAbsolute));
+            navigationService.Configure(Resources.CashierViewKey, new Uri("../View/CashierView.xaml", UriKind.RelativeOrAbsolute));
+            navigationService.Configure(Resources.NewTicketViewKey, new Uri("../View/NewTicketView.xaml", UriKind.RelativeOrAbsolute));
+            navigationService.Configure(Resources.FlightsViewKey, new Uri("../View/FlightsView.xaml", UriKind.RelativeOrAbsolute));
+            navigationService.Configure(Resources.TariffsViewKey, new Uri("../View/TariffsView.xaml", UriKind.RelativeOrAbsolute));
+            navigationService.Configure(Resources.BoughtTicketViewKey, new Uri("../View/BoughtTicketView.xaml", UriKind.RelativeOrAbsolute));
+            navigationService.Configure(Resources.AllPassengerViewKey, new Uri("../View/AllPassengerView.xaml", UriKind.RelativeOrAbsolute));
+            navigationService.Configure(Resources.NewPassengerViewKey, new Uri("../View/NewPassengerView.xaml", UriKind.RelativeOrAbsolute));
 
-            //SimpleIoc.Default.Unregister<IMainNavigationService>();
+            // Register services and repositories:
             SimpleIoc.Default.Register<IMainNavigationService>(() => navigationService);
-
-            // Register dialog services and repositories:
             SimpleIoc.Default.Register<IDialogMessage, DialogAbout>();
             SimpleIoc.Default.Register<ITicketRepository, AllTicketsModelRepository>();
             SimpleIoc.Default.Register<ICashierRepository, CashierRepository>();
@@ -84,7 +77,6 @@ namespace AirlineTicketOffice.Main.ViewModel
             SimpleIoc.Default.Register<AllPassengersVM>();
             SimpleIoc.Default.Register<NewPassengerVM>();
             SimpleIoc.Default.Register<CashierVM>();
-            //DispatcherHelper.Initialize();
 
         }
 

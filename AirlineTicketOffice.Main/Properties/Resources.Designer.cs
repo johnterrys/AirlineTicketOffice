@@ -61,11 +61,65 @@ namespace AirlineTicketOffice.Main.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to AllPassengerView.
+        /// </summary>
+        internal static string AllPassengerViewKey {
+            get {
+                return ResourceManager.GetString("AllPassengerViewKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to BoughtTicketView.
+        /// </summary>
+        internal static string BoughtTicketViewKey {
+            get {
+                return ResourceManager.GetString("BoughtTicketViewKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CashierView.
+        /// </summary>
+        internal static string CashierViewKey {
+            get {
+                return ResourceManager.GetString("CashierViewKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to FlightsView.
         /// </summary>
         internal static string FlightsViewKey {
             get {
                 return ResourceManager.GetString("FlightsViewKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NewPassengerView.
+        /// </summary>
+        internal static string NewPassengerViewKey {
+            get {
+                return ResourceManager.GetString("NewPassengerViewKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NewTicketView.
+        /// </summary>
+        internal static string NewTicketViewKey {
+            get {
+                return ResourceManager.GetString("NewTicketViewKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TariffsView.
+        /// </summary>
+        internal static string TariffsViewKey {
+            get {
+                return ResourceManager.GetString("TariffsViewKey", resourceCulture);
             }
         }
         

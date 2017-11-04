@@ -117,8 +117,32 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AllPassengerViewKey" xml:space="preserve">
+    <value>AllPassengerView</value>
+    <comment>for stored view name</comment>
+  </data>
+  <data name="BoughtTicketViewKey" xml:space="preserve">
+    <value>BoughtTicketView</value>
+    <comment>for stored view name</comment>
+  </data>
+  <data name="CashierViewKey" xml:space="preserve">
+    <value>CashierView</value>
+    <comment>for stored view name</comment>
+  </data>
   <data name="FlightsViewKey" xml:space="preserve">
     <value>FlightsView</value>
+    <comment>for stored view name</comment>
+  </data>
+  <data name="NewPassengerViewKey" xml:space="preserve">
+    <value>NewPassengerView</value>
+    <comment>for stored view name</comment>
+  </data>
+  <data name="NewTicketViewKey" xml:space="preserve">
+    <value>NewTicketView</value>
+    <comment>for stored view name</comment>
+  </data>
+  <data name="TariffsViewKey" xml:space="preserve">
+    <value>TariffsView</value>
     <comment>for stored view name</comment>
   </data>
   <data name="TicketViewKey" xml:space="preserve">

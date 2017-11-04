@@ -1,25 +1,25 @@
-﻿using AirlineTicketOffice.Main.Services.Messenger;
+﻿using AirlineTicketOffice.Main.Properties;
+using AirlineTicketOffice.Main.Services.Messenger;
 using AirlineTicketOffice.Main.Services.Navigation;
 using AirlineTicketOffice.Model.IRepository;
 using AirlineTicketOffice.Model.Models;
-using AirlineTicketOffice.Repository.Repositories;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
-using GalaSoft.MvvmLight.Threading;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using System.Windows.Threading;
 
+
+/// <summary>
+/// View model for 'FlightsView.xaml'.
+/// </summary>
 namespace AirlineTicketOffice.Main.ViewModel.Flights
 {
     public sealed class FlightsVM: ViewModelBase
@@ -251,7 +251,7 @@ namespace AirlineTicketOffice.Main.ViewModel.Flights
                                 MessageStatusFromFlight = "New Ticket Window"
                             });
 
-                            _navigationService.NavigateTo("NewTicketViewKey", "New Ticket Window");
+                            _navigationService.NavigateTo(Resources.NewTicketViewKey, "New Ticket Window");
                         }                     
 
                     });
