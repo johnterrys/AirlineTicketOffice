@@ -7,6 +7,9 @@ using System.Windows.Media;
 
 namespace AirlineTicketOffice.Main.Converters
 {
+    /// <summary>
+    /// Converting SolidColorBrush from string.
+    /// </summary>
     public class NullBrushConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

@@ -8,6 +8,9 @@ using System.Windows.Data;
 
 namespace AirlineTicketOffice.Main.Converters
 {
+    /// <summary>
+    /// Converting rect from string.
+    /// </summary>
     public class NullRectConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
