@@ -1,13 +1,8 @@
-﻿using Microsoft.Office.Interop.Word;
-using Microsoft.Win32;
+﻿using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Windows;
-using System.Windows.Documents;
-using System.Windows.Xps.Packaging;
+
 
 namespace AirlineTicketOffice.Main.Services.Dialog
 {
@@ -49,7 +44,7 @@ namespace AirlineTicketOffice.Main.Services.Dialog
 
             string path = AppDomain.CurrentDomain.BaseDirectory;
 
-            dlg.InitialDirectory = Path.GetFullPath(Path.Combine(path, "..\\Files"));
+            dlg.InitialDirectory = Path.GetFullPath(Path.Combine(path, "Docs"));
 
             dlg.Filter = "document(*.doc, *docx)|*.doc;*.docx";
 

@@ -35,7 +35,7 @@ namespace AirlineTicketOffice.Main.Services.Dialog
 
             string path = AppDomain.CurrentDomain.BaseDirectory;
 
-            dlg.InitialDirectory = Path.GetFullPath(Path.Combine(path, "..\\Files"));
+            dlg.InitialDirectory = Path.GetFullPath(Path.Combine(path, "Docs"));
 
             dlg.Filter = "document(*.pdf)|*.pdf";
 

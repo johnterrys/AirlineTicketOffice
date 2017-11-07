@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Passengers>
+  <Passenger>
+    <Citizenship>США</Citizenship>
+    <PassportNumber>0748977E998EV8</PassportNumber>
+    <Sex>W</Sex>
+    <FullName>Купалова Н.Е.</FullName>
+    <DateOfBirth>1990-07-26T00:00:00</DateOfBirth>
+    <TermOfPassportDate>2035-07-26T00:00:00</TermOfPassportDate>
+    <CountryOfResidence>США</CountryOfResidence>
+    <PhoneMobile>375(33)213-32-32</PhoneMobile>
+    <Email>kupalova@tut.com</Email>
+  </Passenger>
+</Passengers>
