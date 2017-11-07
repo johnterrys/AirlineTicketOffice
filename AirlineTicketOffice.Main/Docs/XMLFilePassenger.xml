@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <Passengers>
   <Passenger>
-    <Citizenship>США</Citizenship>
+    <Citizenship>USA</Citizenship>
     <PassportNumber>0748977E998EV8</PassportNumber>
-    <Sex>W</Sex>
-    <FullName>Купалова Н.Е.</FullName>
+    <Sex>M</Sex>
+    <FullName>Jeffrey Richter</FullName>
     <DateOfBirth>1990-07-26T00:00:00</DateOfBirth>
     <TermOfPassportDate>2035-07-26T00:00:00</TermOfPassportDate>
-    <CountryOfResidence>США</CountryOfResidence>
+    <CountryOfResidence>USA</CountryOfResidence>
     <PhoneMobile>375(33)213-32-32</PhoneMobile>
-    <Email>kupalova@tut.com</Email>
+    <Email>Jeffrey@Richter.com</Email>
   </Passenger>
 </Passengers>

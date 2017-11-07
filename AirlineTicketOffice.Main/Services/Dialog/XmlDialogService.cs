@@ -2,6 +2,7 @@
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -51,9 +52,9 @@ namespace AirlineTicketOffice.Main.Services.Dialog
 
             dlg.Multiselect = false;
 
-            string path = AppDomain.CurrentDomain.BaseDirectory;
+            string path = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Docs"));
 
-            dlg.InitialDirectory = Path.GetFullPath(Path.Combine(path, "Docs"));
+            dlg.InitialDirectory = path;
 
             dlg.Filter = "document(*.xml)|*.xml";
 
@@ -107,39 +108,47 @@ namespace AirlineTicketOffice.Main.Services.Dialog
         {
             SaveFileDialog dlg = new SaveFileDialog();
 
-            string path = AppDomain.CurrentDomain.BaseDirectory;
+            string path = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Docs"));
 
-            dlg.InitialDirectory = Path.GetFullPath(Path.Combine(path, "Docs"));
+            dlg.InitialDirectory = path;
 
             dlg.Filter = "document(*.xml)|*.xml";
 
             dlg.DefaultExt = ".xml";
 
-            if (dlg.ShowDialog() == true && passenger != null)
+            try
             {
-                XDocument xDoc = new XDocument(
-                    new XDeclaration("1.0", "utf-8", "yes"),
-                    new XElement("Passengers"));
+                if (dlg.ShowDialog() == true && passenger != null)
+                {
+                    XDocument xDoc = new XDocument(
+                        new XDeclaration("1.0", "utf-8", "yes"),
+                        new XElement("Passengers"));
 
-               
-                xDoc.Element("Passengers").Add(new XElement("Passenger",
-                    new XElement("Citizenship", passenger.Citizenship),
-                    new XElement("PassportNumber", passenger.PassportNumber),
-                    new XElement("Sex", passenger.Sex),
-                    new XElement("FullName", passenger.FullName),
-                    new XElement("DateOfBirth", passenger.DateOfBirth),
-                    new XElement("TermOfPassportDate", passenger.TermOfPassportDate),
-                    new XElement("CountryOfResidence", passenger.CountryOfResidence),
-                    new XElement("PhoneMobile", passenger.PhoneMobile),
-                    new XElement("Email", passenger.Email)));
-                
 
-                xDoc.Save(dlg.FileName);
+                    xDoc.Element("Passengers").Add(new XElement("Passenger",
+                        new XElement("Citizenship", passenger.Citizenship),
+                        new XElement("PassportNumber", passenger.PassportNumber),
+                        new XElement("Sex", passenger.Sex),
+                        new XElement("FullName", passenger.FullName),
+                        new XElement("DateOfBirth", passenger.DateOfBirth),
+                        new XElement("TermOfPassportDate", passenger.TermOfPassportDate),
+                        new XElement("CountryOfResidence", passenger.CountryOfResidence),
+                        new XElement("PhoneMobile", passenger.PhoneMobile),
+                        new XElement("Email", passenger.Email)));
 
-                return true;
+
+                    xDoc.Save(dlg.FileName);
+
+                    return true;
+                }
+
+                return false;
             }
-            return false;
-
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.Message);
+                return false;
+            }          
         }
 
 
