@@ -44,11 +44,11 @@
                                         Header="Flight Number"/>
                     <DataGridTextColumn x:Name="TotalCost" Binding="{Binding TotalCost}" 
                                         Header="Total Cost"/>
-                    <DataGridTextColumn  x:Name="DateOfDeparture" Binding="{Binding DateOfDeparture, StringFormat={}{0:dd.MM.yyyy}}" 
+                    <DataGridTextColumn  x:Name="DateOfDeparture" Binding="{Binding DateOfDeparture, StringFormat={}{0:yyyy.MM.dd}}" 
                                         Header="Date Of Departure"/>
                     <DataGridTextColumn  x:Name="RateName" Binding="{Binding RateName}" 
                                         Header="Rate Name"/>
-                    <DataGridTextColumn  x:Name="SaleDate" Binding="{Binding SaleDate, StringFormat={}{0:dd.MM.yyyy}}" 
+                    <DataGridTextColumn  x:Name="SaleDate" Binding="{Binding SaleDate, StringFormat={}{0:yyyy.MM.dd}}" 
                                         Header="Sale Date"/>
                     <DataGridTextColumn  x:Name="DepartureTime" Binding="{Binding DepartureTime}" 
                                         Header="Departure Time"/>

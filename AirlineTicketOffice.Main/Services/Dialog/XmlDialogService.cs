@@ -18,16 +18,10 @@ namespace AirlineTicketOffice.Main.Services.Dialog
         #region ctor
         public XmlDialogService()
         {
-            /* Set CultureInfo("ru-RU"). */
-            Thread.CurrentThread.CurrentCulture = new CultureInfo("ru-RU");
-
-            current = CultureInfo.CurrentCulture;
         }
         #endregion
 
         #region fields
-
-        private CultureInfo current;
 
         public string FilePath { get; set; }
 

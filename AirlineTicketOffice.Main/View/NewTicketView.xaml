@@ -78,7 +78,7 @@
                                 <DockPanel>
                                     <Label Style="{StaticResource LabelStyleFlight}">Date Of Departure:</Label>
                                     <TextBlock Style="{StaticResource tblockForNewTicket}"  
-                                           x:Name="DateOfDeparture" Text="{Binding Flight.DateOfDeparture, StringFormat={}{0:dd.MM.yyyy}}" />
+                                           x:Name="DateOfDeparture" Text="{Binding Flight.DateOfDeparture, StringFormat={}{0:yyyy.MM.dd}}" />
                                 </DockPanel>
                                 <DockPanel>
                                     <Label Style="{StaticResource LabelStyleFlight}">Departure Time:</Label>
@@ -181,12 +181,12 @@
                                 <DockPanel>
                                     <Label Style="{StaticResource LabelStyleFlight}">Date Of Birth:</Label>
                                     <TextBlock Style="{StaticResource tblockForNewTicket}"  
-                                           Text="{Binding Passenger.DateOfBirth, StringFormat={}{0:dd.MM.yyyy}}" />
+                                           Text="{Binding Passenger.DateOfBirth, StringFormat={}{0:yyyy.MM.dd}}" />
                                 </DockPanel>
                                 <DockPanel>
                                     <Label Style="{StaticResource LabelStyleFlight}">Date Of Passport Crash:</Label>
                                     <TextBlock Style="{StaticResource tblockForNewTicket}"  
-                                           Text="{Binding Passenger.TermOfPassportDate, StringFormat={}{0:dd.MM.yyyy}}" />
+                                           Text="{Binding Passenger.TermOfPassportDate, StringFormat={}{0:yyyy.MM.dd}}" />
                                 </DockPanel>
                                 <DockPanel>
                                     <Label Style="{StaticResource LabelStyleFlight}">Country Of Residence:</Label>
@@ -327,7 +327,7 @@
                                             Text="{Binding Path=SaleDate,
                                             UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                             FirstDayOfWeek="Monday"
-                                            Language="ru-Ru"
+                                            Language="en-US"
                                             Height="25" >
                                     <DatePicker.Resources>
                                         <Style TargetType="DatePickerTextBox">

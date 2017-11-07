@@ -369,11 +369,13 @@ namespace AirlineTicketOffice.Main.ViewModel
         /// </summary>
         private void BeginLoadingMainWindow()
         {
-            System.Threading.Thread.CurrentThread.CurrentCulture =
-               System.Globalization.CultureInfo.CreateSpecificCulture("ru-Ru");
+            // Set culture:
 
-            System.Threading.Thread.CurrentThread.CurrentUICulture = 
-                System.Threading.Thread.CurrentThread.CurrentCulture;
+            //System.Threading.Thread.CurrentThread.CurrentCulture =
+            //   System.Globalization.CultureInfo.CreateSpecificCulture("en-US");
+
+            //System.Threading.Thread.CurrentThread.CurrentUICulture = 
+            //    System.Threading.Thread.CurrentThread.CurrentCulture;
 
             _navigationService.NavigateTo(Resources.NewTicketViewKey);
             if (this.connect) this.StatusWindow = "New Ticket Window";
