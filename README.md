@@ -3,7 +3,6 @@
 
 ### ***MIN REQUIREMENTS***
 ![alt text](https://img.shields.io/badge/.NET%20Framework-4.0%20or%20above-blue.svg)
-![alt text](https://img.shields.io/badge/.NET%20Framework-4.0%20or%20above-blue.svg)
 ![alt text](https://img.shields.io/badge/Visual%20Studio-2010%20or%20above-blue.svg)
 ![alt text](https://img.shields.io/badge/SQL%20Server-2008%20or%20above-blue.svg)
 ![alt text](https://img.shields.io/badge/Platform-WINDOWS%20XP%20or%20above-blue.svg)
