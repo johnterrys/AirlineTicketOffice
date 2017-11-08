@@ -1,0 +1,285 @@
+﻿<UserControl x:Class="AirlineTicketOffice.Main.View.AllPassengerView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:System="clr-namespace:System;assembly=mscorlib"
+             xmlns:local="clr-namespace:AirlineTicketOffice.Main.View"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:mvvm="http://www.galasoft.ch/mvvmlight"
+             mc:Ignorable="d" 
+             d:DesignHeight="800" d:DesignWidth="1280"
+             DataContext="{Binding AllPassengersVM, Source={StaticResource Locator}}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.05*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.4*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <!-- Buttons. -->
+        <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" Background="#3a3938">
+            <!-- Load Passengers from db. -->
+            <Button Content="Refresh Data" Margin="5" Foreground="White" Background="#171717"
+                    Visibility="{Binding ButtonVisible, Converter={StaticResource booleanToVisibilityConverter}}"
+                 Command="{Binding GetAllPassengerCommand}">
+            </Button>
+        </StackPanel>
+        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" Background="#3a3938">
+            <!-- Search Passenger from db. -->
+            <TextBlock Margin="5 10 5 0"  Visibility="{Binding ButtonVisible,
+                       Converter={StaticResource booleanToVisibilityConverter}}" 
+                       Foreground="LightBlue"
+                       TextWrapping="Wrap" Text="Enter Passport Of Number:"/>
+            <TextBox Margin="5 5 10 5"  
+                     Visibility="{Binding ButtonVisible, Converter={StaticResource booleanToVisibilityConverter}}" 
+                     TextWrapping="Wrap"  Text="{Binding PassportNumber, UpdateSourceTrigger=PropertyChanged}"
+                     MinWidth="200">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="TextChanged">
+                        <mvvm:EventToCommand 
+                        Command="{Binding SearchPassengerCommand, Mode=OneWay}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </TextBox>
+            <Button Background="#171717" Margin="5" Foreground="LightBlue"
+                    Visibility="{Binding ButtonVisible, Converter={StaticResource booleanToVisibilityConverter}}" 
+                    Content="Add Passenger For New Ticket" Command="{Binding SendPassengerToTicketCommand}"></Button>
+        </StackPanel>
+        <!-- Change data passengers start. -->
+        <Border BorderBrush="Black" BorderThickness="0.5" CornerRadius="3"
+                 Grid.Column="0" Grid.Row="1"  Margin="5">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="0.1*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" Orientation="Vertical" Margin="5" Background="#3a3938">
+                <Label Foreground="White" FontSize="14" HorizontalAlignment="Center">Edit Selected Passenger</Label>
+                <StackPanel Margin="1">
+                    <StackPanel Orientation="Horizontal" Visibility="Hidden">
+                            <Label Background="Silver" Width="130">PassengerID:</Label>
+                        <TextBox x:Name="IDTextBox" IsReadOnly="True" Text="{Binding Path=Passenger.PassengerID,
+                                 UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+                        </TextBox>
+                    </StackPanel>
+                        <!-- Citizenship. -->
+                        <DockPanel>
+                            <Label Background="Silver" Width="160">Citizenship:</Label>
+                            <TextBox  x:Name="CitizenshipTextBox"                              
+                             Height="25" >
+                                <TextBox.Text>
+                                    <Binding Path="Passenger.Citizenship" NotifyOnValidationError="True"
+                                        UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
+                                        <Binding.ValidationRules>
+                                            <DataErrorValidationRule />
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </TextBox.Text>
+                            </TextBox>
+                        </DockPanel>
+                        <!-- Passport Number. -->
+                        <DockPanel>
+                            <Label Background="Silver" Width="160">Passport Number:</Label>
+                            <TextBox  x:Name="PassportNumberTextBox"                              
+                            Height="25" >
+                                <TextBox.Text>
+                                    <Binding Path="Passenger.PassportNumber" NotifyOnValidationError="True"
+                                    UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
+                                        <Binding.ValidationRules>
+                                            <DataErrorValidationRule />
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </TextBox.Text>
+                            </TextBox>
+                        </DockPanel>
+                        <!-- Sex. -->
+                        <DockPanel>
+                            <Label Background="Silver" Width="160">Sex:</Label>
+                            <TextBox  x:Name="SexTextBox"                              
+                             Height="25" >
+                                <TextBox.Text>
+                                    <Binding Path="Passenger.Sex" NotifyOnValidationError="True"
+                                        UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
+                                        <Binding.ValidationRules>
+                                            <DataErrorValidationRule />
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </TextBox.Text>
+                            </TextBox>
+                        </DockPanel>
+                        <!-- Full Name. -->
+                        <DockPanel>
+                            <Label Background="Silver" Width="160">Full Name:</Label>
+                            <TextBox  x:Name="FullNameTextBox"                              
+                             Height="25" >
+                                <TextBox.Text>
+                                    <Binding Path="Passenger.FullName" NotifyOnValidationError="True"
+                                        UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
+                                        <Binding.ValidationRules>
+                                            <DataErrorValidationRule />
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </TextBox.Text>
+                            </TextBox>
+                        </DockPanel>
+                        <!-- Date Of Birth. -->
+                        <DockPanel>
+                            <Label Background="Silver" Width="160">Date Of Birth:</Label>
+                            <DatePicker Name="dpDateOfBirth"   
+                                    FirstDayOfWeek="Monday"
+                                    Language=""                                       
+                                    Height="25">
+                                <DatePicker.Text>
+                                    <Binding Path="Passenger.DateOfBirth" NotifyOnValidationError="True"
+                                        UpdateSourceTrigger="LostFocus" Mode="TwoWay">
+                                        <Binding.ValidationRules>
+                                            <DataErrorValidationRule />
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </DatePicker.Text>
+                            </DatePicker>
+                        </DockPanel>
+                        <!-- Term Of Passport Date. -->
+                        <DockPanel>
+                            <Label Background="Silver" Width="160">Term Of PassportDate:</Label>
+                            <DatePicker Name="dpTermOfPassportDate"                               
+                                    FirstDayOfWeek="Monday"
+                                    Language=""
+                                    Height="25">
+                                <DatePicker.Text>
+                                    <Binding Path="Passenger.TermOfPassportDate" NotifyOnValidationError="True"
+                                        UpdateSourceTrigger="LostFocus" Mode="TwoWay">
+                                        <Binding.ValidationRules>
+                                            <DataErrorValidationRule />
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </DatePicker.Text>
+                            </DatePicker>
+                        </DockPanel>
+                        <!-- Country Of Residence. -->
+                        <DockPanel>
+                            <Label Background="Silver" Width="160">Country Of Residence:</Label>
+                            <TextBox  x:Name="CountryOfResidenceTextBox"                              
+                             Height="25" >
+                                <TextBox.Text>
+                                    <Binding Path="Passenger.CountryOfResidence" NotifyOnValidationError="True"
+                                        UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
+                                        <Binding.ValidationRules>
+                                            <DataErrorValidationRule />
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </TextBox.Text>
+                            </TextBox>
+                        </DockPanel>
+                        <!-- Mobile Phone. -->
+                        <DockPanel>
+                            <Label Background="Silver" Width="160">Mobile Phone:</Label>
+                            <TextBox  x:Name="PhoneMobileTextBox"                              
+                             Height="25" >
+                                <TextBox.Text>
+                                    <Binding Path="Passenger.PhoneMobile" NotifyOnValidationError="True"
+                                        UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
+                                        <Binding.ValidationRules>
+                                            <DataErrorValidationRule />
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </TextBox.Text>
+                            </TextBox>
+                        </DockPanel>
+                        <!-- Email. -->
+                        <DockPanel>
+                            <Label Background="Silver" Width="160">Email:</Label>
+                            <TextBox  x:Name="EmailTextBox"                              
+                             Height="25" >
+                                <TextBox.Text>
+                                    <Binding Path="Passenger.Email" NotifyOnValidationError="True"
+                                        UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
+                                        <Binding.ValidationRules>
+                                            <DataErrorValidationRule />
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </TextBox.Text>
+                            </TextBox>
+                        </DockPanel>
+                    </StackPanel>
+            </StackPanel>
+            <!-- Button for change passwenger.. -->
+                <StackPanel Grid.Row="1" Background="#3a3938">
+                <Button Content="Save Data" Margin="5" MinWidth="100" HorizontalAlignment="Center" Foreground="White" Background="#171717"
+                 Command="{Binding SavePassengerChangeCommand}" CommandParameter="{Binding Passenger}">
+                </Button>
+            </StackPanel>
+            <!-- Just field. -->
+                <Grid Grid.Row="2" Margin="5" Background="#3a3938">
+                    <TextBlock Text="{Binding MessageForUser}"
+                    TextWrapping="Wrap"
+                    Foreground="{Binding ForegroundForUser, Converter={StaticResource nullBrushConverter}}"
+                    FontSize="16"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"></TextBlock>
+                </Grid>
+            </Grid>
+        </Border>
+        <!-- Change data passengers end. -->
+        <!-- Data View bought tickets. -->
+        <ScrollViewer Grid.Row="1" Grid.Column="1" Background="White">
+            <DataGrid Name="dgPassengers"  
+                      SelectionMode="Single"
+                      VerticalGridLinesBrush="Transparent"
+                      HorizontalGridLinesBrush="Transparent"
+                      RowBackground="Lavender" 
+                      AlternatingRowBackground="White"
+                      ItemsSource="{Binding Passengers}"
+                      AutoGenerateColumns="False"
+                      Margin="0,5,0,5"
+                      ColumnWidth="*"
+                      Background="White"
+                      RenderTransformOrigin="0.5,0.5" 
+                      IsReadOnly="True">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <mvvm:EventToCommand 
+                    Command="{Binding  SendPassengerCommand, Mode=OneWay}"
+                    CommandParameter="{Binding ElementName=dgPassengers, Path=SelectedItem}"   
+                     />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <DataGrid.Columns>
+                <DataGridTextColumn  x:Name="PassengerID" Binding="{Binding PassengerID}" 
+                                    Header="PassengerID"/>
+                <DataGridTextColumn  x:Name="Citizenship" Binding="{Binding Citizenship}" 
+                                    Header="Citizenship"/>
+                <DataGridTextColumn x:Name="PassportNumber" Binding="{Binding PassportNumber}" 
+                                    Header="Passport Number"/>
+                <DataGridTextColumn  x:Name="Sex" Binding="{Binding Sex}" 
+                                    Header="Sex"/>
+                <DataGridTextColumn  x:Name="FullName" Binding="{Binding FullName}" 
+                                    Header="Full Name"/>
+                    <DataGridTextColumn  x:Name="DateOfBirth" Binding="{Binding DateOfBirth, StringFormat={}{0:MM/dd/yyyy}}" 
+                                    Header="Date Of Birth"/>
+                    <DataGridTextColumn  x:Name="TermOfPassportDate" Binding="{Binding TermOfPassportDate, StringFormat={}{0:MM/dd/yyyy}}" 
+                                    Header="Term Of Passport Date"/>
+                <DataGridTextColumn  x:Name="CountryOfResidence" Binding="{Binding CountryOfResidence}" 
+                                    Header="Country Of Residence"/>
+                <DataGridTextColumn  x:Name="PhoneMobile" Binding="{Binding PhoneMobile}" 
+                                    Header="Phone Mobile"/>
+                <DataGridTextColumn  x:Name="Email" Binding="{Binding Email}" 
+                                    Header="Email"/>
+            </DataGrid.Columns>
+            </DataGrid>
+        </ScrollViewer>
+        
+        <!-- Dummy-panel for loading. -->
+        <DockPanel Background="#abbfd4"
+                   Visibility="{Binding DataGridVisibility, 
+                   Converter={StaticResource booleanToVisibilityConverter}}"
+                   Grid.Row="1" Grid.Column="1">
+            <TextBlock Style="{StaticResource LoadingStyleTB}"></TextBlock>
+        </DockPanel>
+        <!-- End dummy-panel. -->
+    </Grid>
+</UserControl>

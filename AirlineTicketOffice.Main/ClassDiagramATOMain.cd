@@ -1,0 +1,314 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="AirlineTicketOffice.Main.App" Collapsed="true">
+    <Position X="11.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>App.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AirlineTicketOffice.Main.MainWindow" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="7.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\MainWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="AirlineTicketOffice.Main.Properties.Resources" Collapsed="true">
+    <Position X="14.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAIAAAAAAAABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AirlineTicketOffice.Main.Properties.Settings" Collapsed="true">
+    <Position X="16.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AirlineTicketOffice.Main.Services.Dialog.DialogAbout" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAACAAAAAAAAAAAAgAAAAAAAAEAAAAAAAAAACAACA=</HashCode>
+      <FileName>Services\Dialog\DialogAbout.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="AirlineTicketOffice.Main.Services.Dialog.PdfFileDialogService" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="13" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAAAAAAAAAAAAAEAAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>Services\Dialog\PdfFileDialogService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="AirlineTicketOffice.Main.Services.Dialog.WordFileDialogService" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="11.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAACAAAAAAAAAAAEAAAAACAABAAAAAAAA=</HashCode>
+      <FileName>Services\Dialog\WordFileDialogService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="AirlineTicketOffice.Main.Services.Dialog.XmlDialogService" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="13" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAAAAAAAAAAAQgEAAAAAQAABAAAAAAAA=</HashCode>
+      <FileName>Services\Dialog\XmlDialogService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="AirlineTicketOffice.Main.Services.Messenger.MessageStatus" Collapsed="true">
+    <Position X="11.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\Messenger\MessageCommunicator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AirlineTicketOffice.Main.Services.Messenger.MessageSendPassenger" Collapsed="true">
+    <Position X="7.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Services\Messenger\MessageCommunicator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AirlineTicketOffice.Main.Services.Messenger.MessageFlight" Collapsed="true">
+    <Position X="11.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\Messenger\MessageCommunicator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AirlineTicketOffice.Main.Services.Messenger.MessageFlightToNewTicket" Collapsed="true">
+    <Position X="13" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\Messenger\MessageCommunicator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AirlineTicketOffice.Main.Services.Messenger.MessageSendCashier" Collapsed="true">
+    <Position X="16.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\Messenger\MessageCommunicator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AirlineTicketOffice.Main.Services.Messenger.MessageSendTariff" Collapsed="true">
+    <Position X="9.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\Messenger\MessageCommunicator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AirlineTicketOffice.Main.Services.Messenger.MessageCashierToNewTicket" Collapsed="true">
+    <Position X="9.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\Messenger\MessageCommunicator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AirlineTicketOffice.Main.Services.Messenger.MessagePassengerToNewTicket" Collapsed="true">
+    <Position X="14.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\Messenger\MessageCommunicator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AirlineTicketOffice.Main.Services.Messenger.MessageTariffToNewTicket" Collapsed="true">
+    <Position X="13" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\Messenger\MessageCommunicator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AirlineTicketOffice.Main.Services.Navigation.FrameNavigationService" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="14.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAEAAAATAAAAAAAAQCAFAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\Navigation\FrameNavigationService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="AirlineTicketOffice.Main.Services.Navigation.NavigateArgs" Collapsed="true">
+    <Position X="14.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACCAAAAAABAAA=</HashCode>
+      <FileName>Services\Navigation\NavigateArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AirlineTicketOffice.Main.View.AllPassengerView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\AllPassengerView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="AirlineTicketOffice.Main.View.BoughtTicketView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="13" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\BoughtTicketView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="AirlineTicketOffice.Main.View.CashierView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="16.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\CashierView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="AirlineTicketOffice.Main.View.FlightsView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="11.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\FlightsView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="AirlineTicketOffice.Main.View.NewPassengerView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="16.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\NewPassengerView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="AirlineTicketOffice.Main.View.NewTicketView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\NewTicketView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="AirlineTicketOffice.Main.View.TariffsView" BaseTypeListCollapsed="true">
+    <Position X="7.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\TariffsView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="AirlineTicketOffice.Main.ViewModel.CashierVM" Collapsed="true">
+    <Position X="7.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AkBQCAQjAARoIAAAIAAAEQAAAAAAAgIAAAKAgAAECAA=</HashCode>
+      <FileName>ViewModel\CashierVM.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AirlineTicketOffice.Main.ViewModel.MainViewModel" Collapsed="true">
+    <Position X="16.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgBGAgIIIRAAMAAUpAAAACCARYAQAhAhIQAAAAAEAAA=</HashCode>
+      <FileName>ViewModel\MainViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AirlineTicketOffice.Main.ViewModel.TariffsVM">
+    <Position X="2.25" Y="5.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AABAQkQAgBIIIAAAIAUAAQAIAIAAAAgAkAAAgiAASMA=</HashCode>
+      <FileName>ViewModel\TariffsVM.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AirlineTicketOffice.Main.ViewModel.ViewModelLocator" Collapsed="true">
+    <Position X="9.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAABIAAAAAAAgCIAAAAAAAAAAAABEABAAA=</HashCode>
+      <FileName>ViewModel\ViewModelLocator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AirlineTicketOffice.Main.ViewModel.Flights.FlightsVM" Collapsed="true">
+    <Position X="13" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>UgADA1UQABARIQhEYAACOQABAKgAQiAAUANEIIoFiEU=</HashCode>
+      <FileName>ViewModel\Flights\FlightsVM.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WPFNavigation.ViewModel.NavigateViewModel">
+    <Position X="0.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>ViewModel\NavigateViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AirlineTicketOffice.Main.ViewModel.Passengers.AllPassengersVM" Collapsed="true">
+    <Position X="7.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgBAAEQAAgRAIAASMIBAAQSAAAAAAgAAAAIAAEQEKMA=</HashCode>
+      <FileName>ViewModel\Passengers\AllPassengersVM.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AirlineTicketOffice.Main.ViewModel.Passengers.NewPassengerVM" Collapsed="true">
+    <Position X="7.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAEAAAAAABAAAAAAAAABAAAQQAAogAAACIAEEAEKAA=</HashCode>
+      <FileName>ViewModel\Passengers\NewPassengerVM.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AirlineTicketOffice.Main.ViewModel.Tickets.BoughtTicketVM" Collapsed="true">
+    <Position X="14.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AARAAAQIIABAIAAAAAAAAQAAAAAAAAAEAAAAAAAACAA=</HashCode>
+      <FileName>ViewModel\Tickets\BoughtTicketVM.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AirlineTicketOffice.Main.ViewModel.Tickets.NewTicketVM" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="11.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AoEAQEQgAAwKAQAACAAJAgAAAAggCgBBBAIAAUEEoAA=</HashCode>
+      <FileName>ViewModel\Tickets\NewTicketVM.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Interface Name="AirlineTicketOffice.Main.Services.Dialog.IDialogMessage">
+    <Position X="7.75" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\Dialog\IDialogMessage.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="AirlineTicketOffice.Main.Services.Dialog.IFileDialogService&lt;T&gt;">
+    <Position X="3" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAAAAAAAAAAAAAEAAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>Services\Dialog\IFileDialogService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="AirlineTicketOffice.Main.Services.Dialog.IPdfFileDialogService" Collapsed="true">
+    <Position X="0.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\Dialog\IPdfFileDialogService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="AirlineTicketOffice.Main.Services.Dialog.IWordFileDialogService">
+    <Position X="3" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Services\Dialog\IWordFileDialogService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="AirlineTicketOffice.Main.Services.Dialog.IXmlDialogService">
+    <Position X="5.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAQAAAAAAAAAAA=</HashCode>
+      <FileName>Services\Dialog\IXmlDialogService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="AirlineTicketOffice.Main.Services.Navigation.IMainNavigationService">
+    <Position X="9.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\Navigation\IMainNavigationService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

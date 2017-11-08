@@ -1,0 +1,86 @@
+﻿<UserControl x:Class="AirlineTicketOffice.Main.View.BoughtTicketView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AirlineTicketOffice.Main.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300"
+             DataContext="{Binding BoughtTicketVM, Source={StaticResource Locator}}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.05*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <!-- Buttons. -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Background="#3a3938">
+            <!-- load rates from db. -->
+            <Button Content="Refresh Data" Margin="5" Foreground="White" Background="#171717"
+                    Visibility="{Binding ButtonVisible, Converter={StaticResource booleanToVisibilityConverter}}"
+                 Command="{Binding GetBoughtTicketCommand}">
+            </Button>
+        </StackPanel>
+        <!-- Data View bought tickets. -->
+        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Visible" Margin="5" Background="White">
+            <DataGrid Name="dgTicket"  
+                      Background="White"
+                      SelectionMode="Single"
+                      VerticalGridLinesBrush="Transparent"
+                      HorizontalGridLinesBrush="Transparent"
+                      RowBackground="Lavender" 
+                      AlternatingRowBackground="White"
+                      ItemsSource="{Binding Tickets}"
+                      AutoGenerateColumns="False"
+                      Margin="0,5,0,5"
+                      ColumnWidth="150"
+                      RenderTransformOrigin="0.5,0.5" 
+                      IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn  x:Name="FullName" Binding="{Binding FullName}" 
+                                        Header="Full Name"/>
+                    <DataGridTextColumn  x:Name="PassportNumber" Binding="{Binding PassportNumber}" 
+                                        Header="Passport Number"/>
+                    <DataGridTextColumn  x:Name="FlightNumber" Binding="{Binding FlightNumber}" 
+                                        Header="Flight Number"/>
+                    <DataGridTextColumn x:Name="TotalCost" Binding="{Binding TotalCost}" 
+                                        Header="Total Cost"/>
+                    <DataGridTextColumn  x:Name="DateOfDeparture" Binding="{Binding DateOfDeparture, StringFormat={}{0:MM/dd/yyyy}}" 
+                                        Header="Date Of Departure"/>
+                    <DataGridTextColumn  x:Name="RateName" Binding="{Binding RateName}" 
+                                        Header="Rate Name"/>
+                    <DataGridTextColumn  x:Name="SaleDate" Binding="{Binding SaleDate, StringFormat={}{0:MM/dd/yyyy}}" 
+                                        Header="Sale Date"/>
+                    <DataGridTextColumn  x:Name="DepartureTime" Binding="{Binding DepartureTime}" 
+                                        Header="Departure Time"/>
+                    <DataGridTextColumn  x:Name="TimeOfArrival" Binding="{Binding TimeOfArrival}" 
+                                        Header="Time Of Arrival"/>
+                    <DataGridTextColumn  x:Name="NameRoute" Binding="{Binding NameRoute}" 
+                                        Header="Name Route"/>
+                    <DataGridTextColumn  x:Name="AirportOfDeparture" Binding="{Binding AirportOfDeparture}" 
+                                        Header="Airport Of Departure"/>
+                    <DataGridTextColumn  x:Name="AirportOfArrival" Binding="{Binding AirportOfArrival}" 
+                                        Header="Airport Of Arrival"/>
+                    <DataGridTextColumn  x:Name="TravelTime" Binding="{Binding TravelTime}" 
+                                        Header="Travel Time"/>
+                    <DataGridTextColumn  x:Name="Distance" Binding="{Binding Distance}" 
+                                        Header="Distance"/>
+                    <DataGridTextColumn  x:Name="TypeOfAircraft" Binding="{Binding TypeOfAircraft}" 
+                                        Header="Type Of Aircraft"/>
+                    <DataGridTextColumn  x:Name="CashierFullName" Binding="{Binding CashierFullName}" 
+                                        Header="Cashier FullName"/>
+                    <DataGridTextColumn  x:Name="NumberOfOffices" Binding="{Binding NumberOfOffices}" 
+                                        Header="Number Of Offices"/>
+
+                </DataGrid.Columns>
+            </DataGrid>
+        </ScrollViewer>
+        <!-- Dummy-panel for loading. -->
+        <DockPanel Background="#abbfd4"
+                   Visibility="{Binding DataGridVisibility, 
+                   Converter={StaticResource booleanToVisibilityConverter}}"
+                   Grid.Row="1">
+            <TextBlock Style="{StaticResource LoadingStyleTB}"></TextBlock>
+        </DockPanel>
+        <!-- End dummy-panel. -->
+    </Grid>
+</UserControl>

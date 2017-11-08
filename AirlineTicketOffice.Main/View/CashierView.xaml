@@ -1,0 +1,153 @@
+﻿<UserControl x:Class="AirlineTicketOffice.Main.View.CashierView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AirlineTicketOffice.Main.View"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:mvvm="http://www.galasoft.ch/mvvmlight"
+             mc:Ignorable="d" 
+             d:DesignHeight="800" d:DesignWidth="1200"
+             DataContext="{Binding CashierVM, Source={StaticResource Locator}}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.05*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.4*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <!-- Buttons. -->
+        <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" Background="#3a3938">
+            <!-- Load Cashiers from db. -->
+            <Button Content="Refresh Data" Margin="5" Foreground="White" Background="#171717"
+                    Visibility="{Binding ButtonVisible, Converter={StaticResource booleanToVisibilityConverter}}"
+                    Command="{Binding GetAllCashierCommand}">
+            </Button>
+        </StackPanel>
+        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" Background="#3a3938">
+            <!-- Send Cashier To New Ticket -->         
+            <Button Background="#171717" Margin="5" Foreground="LightBlue" 
+                    Visibility="{Binding ButtonVisible, Converter={StaticResource booleanToVisibilityConverter}}" 
+                    Content="Add Cashier For New Ticket" Command="{Binding SendCashierToTicketCommand}"></Button>
+        </StackPanel>
+        <!-- Change data passengers start. -->
+        <Border BorderBrush="Black" BorderThickness="0.5" CornerRadius="3"
+                 Grid.Column="0" Grid.Row="1"  Margin="5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="0.1*"></RowDefinition>
+                    <RowDefinition Height="0.1*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" Orientation="Vertical" Margin="5" Background="#3a3938">
+                    <Label Foreground="White" FontSize="14" HorizontalAlignment="Center">Edit Selected Cashier:</Label>
+                    <StackPanel Margin="1">
+                        <StackPanel Orientation="Horizontal" Visibility="Hidden">
+                            <Label Background="Silver" Width="130">PassengerID:</Label>
+                            <TextBox x:Name="IDTextBox" IsReadOnly="True" Text="{Binding Path=Cashier.CashierID,
+                                 UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+                            </TextBox>
+                        </StackPanel>
+                       <!--  -->
+                        <DockPanel>
+                            <Label Background="Silver" Width="130">Office Number:</Label>
+                            <TextBox  x:Name="NumberOfOfficesTextBox"                              
+                             Height="25" >
+                                <TextBox.Text>
+                                    <Binding Path="Cashier.NumberOfOffices" NotifyOnValidationError="True"
+                                        UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
+                                        <Binding.ValidationRules>
+                                            <DataErrorValidationRule />
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </TextBox.Text>
+                            </TextBox>
+                        </DockPanel>
+                        <!-- FuulName. -->
+                        <DockPanel>
+                            <Label Background="Silver" Width="130">Full Name:</Label>
+                            <TextBox  x:Name="PassportNumberTextBox"                              
+                             Height="25" >
+                                <TextBox.Text>
+                                    <Binding Path="Cashier.FullName" NotifyOnValidationError="True"
+                                        UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
+                                        <Binding.ValidationRules>
+                                            <DataErrorValidationRule />
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </TextBox.Text>
+                            </TextBox>
+                        </DockPanel>
+                    </StackPanel>
+                </StackPanel>
+                <!-- Button for Change cashier.. -->
+                <StackPanel Grid.Row="1" Background="#3a3938">
+                    <Button Content="Save Data" Margin="5" MinWidth="100" HorizontalAlignment="Center" Foreground="White" 
+                            Background="#171717"
+                 Command="{Binding SaveCashierChangeCommand}" CommandParameter="{Binding Cashier}">
+                    </Button>
+                </StackPanel>
+                <!-- Button for Add Cashier. -->
+                <StackPanel Grid.Row="2" Background="#3a3938">
+                    <Button Content="Add Cashier" Margin="5" MinWidth="100" HorizontalAlignment="Center" Foreground="White"
+                            Background="YellowGreen" FontSize="14"
+                 Command="{Binding AddCashierCommand}" CommandParameter="{Binding Cashier}">
+                    </Button>
+                </StackPanel>
+                <!-- Just field. -->
+                <Grid Grid.Row="3" Margin="5" Background="#3a3938">
+                    <TextBlock Text="{Binding MessageForUser}"
+                    TextWrapping="Wrap"
+                    Foreground="{Binding ForegroundForUser, Converter={StaticResource nullBrushConverter}}"
+                    FontSize="16"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"></TextBlock>
+                </Grid>
+            </Grid>
+        </Border>
+        <!-- Change data passengers end. -->
+        <!-- Data View bought tickets. -->
+        <ScrollViewer Grid.Row="1" Grid.Column="1" Background="White">
+            <DataGrid Name="dgCashiers"  
+                      SelectionMode="Single"
+                      VerticalGridLinesBrush="Transparent"
+                      HorizontalGridLinesBrush="Transparent"
+                      RowBackground="Lavender" 
+                      AlternatingRowBackground="White"
+                      ItemsSource="{Binding Cashiers}"
+                      AutoGenerateColumns="False"
+                      Margin="0,5,0,5"
+                      ColumnWidth="*"
+                      Background="White"
+                      RenderTransformOrigin="0.5,0.5" 
+                      IsReadOnly="True">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <mvvm:EventToCommand 
+                    Command="{Binding  SendCashierCommand, Mode=OneWay}"
+                    CommandParameter="{Binding ElementName=dgCashiers, Path=SelectedItem}"   
+                     />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding NumberOfOffices}" 
+                                    Header="Office Number"/>
+                    <DataGridTextColumn Binding="{Binding FullName}" 
+                                    Header="FullName"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </ScrollViewer>
+
+        <!-- Dummy-panel for loading. -->
+        <DockPanel Background="#abbfd4"
+                   Visibility="{Binding DataGridVisibility, 
+                   Converter={StaticResource booleanToVisibilityConverter}}"
+                   Grid.Row="1" Grid.Column="1">
+            <TextBlock Style="{StaticResource LoadingStyleTB}"></TextBlock>
+        </DockPanel>
+        <!-- End dummy-panel. -->
+    </Grid>
+</UserControl>

@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="AirlineTicketOffice.Data.Aircraft">
+    <Position X="1" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAQAIAAAACAAAAAAAABAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>Aircraft.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AirlineTicketOffice.Data.AirlineTicketOfficeEntities">
+    <Position X="12.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AGQCAAAIAAQQAAAAAEBAAAAAEAgBAAAAAEAACAAABAA=</HashCode>
+      <FileName>AirlineTicketOfficeEntities.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AirlineTicketOffice.Data.BoughtTickets_ATO">
+    <Position X="10.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAEAAAAAIIFCBAIKAAAACAAAABAAAAIAAEAAIA=</HashCode>
+      <FileName>BoughtTickets_ATO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AirlineTicketOffice.Data.Cashier">
+    <Position X="3.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAIAAAAAIAAAAAAAAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>Cashier.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AirlineTicketOffice.Data.Flight">
+    <Position X="0.75" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACQEAAAAAAAAAIIEAEAAAAAAACAAAAAEAAAICAAAAAA=</HashCode>
+      <FileName>Flight.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Aircraft" />
+      <Property Name="Route" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="AirlineTicketOffice.Data.GetTariffs_ATO">
+    <Position X="12.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAAAQAAAAAAAAAAAAQEAAAIAgAAgAA=</HashCode>
+      <FileName>GetTariffs_ATO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AirlineTicketOffice.Data.PassangerTicket_ATO">
+    <Position X="12.5" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAEAAAAAACAABIABAAAAIAAAAAAQAAAEAAAIAAGQAaA=</HashCode>
+      <FileName>PassangerTicket_ATO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AirlineTicketOffice.Data.Passenger">
+    <Position X="9" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAUAAAAAACAABIAAAAAAIAAAAAAQAAAAAAAAAACAAKA=</HashCode>
+      <FileName>Passenger.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AirlineTicketOffice.Data.Passenger_ATO">
+    <Position X="10.75" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAEAAAAAACAABIAAAAAAIAAAAAAQAAAAAAAAAACAAKA=</HashCode>
+      <FileName>Passenger_ATO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AirlineTicketOffice.Data.PlaceInAircraft">
+    <Position X="6.75" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAEAAAAAAIAAAAAAAACAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>PlaceInAircraft.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Aircraft" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="AirlineTicketOffice.Data.PlaceInFlight">
+    <Position X="7" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAAAAAAAAAAACAAAAAAAAEAAAAAAAAgAA=</HashCode>
+      <FileName>PlaceInFlight.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Flight" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="AirlineTicketOffice.Data.Rate">
+    <Position X="9" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAEAAAAAAAAAQAAAAAAAAAAAAQEAAAIAgAAgAA=</HashCode>
+      <FileName>Rate.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AirlineTicketOffice.Data.Route">
+    <Position X="4.25" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAQAAAAABAAKBAAACAAAABAAAAAAAAAAAA=</HashCode>
+      <FileName>Route.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AirlineTicketOffice.Data.Ticket">
+    <Position X="2.75" Y="4.75" Width="1.5" />
+    <AssociationLine Name="Cashier" Type="AirlineTicketOffice.Data.Cashier" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="3.5" Y="4.75" />
+        <Point X="3.5" Y="3.943" />
+        <Point X="4.062" Y="3.943" />
+        <Point X="4.062" Y="2.882" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>QAEAAAAAAAAIAAABAAAAAAAAAAAAAAAEAAAIAAEQoQA=</HashCode>
+      <FileName>Ticket.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Cashier" />
+      <Property Name="Rate" />
+      <Property Name="Flight" />
+      <Property Name="Passenger" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="AirlineTicketOffice.Data.Ticket_ATO">
+    <Position X="10.75" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAABAAAAAAAAAAAAAAAEAAAIAAEQAQA=</HashCode>
+      <FileName>Ticket_ATO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
