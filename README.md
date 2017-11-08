@@ -1,7 +1,17 @@
 # Airline Ticket Office (Book Flights).
-## Term paper: Creating MVVM application with WPF and Entity Framework 6
+## Term paper: MVVM application with WPF and Entity Framework 6
 
-### ***MIN REQUIREMENTS***
+---
+>Brief description of the possibilities:
+> - Display of tariff data
+> - Display of ticket data
+> - Display of cashier data
+> - Display of flight data
+> - Display of passenger data
+> - Create new ticket data
+> - Changing and creating data about the passenger
+
+### ***REQUIREMENTS***
 ![alt text](https://img.shields.io/badge/.NET%20Framework-4.0%20or%20above-blue.svg)
 ![alt text](https://img.shields.io/badge/Visual%20Studio-2010%20or%20above-blue.svg)
 ![alt text](https://img.shields.io/badge/SQL%20Server-2008%20or%20above-blue.svg)
