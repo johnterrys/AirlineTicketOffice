@@ -42,9 +42,9 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn  x:Name="FlightNumber" Binding="{Binding FlightNumber}" 
                                         Header="Flight Number"/>
-                    <DataGridTextColumn  x:Name="DateOfDeparture" Binding="{Binding DateOfDeparture, StringFormat={}{0:yyyy.MM.dd}}" 
+                    <DataGridTextColumn  x:Name="DateOfDeparture" Binding="{Binding DateOfDeparture, StringFormat={}{0:MM/dd/yyyy}}" 
                                         Header="Date Of Departure"/>
-                    <DataGridTextColumn  x:Name="DepartureTime" Binding="{Binding DepartureTime}" 
+                    <DataGridTextColumn  x:Name="DepartureTime" Binding="{Binding DepartureTime, StringFormat={}{0:MM/dd/yyyy}}" 
                                         Header="Departure Time"/>
                     <DataGridTextColumn  x:Name="TimeOfArrival" Binding="{Binding TimeOfArrival}" 
                                         Header="Time Of Arrival"/>
@@ -107,7 +107,7 @@
                             Text="{Binding Path=DateSearch,
                             UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                             FirstDayOfWeek="Monday"
-                            Language="en-US"
+                            Language=""
                             Height="25" >
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="SelectedDateChanged">

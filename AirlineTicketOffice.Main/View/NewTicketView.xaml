@@ -78,7 +78,7 @@
                                 <DockPanel>
                                     <Label Style="{StaticResource LabelStyleFlight}">Date Of Departure:</Label>
                                     <TextBlock Style="{StaticResource tblockForNewTicket}"  
-                                           x:Name="DateOfDeparture" Text="{Binding Flight.DateOfDeparture, StringFormat={}{0:yyyy.MM.dd}}" />
+                                           x:Name="DateOfDeparture" Text="{Binding Flight.DateOfDeparture, StringFormat={}{0:MM/dd/yyyy}}" />
                                 </DockPanel>
                                 <DockPanel>
                                     <Label Style="{StaticResource LabelStyleFlight}">Departure Time:</Label>
@@ -181,12 +181,12 @@
                                 <DockPanel>
                                     <Label Style="{StaticResource LabelStyleFlight}">Date Of Birth:</Label>
                                     <TextBlock Style="{StaticResource tblockForNewTicket}"  
-                                           Text="{Binding Passenger.DateOfBirth, StringFormat={}{0:yyyy.MM.dd}}" />
+                                           Text="{Binding Passenger.DateOfBirth, StringFormat={}{0:MM/dd/yyyy}}" />
                                 </DockPanel>
                                 <DockPanel>
                                     <Label Style="{StaticResource LabelStyleFlight}">Date Of Passport Crash:</Label>
                                     <TextBlock Style="{StaticResource tblockForNewTicket}"  
-                                           Text="{Binding Passenger.TermOfPassportDate, StringFormat={}{0:yyyy.MM.dd}}" />
+                                           Text="{Binding Passenger.TermOfPassportDate, StringFormat={}{0:MM/dd/yyyy}}" />
                                 </DockPanel>
                                 <DockPanel>
                                     <Label Style="{StaticResource LabelStyleFlight}">Country Of Residence:</Label>
@@ -327,7 +327,7 @@
                                             Text="{Binding Path=SaleDate,
                                             UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                             FirstDayOfWeek="Monday"
-                                            Language="en-US"
+                                            Language=""
                                             Height="25" >
                                     <DatePicker.Resources>
                                         <Style TargetType="DatePickerTextBox">
@@ -364,7 +364,7 @@
                                 <TextBlock HorizontalAlignment="Center"
                                            Foreground="LightBlue" 
                                            TextWrapping="Wrap" Text="Enter Full Cost:"/>
-                                <TextBox xml:lang="fr-FR" Margin="10" MaxLength="13" IsReadOnly="True">
+                                <TextBox xml:lang="en-US" Margin="10" MaxLength="13" IsReadOnly="True">
                                     <TextBox.Text>
                                         <Binding Path="FullCost" StringFormat="{}{0:C}" NotifyOnValidationError="True"
                                         UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
@@ -378,7 +378,7 @@
                                         Background="LightBlue" FontFamily="{StaticResource FA}" FontSize="20" Foreground="White"
                                         Command="{Binding FullCostCommand}">
                                 </Button>
-                                <TextBlock  Margin="10" Height="50" TextWrapping="Wrap" xml:lang="fr-FR"
+                                <TextBlock  Margin="10" Height="50" TextWrapping="Wrap" xml:lang="en-US"
                                             TextAlignment="Center" Foreground="LightBlue"
                                             FontSize="28" Text="{Binding FullCost, Mode=OneWay, 
                                             UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:C}}">

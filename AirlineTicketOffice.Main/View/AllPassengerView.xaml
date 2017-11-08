@@ -131,12 +131,11 @@
                             <Label Background="Silver" Width="160">Date Of Birth:</Label>
                             <DatePicker Name="dpDateOfBirth"   
                                     FirstDayOfWeek="Monday"
-                                    Language="en-US"                                       
+                                    Language=""                                       
                                     Height="25">
                                 <DatePicker.Text>
                                     <Binding Path="Passenger.DateOfBirth" NotifyOnValidationError="True"
-                                        UpdateSourceTrigger="LostFocus" Mode="TwoWay"
-                                        StringFormat="{}{0:yyyy.MM.dd}">
+                                        UpdateSourceTrigger="LostFocus" Mode="TwoWay">
                                         <Binding.ValidationRules>
                                             <DataErrorValidationRule />
                                         </Binding.ValidationRules>
@@ -149,12 +148,11 @@
                             <Label Background="Silver" Width="160">Term Of PassportDate:</Label>
                             <DatePicker Name="dpTermOfPassportDate"                               
                                     FirstDayOfWeek="Monday"
-                                    Language="en-US"
+                                    Language=""
                                     Height="25">
                                 <DatePicker.Text>
                                     <Binding Path="Passenger.TermOfPassportDate" NotifyOnValidationError="True"
-                                        UpdateSourceTrigger="LostFocus" Mode="TwoWay"
-                                        StringFormat="{}{0:yyyy.MM.dd}">
+                                        UpdateSourceTrigger="LostFocus" Mode="TwoWay">
                                         <Binding.ValidationRules>
                                             <DataErrorValidationRule />
                                         </Binding.ValidationRules>
@@ -261,9 +259,9 @@
                                     Header="Sex"/>
                 <DataGridTextColumn  x:Name="FullName" Binding="{Binding FullName}" 
                                     Header="Full Name"/>
-                <DataGridTextColumn  x:Name="DateOfBirth" Binding="{Binding DateOfBirth, StringFormat={}{0:yyyy.MM.dd}}" 
+                    <DataGridTextColumn  x:Name="DateOfBirth" Binding="{Binding DateOfBirth, StringFormat={}{0:MM/dd/yyyy}}" 
                                     Header="Date Of Birth"/>
-                <DataGridTextColumn  x:Name="TermOfPassportDate" Binding="{Binding TermOfPassportDate, StringFormat={}{0:yyyy.MM.dd}}" 
+                    <DataGridTextColumn  x:Name="TermOfPassportDate" Binding="{Binding TermOfPassportDate, StringFormat={}{0:MM/dd/yyyy}}" 
                                     Header="Term Of Passport Date"/>
                 <DataGridTextColumn  x:Name="CountryOfResidence" Binding="{Binding CountryOfResidence}" 
                                     Header="Country Of Residence"/>
