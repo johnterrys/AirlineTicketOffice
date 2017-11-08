@@ -12,6 +12,7 @@
 > - Changing and creating data about the passenger
 > - Changing and creating data about the cashier
 
+
 ### ***REQUIREMENTS***
 
 ![alt text](https://img.shields.io/badge/.NET%20Framework-4.0%20or%20above-blue.svg)
@@ -20,13 +21,14 @@
 ![alt text](https://img.shields.io/badge/Platform-WINDOWS%20XP%20or%20above-blue.svg)
 ![alt text](https://img.shields.io/badge/Dependencies-MVVM%20Light%3A%20v5.3%20%7C%20EF%20v6.1%20%7C%20internet%20connection%20required-blue.svg)
 
+
 ### ***RUN THE APPLICATION***
 
 >#### The steps to start the application are as follows:
 
-> - Download this zip and extract it to desired location
-> - Run 'AirlineTicketOffice.sln' using Visual Studio(internet connection required - for installation 'MVVM Light Toolkit ' and 'Entity Framwork')
-> - In 'AirlineTicketOffice.Main' project open file 'AirlineTicketOffice_Create_T-SQL_DB.sql'(folder 'Docs')
-> - In this file on line 21 and 23, replace the path 'FILENAME' to desired(Sample:FILENAME = N'D:\DATABASE\AirlineTicketOffice.mdf'). You can not change the name('AirlineTicketOffice.mdf' and 'AirlineTicketOffice_log.ldf') of the database. If path on the disk 'C:' - you need to run VS with administrator rights.
-> - Create database: run 'AirlineTicketOffice_Create_T-SQL_DB.sql' in 'new query'.
-> - By default, connectionString = "data source=(localdb)\MSSQLLocalDB;...". If need - replace 'source to required'.
+> - Download this zip and extract it to desired location.
+> - Run 'AirlineTicketOffice.sln' using Visual Studio (internet connection required - for installation 'MVVM Light Toolkit ' and 'Entity Framwork').
+> - In 'AirlineTicketOffice.Main' project open file 'AirlineTicketOffice_Create_T-SQL_DB.sql' (folder 'Docs').
+> - In this file on line 21 and 23, replace the path 'FILENAME' to desired (Sample: FILENAME = N'D:\DATABASE\AirlineTicketOffice.mdf'). You can not change the name ('AirlineTicketOffice.mdf' and 'AirlineTicketOffice_log.ldf') of the database. If path on the disk 'C:' - you need to run VS with administrator rights.
+> - Create database: run 'AirlineTicketOffice_Create_T-SQL_DB.sql' in 'new query' via SSMS sql server or VS.
+> - By default, connectionString="data source=(localdb)\MSSQLLocalDB;...". If need - replace 'source' to required in app.config (AirlineTicketOffice.Main project).
