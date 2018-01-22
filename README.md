@@ -2,6 +2,8 @@
 ## Term paper: 'App for avia ticket offices'. MVVM application with WPF and Entity Framework 6
 
 ---
+![alt text](https://github.com/VladTsiukin/AirlineTicketOffice/tree/master/AirlineTicketOffice.Main/Docs/ATOpresent.gif)
+---
 > #### Brief description of the possibilities:
 
 > - Display of tariff data
