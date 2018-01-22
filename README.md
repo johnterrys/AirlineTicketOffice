@@ -1,5 +1,5 @@
 # Airline Ticket Office (Book Flights).
-## Term paper: 'App for avia ticket offices'. MVVM application with WPF and Entity Framework 6
+## Term paper: 'Flight Booking Application'. MVVM application with WPF and Entity Framework 6
 
 ---
 <a href="https://github.com/VladTsiukin/AirlineTicketOffice/tree/master/AirlineTicketOffice.Main/Docs/ATOpresent.gif"><img src="https://github.com/VladTsiukin/AirlineTicketOffice/blob/master/AirlineTicketOffice.Main/Docs/ATOpresent.gif" /></a>
