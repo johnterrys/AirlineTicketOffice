@@ -2,7 +2,7 @@
 ## Term paper: 'App for avia ticket offices'. MVVM application with WPF and Entity Framework 6
 
 ---
-<a href="https://github.com/VladTsiukin/AirlineTicketOffice/tree/master/AirlineTicketOffice.Main/Docs/ATOpresent.gif"><img src="https://github.com/VladTsiukin/AirlineTicketOffice/tree/master/AirlineTicketOffice.Main/Docs/ATOpresent.gif"/></a>
+<a href="https://github.com/VladTsiukin/AirlineTicketOffice/tree/master/AirlineTicketOffice.Main/Docs/ATOpresent.gif"><img src="https://github.com/VladTsiukin/AirlineTicketOffice/tree/master/AirlineTicketOffice.Main/Docs/ATOpresent.gif" width="100%" height="100%"/></a>
 ---
 > #### Brief description of the possibilities:
 
