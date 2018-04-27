@@ -188,7 +188,9 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <Resource Include="Fonts\fontawesome-webfont.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
@@ -229,6 +231,7 @@
     <Content Include="Docs\AirlineTicketOffice_Create_T-SQL_DB.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Docs\ATOpresent.gif" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Docs\XMLFilePassenger.xml">
