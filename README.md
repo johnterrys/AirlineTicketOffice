@@ -31,7 +31,7 @@
 
 > - Download this zip and extract it to desired location.
 > - Run 'AirlineTicketOffice.sln' using Visual Studio (internet connection required - for installation 'MVVM Light Toolkit ' and 'Entity Framwork').
-> - In 'AirlineTicketOffice.Main' project - open file 'AirlineTicketOffice_Create_T-SQL_DB.sql' (folder 'Docs').
+> - In 'AirlineTicketOffice.Main' project - open file <a href="https://github.com/VladTsiukin/AirlineTicketOffice/blob/master/AirlineTicketOffice.Main/Docs/AirlineTicketOffice_Create_T-SQL_DB.sql">Create the db with t-sql</a>.
 > - In this file on line 21 and 23, replace the path 'FILENAME' to desired (Sample: FILENAME=N'D:\AirlineTicketOffice.mdf'). Can not change the name ('AirlineTicketOffice.mdf' and 'AirlineTicketOffice_log.ldf') of the database. If path on the disk 'C:' - need to run VS with administrator rights.
 > - Create database: run 'AirlineTicketOffice_Create_T-SQL_DB.sql' in 'new query' via SSMS sql server or VS.
 > - By default, connectionString="data source=(localdb)\MSSQLLocalDB;...". If need - replace 'source' to required in app.config (AirlineTicketOffice.Main project).
